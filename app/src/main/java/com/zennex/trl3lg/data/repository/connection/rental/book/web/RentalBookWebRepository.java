@@ -1,7 +1,7 @@
 package com.zennex.trl3lg.data.repository.connection.rental.book.web;
 
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.dto.AudioBookDto;
 import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
 import com.zennex.trl3lg.data.entity.rest.request.FetchQueueRequest;

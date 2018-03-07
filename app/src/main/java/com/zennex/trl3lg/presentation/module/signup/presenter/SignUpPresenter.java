@@ -7,9 +7,9 @@ import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.entity.rest.response.SignUpResponse;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.singup.GetFieldsForSignUpInteractor;
-import com.zennex.trl3lg.domain.singup.SignUpInteractor;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.singup.GetFieldsForSignUp;
+import com.zennex.trl3lg.domain.usecases.singup.SignUp;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.helper.StringUtils;
 import com.zennex.trl3lg.presentation.mapper.rx.FieldModelsMapperInteractor;
@@ -28,13 +28,13 @@ import javax.inject.Inject;
 public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
 
     @Inject
-    protected GetFieldsForSignUpInteractor mGetFieldsForSignUpInteractor;
+    protected GetFieldsForSignUp mGetFieldsForSignUp;
 
     @Inject
     protected FieldModelsMapperInteractor mFieldModelsMapperInteractor;
 
     @Inject
-    protected SignUpInteractor mSignUpInteractor;
+    protected SignUp mSignUp;
 
     private String mModuleId;
     private String mSiteId;
@@ -59,7 +59,7 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        mGetFieldsForSignUpInteractor.execute(new FetchFieldsForSignUpObserver(), mModuleId);
+        mGetFieldsForSignUp.execute(new FetchFieldsForSignUpObserver(), mModuleId);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
     public void onClickBtnSignUp(List<FieldModel> fields) {
         mFieldModels = fields;
         if (checkFields()) {
-            mSignUpInteractor.execute(new SignUpObserver(), new SignUpInteractor.Params(mModuleId, mFieldModels));
+            mSignUp.execute(new SignUpObserver(), new SignUp.Params(mModuleId, mFieldModels));
         }
     }
 

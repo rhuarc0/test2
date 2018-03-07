@@ -41,7 +41,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.data.entity.Review;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.book.BookModuleContract;

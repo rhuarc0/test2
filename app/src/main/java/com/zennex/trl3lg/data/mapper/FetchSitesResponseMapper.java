@@ -2,7 +2,7 @@ package com.zennex.trl3lg.data.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.Site;
+import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.data.entity.dto.SiteItemDto;
 
 import javax.inject.Inject;

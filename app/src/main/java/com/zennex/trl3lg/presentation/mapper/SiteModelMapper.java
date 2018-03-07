@@ -2,7 +2,7 @@ package com.zennex.trl3lg.presentation.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.Site;
+import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.data.mapper.Mapper;
 import com.zennex.trl3lg.presentation.model.SiteModel;
 

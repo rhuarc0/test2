@@ -11,7 +11,7 @@ import android.view.Window;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.main.MainScreenContract;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.OnDemandScreenContract;

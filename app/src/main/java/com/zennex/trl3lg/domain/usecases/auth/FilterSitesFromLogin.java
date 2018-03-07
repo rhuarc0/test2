@@ -1,11 +1,11 @@
-package com.zennex.trl3lg.domain.auth;
+package com.zennex.trl3lg.domain.usecases.auth;
 
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.entity.Site;
+import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
 import java.util.List;
@@ -16,14 +16,10 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-/**
- * Created by nikita on 03.06.17.
- */
-
-public class FilterSitesFromLogin2Interactor extends BaseInteractor<List<Site>, FilterSitesFromLogin2Interactor.Params> {
+public class FilterSitesFromLogin extends UseCase<List<Site>, FilterSitesFromLogin.Params> {
 
     @Inject
-    public FilterSitesFromLogin2Interactor(
+    public FilterSitesFromLogin(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

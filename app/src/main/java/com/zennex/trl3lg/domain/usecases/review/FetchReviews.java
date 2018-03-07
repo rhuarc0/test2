@@ -1,10 +1,10 @@
-package com.zennex.trl3lg.domain.review;
+package com.zennex.trl3lg.domain.usecases.review;
 
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.data.entity.Review;
 import com.zennex.trl3lg.data.repository.connection.review.IReviewRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
 import java.util.List;
@@ -16,18 +16,14 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-/**
- * Created by nikita on 20.10.17.
- */
-
-public class FetchReviewsInteractor extends BaseInteractor<List<Review>, FetchReviewsInteractor.Params> {
+public class FetchReviews extends UseCase<List<Review>, FetchReviews.Params> {
 
     @Inject
     IReviewRepository mReviewRepository;
 
     @Inject
-    public FetchReviewsInteractor(@Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
-                                  @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
+    public FetchReviews(@Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
+                        @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);
     }
 

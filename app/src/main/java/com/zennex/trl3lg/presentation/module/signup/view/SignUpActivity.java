@@ -22,7 +22,7 @@ import com.annimon.stream.Stream;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.common.di.activitybindings.HasActivitySubcomponentBuilders;
 import com.zennex.trl3lg.presentation.helper.StringUtils;

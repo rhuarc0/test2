@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.domain.singup;
+package com.zennex.trl3lg.domain.usecases.singup;
 
 import android.support.annotation.NonNull;
 
@@ -7,7 +7,7 @@ import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.entity.rest.request.SignUpRequest;
 import com.zennex.trl3lg.data.entity.rest.response.SignUpResponse;
 import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 
@@ -21,17 +21,13 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-/**
- * Created by nikita on 19.07.17.
- */
-
-public class SignUpInteractor extends BaseInteractor<SignUpResponse, SignUpInteractor.Params> {
+public class SignUp extends UseCase<SignUpResponse, SignUp.Params> {
 
     @Inject
     ISignUpRepository mSignUpRepository;
 
     @Inject
-    public SignUpInteractor(
+    public SignUp(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

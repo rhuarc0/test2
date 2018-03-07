@@ -13,7 +13,7 @@ import android.view.Window;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.common.view.BaseListActivity;
 import com.zennex.trl3lg.presentation.module.app.App;

@@ -5,14 +5,14 @@ import android.support.annotation.NonNull;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.data.entity.AuthData;
-import com.zennex.trl3lg.data.entity.Site;
-import com.zennex.trl3lg.domain.auth.FilterSitesFromLogin2Interactor;
-import com.zennex.trl3lg.domain.auth.GetSiteAndModuleIdByPosition;
-import com.zennex.trl3lg.domain.auth.IsValidSessionTokenInteractor;
-import com.zennex.trl3lg.domain.auth.LoginInteractor;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.site.GetSiteIdInteractor;
-import com.zennex.trl3lg.domain.site.GetSitesAndModulesInteractor;
+import com.zennex.trl3lg.domain.entities.Site;
+import com.zennex.trl3lg.domain.usecases.auth.FilterSitesFromLogin;
+import com.zennex.trl3lg.domain.usecases.auth.GetSiteAndModuleIdByPosition;
+import com.zennex.trl3lg.domain.usecases.auth.IsValidSessionToken;
+import com.zennex.trl3lg.domain.usecases.auth.Login;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.site.GetSiteId;
+import com.zennex.trl3lg.domain.usecases.site.GetSitesAndModules;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.mapper.rx.SiteListMapperInteractor;
 import com.zennex.trl3lg.presentation.mapper.rx.SiteModelMapperInteraction;
@@ -33,16 +33,16 @@ import javax.inject.Inject;
 public class AuthPresenter extends AuthScreenContract.AbstractAuthPresenter {
 
     @Inject
-    LoginInteractor mLoginInteractor;
+    Login mLogin;
 
     @Inject
-    GetSitesAndModulesInteractor mGetSitesAndModulesInteractor;
+    GetSitesAndModules mGetSitesAndModules;
 
     @Inject
     SiteListMapperInteractor mSiteListMapperInteractor;
 
     @Inject
-    FilterSitesFromLogin2Interactor mFilterSitesFromLogin2Interactor;
+    FilterSitesFromLogin mFilterSitesFromLogin;
 
     @Inject
     SiteModelMapperInteraction mSiteModelMapperInteraction;
@@ -51,12 +51,12 @@ public class AuthPresenter extends AuthScreenContract.AbstractAuthPresenter {
     GetSiteAndModuleIdByPosition mGetSiteAndModuleIdByPosition;
 
     @Inject
-    IsValidSessionTokenInteractor mValidSessionTokenInteractor;
+    IsValidSessionToken mValidSessionTokenInteractor;
 
     private List<Site> mSites;
 
     @Inject
-    GetSiteIdInteractor mGetSiteIdInteractor;
+    GetSiteId mGetSiteId;
 
     private boolean mViewPrepared;
 
@@ -107,7 +107,7 @@ public class AuthPresenter extends AuthScreenContract.AbstractAuthPresenter {
 
     @Override
     public void onClickSignIn(String email, String password) {
-        mLoginInteractor.execute(new LoginInteractorObserver(), new LoginInteractor.Params(email, password, null, mSites));
+        mLogin.execute(new LoginInteractorObserver(), new Login.Params(email, password, null, mSites));
     }
 
     @Override
@@ -118,8 +118,8 @@ public class AuthPresenter extends AuthScreenContract.AbstractAuthPresenter {
     @Override
     public void onSelectDomain(String email, String password, int pos) {
         getViewState().hideDialogSelectSite();
-        mLoginInteractor.execute(new LoginInteractorObserver(),
-                new LoginInteractor.Params(email, password, mLoginInteractor.getModuleIdsFromLogin2().get(pos), mSites));
+        mLogin.execute(new LoginInteractorObserver(),
+                new Login.Params(email, password, mLogin.getModuleIdsFromLogin2().get(pos), mSites));
     }
 
     @Override
@@ -147,8 +147,8 @@ public class AuthPresenter extends AuthScreenContract.AbstractAuthPresenter {
         @Override
         public void onNext(AuthData authData) {
             if (authData.getModuleIds() != null) {
-                mFilterSitesFromLogin2Interactor.execute(new FilterSitesFromLogin2InteractorObserver(),
-                        new FilterSitesFromLogin2Interactor.Params(mSites, authData.getModuleIds()));
+                mFilterSitesFromLogin.execute(new FilterSitesFromLogin2InteractorObserver(),
+                        new FilterSitesFromLogin.Params(mSites, authData.getModuleIds()));
             } else {
                 getRouter().navigateToMainScreen();
                 getRouter().close();
@@ -320,7 +320,7 @@ public class AuthPresenter extends AuthScreenContract.AbstractAuthPresenter {
             if (aBoolean) {
                 getRouter().navigateToMainScreen();
                 getRouter().close();
-            } else mGetSitesAndModulesInteractor.execute(new FetchSitesInteractorObserver(), null);
+            } else mGetSitesAndModules.execute(new FetchSitesInteractorObserver(), null);
         }
 
         @Override

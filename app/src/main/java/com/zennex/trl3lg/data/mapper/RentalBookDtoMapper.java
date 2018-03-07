@@ -3,7 +3,7 @@ package com.zennex.trl3lg.data.mapper;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.function.Supplier;
-import com.zennex.trl3lg.data.entity.RentalBook;
+import com.zennex.trl3lg.domain.entities.RentalBook;
 import com.zennex.trl3lg.data.entity.dto.RentalBookDto;
 
 import javax.inject.Inject;

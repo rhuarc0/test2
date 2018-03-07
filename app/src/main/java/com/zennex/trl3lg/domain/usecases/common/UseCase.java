@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.domain.common;
+package com.zennex.trl3lg.domain.usecases.common;
 
 import android.support.annotation.NonNull;
 
@@ -10,11 +10,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
-/**
- * Created by nikita on 02.06.17.
- */
-
-public abstract class BaseInteractor<Result, Param> {
+public abstract class UseCase<Result, Param> {
 
     @NonNull
     protected Scheduler mSubscribeScheduler;
@@ -24,11 +20,11 @@ public abstract class BaseInteractor<Result, Param> {
 
     protected Observable<Result> mResultObservable;
 
-    private BaseInteractor() {
+    private UseCase() {
     }
 
-    public BaseInteractor(@NonNull Scheduler subscriberScheduler,
-                          @NonNull Scheduler observerScheduler) {
+    public UseCase(@NonNull Scheduler subscriberScheduler,
+                   @NonNull Scheduler observerScheduler) {
         mSubscribeScheduler = subscriberScheduler;
         mObserverScheduler = observerScheduler;
         mCompositeDisposable = new CompositeDisposable();

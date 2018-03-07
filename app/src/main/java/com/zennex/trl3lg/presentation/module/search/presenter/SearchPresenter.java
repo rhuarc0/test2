@@ -4,9 +4,9 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.zennex.trl3lg.data.entity.Book;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.rental.book.FetchBooksInteractor;
+import com.zennex.trl3lg.domain.entities.Book;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.search.SearchScreenContract;
@@ -28,7 +28,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     private final short QUANTITY_BOOKS_REQUESTED = 20;
 
     @Inject
-    FetchBooksInteractor mFetchBooksInteractor;
+    FetchBooks mFetchBooks;
     private boolean mAllUploaded = false;
     private List<Book> mShownBooks;
     private String mKeywordSearch;
@@ -64,8 +64,8 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         mAllUploaded = false;
-        mFetchBooksInteractor.execute(new FetchBookListObserver(false, false),
-                new FetchBooksInteractor.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
+        mFetchBooks.execute(new FetchBookListObserver(false, false),
+                new FetchBooks.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
     }
 
     @Override
@@ -81,16 +81,16 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     @Override
     public void onRefreshView() {
         mAllUploaded = false;
-        mFetchBooksInteractor.execute(new FetchBookListObserver(false, true),
-                new FetchBooksInteractor.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
+        mFetchBooks.execute(new FetchBookListObserver(false, true),
+                new FetchBooks.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
         if (mShownBooks != null) mShownBooks.clear();
     }
 
     @Override
     public void onBooksScrolled(int lastVisibleBook) {
         if (isCanLoadBooks(lastVisibleBook)) {
-            mFetchBooksInteractor.execute(new FetchBookListObserver(true, false),
-                    new FetchBooksInteractor.Params(mKeywordSearch,
+            mFetchBooks.execute(new FetchBookListObserver(true, false),
+                    new FetchBooks.Params(mKeywordSearch,
                             null,
                             QUANTITY_BOOKS_REQUESTED,
                             mShownBooks == null ? 0 : mShownBooks.size(), mRentalGroupId));
@@ -98,7 +98,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     }
 
     private boolean isCanLoadBooks(int lastVisibleBook) {
-        return !mFetchBooksInteractor.isRun() &&
+        return !mFetchBooks.isRun() &&
                 ((mShownBooks.size() - lastVisibleBook) <= 5) &&
                 !isAllUploaded();
     }
@@ -109,8 +109,8 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
         getViewState().clearData();
         if (mShownBooks != null) mShownBooks.clear();
         mAllUploaded = false;
-        mFetchBooksInteractor.execute(new FetchBookListObserver(false, false),
-                new FetchBooksInteractor.Params(keywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
+        mFetchBooks.execute(new FetchBookListObserver(false, false),
+                new FetchBooks.Params(keywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
 
     }
 

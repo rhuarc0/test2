@@ -1,13 +1,13 @@
-package com.zennex.trl3lg.domain.site;
+package com.zennex.trl3lg.domain.usecases.site;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.Site;
+import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
 import com.zennex.trl3lg.data.entity.rest.response.GetSitesResponse;
 import com.zennex.trl3lg.data.mapper.FetchSitesResponseMapper;
 import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
 import java.util.ArrayList;
@@ -21,12 +21,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-/**
- * Created by nikita on 03.06.17.
- */
-
-public class GetSitesAndModulesInteractor extends BaseInteractor<List<Site>, Void> {
-
+public class GetSitesAndModules extends UseCase<List<Site>, Void> {
 
     @Inject
     protected ISiteRepository mSiteRepository;
@@ -35,7 +30,7 @@ public class GetSitesAndModulesInteractor extends BaseInteractor<List<Site>, Voi
     protected FetchSitesResponseMapper mGetSitesResponseMapper;
 
     @Inject
-    public GetSitesAndModulesInteractor(
+    public GetSitesAndModules(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

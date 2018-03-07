@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.domain.singup;
+package com.zennex.trl3lg.domain.usecases.singup;
 
 import android.support.annotation.NonNull;
 
@@ -7,7 +7,7 @@ import com.zennex.trl3lg.data.entity.rest.request.GetFieldsForSignUpRequest;
 import com.zennex.trl3lg.data.entity.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
 import java.util.ArrayList;
@@ -21,17 +21,13 @@ import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-/**
- * Created by nikita on 12.06.17.
- */
-
-public class GetFieldsForSignUpInteractor extends BaseInteractor<List<GetFieldsForSignUpResponse.DataMemberField>, String> {
+public class GetFieldsForSignUp extends UseCase<List<GetFieldsForSignUpResponse.DataMemberField>, String> {
 
     @Inject
     protected ISignUpRepository mSignUpRepository;
 
     @Inject
-    public GetFieldsForSignUpInteractor(
+    public GetFieldsForSignUp(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

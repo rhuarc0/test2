@@ -1,6 +1,6 @@
 package com.zennex.trl3lg.data.mapper;
 
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.data.entity.dto.BookDto;
 
 import javax.inject.Inject;

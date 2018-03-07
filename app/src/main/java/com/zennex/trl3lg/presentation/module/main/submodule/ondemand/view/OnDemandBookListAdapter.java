@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.drugandswipe.ItemTouchHelperViewHolder;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.drugandswipe.OnStartDrugListener;

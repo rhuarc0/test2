@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.BuildConfig;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
 import com.zennex.trl3lg.presentation.helper.StringUtils;
 import com.zennex.trl3lg.presentation.utils.GlideApp;

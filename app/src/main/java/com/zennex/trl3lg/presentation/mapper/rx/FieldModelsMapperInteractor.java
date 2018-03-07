@@ -3,7 +3,7 @@ package com.zennex.trl3lg.presentation.mapper.rx;
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.mapper.FieldModelMapper;
 import com.zennex.trl3lg.presentation.model.FieldModel;
@@ -20,7 +20,7 @@ import io.reactivex.Scheduler;
  * Created by nikita on 24.06.17.
  */
 
-public class FieldModelsMapperInteractor extends BaseInteractor<List<FieldModel>, List<GetFieldsForSignUpResponse.DataMemberField>> {
+public class FieldModelsMapperInteractor extends UseCase<List<FieldModel>, List<GetFieldsForSignUpResponse.DataMemberField>> {
 
     @Inject
     FieldModelMapper mFieldModelMapper;

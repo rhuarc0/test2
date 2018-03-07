@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.presentation.module.book.view.BookViewActivity;
 import com.zennex.trl3lg.presentation.module.main.MainScreenContract;
 import com.zennex.trl3lg.presentation.module.main.submodule.catalog.view.CatalogFragmentView;

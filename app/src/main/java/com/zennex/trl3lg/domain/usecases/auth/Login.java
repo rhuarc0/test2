@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.domain.auth;
+package com.zennex.trl3lg.domain.usecases.auth;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,15 +7,15 @@ import android.text.TextUtils;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.entity.AuthData;
-import com.zennex.trl3lg.data.entity.Module;
-import com.zennex.trl3lg.data.entity.Site;
+import com.zennex.trl3lg.domain.entities.Module;
+import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
 import com.zennex.trl3lg.data.entity.rest.request.LoginRequest;
 import com.zennex.trl3lg.data.entity.rest.response.AuthResponse;
 import com.zennex.trl3lg.data.mapper.AuthDataDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
 import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.helper.StringUtils;
 
@@ -30,13 +30,9 @@ import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-/**
- * Created by nikita on 12.06.17.
- */
+public class Login extends UseCase<AuthData, Login.Params> {
 
-public class LoginInteractor extends BaseInteractor<AuthData, LoginInteractor.Params> {
-
-    private static final String TAG = "LoginInteractor";
+    private static final String TAG = Login.class.getSimpleName();
 
     @Inject
     protected IAuthRepository mAuthRepository;
@@ -51,7 +47,7 @@ public class LoginInteractor extends BaseInteractor<AuthData, LoginInteractor.Pa
 
 
     @Inject
-    public LoginInteractor(
+    public Login(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.data.entity.Review;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.review.FetchReviewsInteractor;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.review.FetchReviews;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.review.ReviewsModuleContract;
@@ -23,7 +23,7 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
     private final short QUANTITY_REVIEWS_REQUESTED = 15;
 
     @Inject
-    FetchReviewsInteractor mFetchReviewsInteractor;
+    FetchReviews mFetchReviews;
     private List<Review> mReviews;
     private boolean mAllReviewsUploaded = false;
 
@@ -38,21 +38,21 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
     @Override
     public void onScrolledReviews(int lastVisibleReviewPosition) {
         if (isCanLoadReviews(lastVisibleReviewPosition)) {
-            mFetchReviewsInteractor.execute(new FetchReviewsObserver(true, false),
-                    new FetchReviewsInteractor.Params(QUANTITY_REVIEWS_REQUESTED, mReviews.size(), mBookId));
+            mFetchReviews.execute(new FetchReviewsObserver(true, false),
+                    new FetchReviews.Params(QUANTITY_REVIEWS_REQUESTED, mReviews.size(), mBookId));
         }
     }
 
     @Override
     public void onRefreshView() {
-        mFetchReviewsInteractor.execute(new FetchReviewsObserver(false, true),
-                new FetchReviewsInteractor.Params(QUANTITY_REVIEWS_REQUESTED, 0, mBookId));
+        mFetchReviews.execute(new FetchReviewsObserver(false, true),
+                new FetchReviews.Params(QUANTITY_REVIEWS_REQUESTED, 0, mBookId));
         mAllReviewsUploaded = false;
         if (mReviews != null) mReviews.clear();
     }
 
     private boolean isCanLoadReviews(int lastVisibleReviewPosition) {
-        return !mFetchReviewsInteractor.isRun() &&
+        return !mFetchReviews.isRun() &&
                 ((mReviews.size() - lastVisibleReviewPosition) <= 5) &&
                 !isAllReviewsUploaded();
     }
@@ -68,8 +68,8 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        mFetchReviewsInteractor.execute(new FetchReviewsObserver(false, false),
-                new FetchReviewsInteractor.Params(QUANTITY_REVIEWS_REQUESTED, 0, mBookId));
+        mFetchReviews.execute(new FetchReviewsObserver(false, false),
+                new FetchReviews.Params(QUANTITY_REVIEWS_REQUESTED, 0, mBookId));
     }
 
     @Override

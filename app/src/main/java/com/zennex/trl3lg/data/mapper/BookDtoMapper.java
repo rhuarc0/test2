@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.function.Supplier;
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.data.entity.dto.BookDto;
 
 import java.text.SimpleDateFormat;

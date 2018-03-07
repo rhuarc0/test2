@@ -1,6 +1,6 @@
 package com.zennex.trl3lg.data.repository.connection.rental.book.web;
 
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
 import com.zennex.trl3lg.data.entity.rest.request.FetchRentalGroupsRequest;
 import com.zennex.trl3lg.data.entity.rest.response.FetchBookListResponse;

@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 
@@ -41,7 +41,7 @@ import static com.zennex.trl3lg.presentation.model.FieldModel.TYPE_VARCHAR;
  * Created by nikita on 07.07.17.
  */
 
-public class ViewCreator extends BaseInteractor<Map<FieldModel, View>, List<FieldModel>> {
+public class ViewCreator extends UseCase<Map<FieldModel, View>, List<FieldModel>> {
 
     public static final String TAG = "ViewCreator";
 

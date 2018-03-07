@@ -2,7 +2,7 @@ package com.zennex.trl3lg.data.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.dto.AudioBookDto;
 
 import javax.inject.Inject;

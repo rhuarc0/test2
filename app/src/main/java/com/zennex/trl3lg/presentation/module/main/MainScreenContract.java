@@ -3,7 +3,7 @@ package com.zennex.trl3lg.presentation.module.main;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.zennex.trl3lg.data.entity.AudioBook;
+import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.RentalGroup;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.common.presenter.ViperBasePresenter;

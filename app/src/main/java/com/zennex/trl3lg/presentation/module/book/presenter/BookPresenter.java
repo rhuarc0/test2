@@ -5,8 +5,8 @@ import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.data.entity.Review;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.review.FetchReviewsInteractor;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.review.FetchReviews;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.book.BookModuleContract;
@@ -26,7 +26,7 @@ import javax.inject.Inject;
 public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
 
     @Inject
-    FetchReviewsInteractor mFetchReviewsInteractor;
+    FetchReviews mFetchReviewsUseCase;
 
     public BookPresenter(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
         super(presenterSubcomponentBuilders);
@@ -48,7 +48,7 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
     }
 
     private void fetchReviews() {
-        mFetchReviewsInteractor.execute(new FetchReviewsObserver(), new FetchReviewsInteractor.Params(3, 0, mBook.getId()));
+        mFetchReviewsUseCase.execute(new FetchReviewsObserver(), new FetchReviews.Params(3, 0, mBook.getId()));
     }
 
     @Override

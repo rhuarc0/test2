@@ -1,10 +1,6 @@
-package com.zennex.trl3lg.data.entity;
+package com.zennex.trl3lg.domain.entities;
 
 import java.util.List;
-
-/**
- * Created by nikita on 03.06.17.
- */
 
 public class Site {
 
@@ -37,7 +33,6 @@ public class Site {
     public void setUrl(String url) {
         mUrl = url;
     }
-
 
     public List<Module> getModules() {
         return mModules;

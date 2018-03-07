@@ -2,8 +2,8 @@ package com.zennex.trl3lg.presentation.mapper.rx;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.Site;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.entities.Site;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.mapper.SiteMapper;
 import com.zennex.trl3lg.presentation.model.SiteModel;
@@ -20,7 +20,7 @@ import io.reactivex.Scheduler;
  * Created by nikita on 03.06.17.
  */
 
-public class SiteListMapperInteractor extends BaseInteractor<List<SiteModel>, List<Site>> {
+public class SiteListMapperInteractor extends UseCase<List<SiteModel>, List<Site>> {
 
 
     @Inject

@@ -2,7 +2,7 @@ package com.zennex.trl3lg.presentation.utils.view;
 
 import android.support.v7.util.DiffUtil;
 
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 
 import java.util.List;
 

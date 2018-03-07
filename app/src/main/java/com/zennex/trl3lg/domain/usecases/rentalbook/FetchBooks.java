@@ -1,11 +1,11 @@
-package com.zennex.trl3lg.domain.rental.book;
+package com.zennex.trl3lg.domain.usecases.rentalbook;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.entity.Book;
+import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.data.entity.dto.BookDto;
 import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
 import com.zennex.trl3lg.data.entity.rest.response.BaseResponse;
@@ -13,7 +13,7 @@ import com.zennex.trl3lg.data.entity.rest.response.FetchBookListResponse;
 import com.zennex.trl3lg.data.mapper.BookDtoMapperWrapper;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
 import com.zennex.trl3lg.data.repository.connection.rental.book.IRentalBookRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
 import java.util.ArrayList;
@@ -26,11 +26,7 @@ import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.functions.Function;
 
-/**
- * Created by nikit on 02.08.2017.
- */
-
-public class FetchBooksInteractor extends BaseInteractor<List<Book>, FetchBooksInteractor.Params> {
+public class FetchBooks extends UseCase<List<Book>, FetchBooks.Params> {
 
     @Inject
     IRentalBookRepository mRentalBookRepository;
@@ -44,7 +40,7 @@ public class FetchBooksInteractor extends BaseInteractor<List<Book>, FetchBooksI
     private FetchBookListRequest.KeywordSearch mKeywordSearch;
 
     @Inject
-    public FetchBooksInteractor(
+    public FetchBooks(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

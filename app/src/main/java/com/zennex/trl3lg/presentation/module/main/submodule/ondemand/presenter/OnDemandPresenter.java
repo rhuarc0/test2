@@ -5,9 +5,9 @@ import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.AudioBook;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.rental.book.FetchMyAudioBooksInteractor;
+import com.zennex.trl3lg.domain.entities.AudioBook;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.rentalbook.FetchMyAudioBooks;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.OnDemandScreenContract;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
 public class OnDemandPresenter extends OnDemandScreenContract.AbstractOnDemandPresenter {
 
     @Inject
-    FetchMyAudioBooksInteractor mFetchMyAudioBooksInteractor;
+    FetchMyAudioBooks mFetchMyAudioBooks;
     private List<AudioBook> mBookList;
 
     public OnDemandPresenter(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
@@ -45,7 +45,7 @@ public class OnDemandPresenter extends OnDemandScreenContract.AbstractOnDemandPr
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        mFetchMyAudioBooksInteractor.execute(new FetchMyAudioBooksObserver(false), null);
+        mFetchMyAudioBooks.execute(new FetchMyAudioBooksObserver(false), null);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class OnDemandPresenter extends OnDemandScreenContract.AbstractOnDemandPr
 
     @Override
     public void onRefreshBooks() {
-        mFetchMyAudioBooksInteractor.execute(new FetchMyAudioBooksObserver(true), null);
+        mFetchMyAudioBooks.execute(new FetchMyAudioBooksObserver(true), null);
     }
 
     @Override

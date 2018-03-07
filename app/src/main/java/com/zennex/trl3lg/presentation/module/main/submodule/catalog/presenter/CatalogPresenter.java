@@ -5,8 +5,8 @@ import android.support.annotation.NonNull;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.data.entity.RentalGroup;
-import com.zennex.trl3lg.domain.common.DefaultObserver;
-import com.zennex.trl3lg.domain.rental.book.FetchRentalBookGroupsInteractor;
+import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
+import com.zennex.trl3lg.domain.usecases.rentalbook.FetchRentalBookGroups;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.main.submodule.catalog.CatalogScreenContract;
@@ -24,7 +24,7 @@ import javax.inject.Inject;
 public class CatalogPresenter extends CatalogScreenContract.AbstractCatalogPresenter {
 
     @Inject
-    FetchRentalBookGroupsInteractor mGetRentalBookGroupsInteractor;
+    FetchRentalBookGroups mGetRentalBookGroupsInteractor;
 
     private List<RentalGroup> mShownRentalGroups;
     private CatalogScreenContract.ICatalogEventListener mCatalogEventListener;

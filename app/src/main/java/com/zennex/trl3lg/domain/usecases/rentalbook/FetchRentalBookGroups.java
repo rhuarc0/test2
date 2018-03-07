@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.domain.rental.book;
+package com.zennex.trl3lg.domain.usecases.rentalbook;
 
 import android.support.annotation.NonNull;
 
@@ -11,7 +11,7 @@ import com.zennex.trl3lg.data.entity.rest.response.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.mapper.RentalBookGroupDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
 import com.zennex.trl3lg.data.repository.connection.rental.book.IRentalBookRepository;
-import com.zennex.trl3lg.domain.common.BaseInteractor;
+import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
 import java.util.ArrayList;
@@ -26,11 +26,7 @@ import io.reactivex.functions.Function;
 
 import static com.annimon.stream.Stream.of;
 
-/**
- * Created by zennex on 27.07.17.
- */
-
-public class FetchRentalBookGroupsInteractor extends BaseInteractor<List<RentalGroup>, Void> {
+public class FetchRentalBookGroups extends UseCase<List<RentalGroup>, Void> {
 
     @Inject
     IRentalBookRepository mRentalBookRepository;
@@ -45,7 +41,7 @@ public class FetchRentalBookGroupsInteractor extends BaseInteractor<List<RentalG
 
 
     @Inject
-    public FetchRentalBookGroupsInteractor(
+    public FetchRentalBookGroups(
             @Named(RxSchedulerModule.COMPUTATION) @NonNull Scheduler subscriberScheduler,
             @Named(RxSchedulerModule.MAIN) @NonNull Scheduler observerScheduler) {
         super(subscriberScheduler, observerScheduler);

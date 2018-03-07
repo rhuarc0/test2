@@ -1,14 +1,10 @@
-package com.zennex.trl3lg.domain.common;
+package com.zennex.trl3lg.domain.usecases.common;
 
 import android.util.Log;
 
 import com.zennex.trl3lg.BuildConfig;
 
 import io.reactivex.observers.DisposableObserver;
-
-/**
- * Created by nikita on 02.06.17.
- */
 
 public abstract class DefaultObserver<T> extends DisposableObserver<T> {
 
