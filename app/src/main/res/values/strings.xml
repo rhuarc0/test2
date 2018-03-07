@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">TRL3LG</string>
+    <string name="act_auth_version">Version</string>
+
+    <!--titles-->
+    <string name="sign_up_title">Sign Up</string>
+    <string name="on_demand_title">Ondemand</string>
+    <string name="rental_title">Rental</string>
+    <string name="catalog_title">Catalog</string>
+    <string name="user_title">User</string>
+
+    <!-- Common -->
+    <string name="default_empty_list_message_text">Empty list.</string>
+    <string name="default_empty_query_message_text">No matches found.</string>
+    <string name="error_no_connection">Failed to establish a connection to the server</string>
+    <string name="error_required_field">This field can\'t be empty</string>
+    <string name="error_invalid_email">Invalid Email</string>
+    <string name="error_passwords_match">Passwords do not match</string>
+
+
+    <string name="act_auth_hint_login">Email</string>
+    <string name="act_auth_hint_password">Password</string>
+    <string name="act_auth_sign_up">sign up</string>
+    <string name="act_auth_sign_in">sign in</string>
+    <string name="act_auth_forgot_your_username_or_password"><u>Forgot your username or password</u></string>
+    <string name="act_auth_select_a_domain">Select a domain</string>
+    <string name="please_wait">Please wait…</string>
+
+    <string name="act_sign_up_submit">Submit</string>
+    <string name="act_on_demand_btn_activate">Activate</string>
+    <string name="act_book_tv_release_date" formatted="true">Release Date: %s</string>
+    <string name="act_book_available" formatted="true">Available: %s</string>
+    <string name="act_book_approx_length" formatted="true">Approx Length: %s</string>
+    <string name="act_book_author" formatted="true">Author: %s</string>
+    <string name="act_book_language" formatted="true">Language: %s</string>
+    <string name="act_book_tv_rating">Rating:</string>
+
+
+</resources>

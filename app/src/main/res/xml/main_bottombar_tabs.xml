@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_home"
+        id="@+id/tab_catalog"
+        title="@string/catalog_title"/>
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_ondemand_icon_w"
+        id="@+id/tab_on_demand"
+        title="@string/on_demand_title"/>
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_disc_icon_w"
+        id="@+id/tab_rental"
+        title="@string/rental_title"/>
+    <tab
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_user"
+        id="@+id/tab_user"
+        title="@string/user_title"/>
+</tabs>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/act_book_review_item_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/md_black_1000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name"/>
+
+    <RatingBar
+        android:id="@+id/act_book_review_item_rating_bar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:numStars="5"
+        app:layout_constraintLeft_toLeftOf="@+id/act_book_review_item_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/act_book_review_item_tv_name"/>
+
+    <TextView
+        android:id="@+id/act_book_review_item_tv_created_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/act_book_review_item_rating_bar"
+        app:layout_constraintTop_toBottomOf="@+id/act_book_review_item_rating_bar"
+        tools:text="Created date"/>
+
+    <TextView
+        android:id="@+id/act_book_review_item_tv_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:minLines="1"
+        android:textColor="@color/md_black_1000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/act_book_review_item_tv_created_date"
+        tools:text="text"/>
+
+</android.support.constraint.ConstraintLayout>

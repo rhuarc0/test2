@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/act_book_zoom_root_layout"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/md_black_1000"
+    >
+
+    <com.alexvasilkov.gestures.views.GestureImageView
+        android:id="@+id/act_book_image_zoom_iv_book"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/image_paceholder"
+        android:transitionName="book_image_transition"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:transitionName="app_bar_transition"
+            app:elevation="0dp"
+            >
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:theme="@style/CustomActionBar"/>
+
+        </android.support.design.widget.AppBarLayout>
+    </FrameLayout>
+
+
+</FrameLayout>

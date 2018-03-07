@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.zennex.trl3lg">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission xmlns:tools="http://schemas.android.com/tools"
+                     android:name="android.permission.PACKAGE_USAGE_STATS"
+                     tools:ignore="ProtectedPermissions"/>
+
+    <!--suppress DeprecatedClassUsageInspection -->
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <application
+        android:name=".presentation.module.app.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".presentation.module.auth.view.AuthScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".presentation.module.signup.view.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar.GreyBackground"/>
+
+        <activity
+            android:name=".presentation.module.main.view.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar.GreyBackground">
+        </activity>
+
+
+        <activity
+            android:name=".presentation.module.search.view.SearchViewActivity"
+            android:theme="@style/AppTheme.NoActionBar.GreyBackground">
+
+        </activity>
+
+        <activity
+            android:name=".presentation.module.book.view.BookViewActivity"
+            android:theme="@style/AppTheme.NoActionBar.GreyBackground">
+
+        </activity>
+
+        <activity
+            android:name=".presentation.module.bookdescription.view.BookDescriptionActivity"
+            android:theme="@style/AppTheme.NoActionBar.GreyBackground">
+        </activity>
+
+
+        <activity
+            android:name=".presentation.module.bookimagezoom.view.BookImageZoomActivity"
+            android:theme="@style/AppTheme.NoActionBar.BlackBackground.TransparentStatusAndNavBars">
+        </activity>
+
+        <activity
+            android:name=".presentation.module.review.view.ReviewsViewActivity"
+            android:theme="@style/AppTheme.NoActionBar.GreyBackground">
+        </activity>
+    </application>
+
+</manifest>

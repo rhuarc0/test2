@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/act_auth_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="@dimen/margin_large">
+
+
+    <View
+        android:id="@+id/visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+
+
+    <ImageView
+        android:id="@+id/act_auth_image_view_logo"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/logo_height"
+        android:visibility="visible"
+        app:srcCompat="@drawable/logo"/>
+
+    <LinearLayout
+        android:id="@+id/act_auth_content_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/act_auth_image_view_logo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_large"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/act_auth_ti_et_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/act_auth_hint_login"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:nextFocusDown="@+id/frg_auth_et_password"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/act_auth_ti_et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/act_auth_hint_password"
+                    android:inputType="textPassword"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_small_x"
+                android:layout_marginStart="@dimen/margin_small_x"
+                android:layout_marginTop="@dimen/margin_small_x"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/act_auth_btn_sign_up"
+                    style="@style/AppButtonTheme.Login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_small_x"
+                    android:layout_marginStart="@dimen/margin_small_x"
+                    android:layout_weight="1"
+                    android:text="@string/act_auth_sign_up"/>
+
+                <Button
+                    android:id="@+id/act_auth_btn_sign_in"
+                    style="@style/AppButtonTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_small_x"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:text="@string/act_auth_sign_in"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/act_auth_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-6dp"
+            android:layout_marginTop="-4dp"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/shadow"/>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

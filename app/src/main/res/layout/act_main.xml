@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_200">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:transitionName="app_bar_transition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <org.cryse.widget.persistentsearch.PersistentSearchView
+        android:id="@+id/searchview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:transitionName="search_view_transition"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:persistentSV_customToolbarHeight="56dp"
+        app:persistentSV_displayMode="menuItem"
+        app:persistentSV_editHintText="Search"
+        app:persistentSV_editHintTextColor="#61000000"
+        app:persistentSV_editTextColor="#DE000000"
+        app:persistentSV_searchCardElevation="4dp"
+        app:persistentSV_searchTextColor="#DE000000"/>
+
+
+    <FrameLayout
+        android:id="@+id/act_main_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/act_main_bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"/>
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/act_main_bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:bb_activeTabColor="@color/white"
+        app:bb_badgeBackgroundColor="@color/white"
+        app:bb_badgesHideWhenActive="false"
+        app:bb_inActiveTabAlpha="0.4"
+        app:bb_inActiveTabColor="@color/white"
+        app:bb_showShadow="true"
+        app:bb_tabXmlResource="@xml/main_bottombar_tabs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
