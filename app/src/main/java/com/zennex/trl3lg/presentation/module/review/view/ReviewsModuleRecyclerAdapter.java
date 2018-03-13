@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.Review;
+import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
 import com.zennex.trl3lg.presentation.utils.view.ReviewListDiffCallback;
 import com.zennex.trl3lg.presentation.utils.view.list.viewholder.ReviewViewHolder;

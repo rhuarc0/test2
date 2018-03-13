@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.zennex.trl3lg.domain.entities.AudioBook;
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.common.presenter.ViperBasePresenter;
 import com.zennex.trl3lg.presentation.common.router.SupportFragmentRouter;

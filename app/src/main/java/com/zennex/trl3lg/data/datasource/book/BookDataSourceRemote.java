@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.rental.book.web;
+package com.zennex.trl3lg.data.datasource.book;
 
 import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
@@ -14,7 +14,7 @@ import io.reactivex.Observable;
  * Created by nikita on 26.07.17.
  */
 
-public interface IRentalBookWebRepository {
+public interface BookDataSourceRemote {
 
     Observable<List<FetchRentalGroupsResponse>> getGroups(List<FetchRentalGroupsRequest> request);
 

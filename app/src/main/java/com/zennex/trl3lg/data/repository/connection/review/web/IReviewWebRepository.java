@@ -1,6 +1,6 @@
 package com.zennex.trl3lg.data.repository.connection.review.web;
 
-import com.zennex.trl3lg.data.entity.Review;
+import com.zennex.trl3lg.domain.entities.Review;
 
 import java.util.List;
 

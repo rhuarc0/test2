@@ -1,8 +1,4 @@
-package com.zennex.trl3lg.data.entity;
-
-/**
- * Created by nikita on 20.10.17.
- */
+package com.zennex.trl3lg.domain.entities;
 
 public class Review {
 

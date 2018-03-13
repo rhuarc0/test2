@@ -3,7 +3,7 @@ package com.zennex.trl3lg.presentation.module.main.submodule.catalog.view;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 
 import java.util.List;
 

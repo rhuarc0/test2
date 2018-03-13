@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.zennex.trl3lg.data.entity.Review;
+import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.review.FetchReviews;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;

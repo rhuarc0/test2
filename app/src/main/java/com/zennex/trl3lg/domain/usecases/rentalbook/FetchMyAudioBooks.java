@@ -3,7 +3,7 @@ package com.zennex.trl3lg.domain.usecases.rentalbook;
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.domain.entities.AudioBook;
-import com.zennex.trl3lg.data.repository.connection.rental.book.IRentalBookRepository;
+import com.zennex.trl3lg.domain.repository.BookRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
@@ -18,8 +18,7 @@ import io.reactivex.Scheduler;
 public class FetchMyAudioBooks extends UseCase<List<AudioBook>, Void> {
 
     @Inject
-    IRentalBookRepository mRentalBookRepository;
-
+    BookRepository bookRepository;
 
     @Inject
     public FetchMyAudioBooks(
@@ -30,6 +29,6 @@ public class FetchMyAudioBooks extends UseCase<List<AudioBook>, Void> {
 
     @Override
     protected Observable<List<AudioBook>> buildObservable(Void aVoid) {
-        return mRentalBookRepository.fetchMyAudioBooks();
+        return bookRepository.fetchMyAudioBooks();
     }
 }

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.rentalbook.FetchRentalBookGroups;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;

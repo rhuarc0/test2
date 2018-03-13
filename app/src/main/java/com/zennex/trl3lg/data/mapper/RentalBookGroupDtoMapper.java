@@ -2,7 +2,7 @@ package com.zennex.trl3lg.data.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.data.entity.dto.RentalGroupDto;
 
 import javax.inject.Inject;

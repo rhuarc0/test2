@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.site.service;
+package com.zennex.trl3lg.data.rest;
 
 import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
 import com.zennex.trl3lg.data.entity.rest.response.GetSitesResponse;

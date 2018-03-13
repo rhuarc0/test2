@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
 import com.zennex.trl3lg.presentation.common.view.IOnClickItemListener;
 

@@ -1,8 +1,4 @@
-package com.zennex.trl3lg.data.entity;
-
-/**
- * Created by nikita on 22.07.17.
- */
+package com.zennex.trl3lg.domain.entities;
 
 public class RentalGroup {
 

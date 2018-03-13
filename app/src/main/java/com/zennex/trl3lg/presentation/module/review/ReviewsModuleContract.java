@@ -2,7 +2,7 @@ package com.zennex.trl3lg.presentation.module.review;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.Review;
+import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.common.presenter.ViperBasePresenter;
 import com.zennex.trl3lg.presentation.common.router.BaseRouter;

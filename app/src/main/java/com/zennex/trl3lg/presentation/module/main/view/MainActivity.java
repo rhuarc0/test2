@@ -15,7 +15,7 @@ import android.view.View;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.main.MainScreenContract;

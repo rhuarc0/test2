@@ -6,7 +6,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.Review;
+import com.zennex.trl3lg.domain.entities.Review;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

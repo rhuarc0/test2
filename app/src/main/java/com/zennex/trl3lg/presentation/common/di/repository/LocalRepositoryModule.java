@@ -9,8 +9,8 @@ import com.zennex.trl3lg.data.repository.connection.auth.local.AuthLocalReposito
 import com.zennex.trl3lg.data.repository.connection.auth.local.IAuthLocalRepository;
 import com.zennex.trl3lg.data.repository.connection.local.ConnectionSettingsLocalRepository;
 import com.zennex.trl3lg.data.repository.connection.local.IConnectionSettingsLocalRepository;
-import com.zennex.trl3lg.data.repository.connection.rental.book.local.IRentalBookLocalRepository;
-import com.zennex.trl3lg.data.repository.connection.rental.book.local.RentalBookLocalRepository;
+import com.zennex.trl3lg.data.datasource.book.BookDataSourceLocal;
+import com.zennex.trl3lg.data.datasource.book.RentalBookDataSourceLocal;
 import com.zennex.trl3lg.data.repository.connection.site.local.ISiteLocalRepository;
 import com.zennex.trl3lg.data.repository.connection.site.local.SiteLocalRepository;
 import com.zennex.trl3lg.presentation.common.di.objectbox.ObjectBoxModule;
@@ -51,7 +51,7 @@ public class LocalRepositoryModule {
 
         @NonNull
         @Binds
-        public abstract IRentalBookLocalRepository bindRentalBookLocalRepository(RentalBookLocalRepository rentalBookLocalRepository);
+        public abstract BookDataSourceLocal bindRentalBookLocalRepository(RentalBookDataSourceLocal rentalBookLocalRepository);
 
     }
 

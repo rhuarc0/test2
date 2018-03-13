@@ -4,7 +4,7 @@ import com.zennex.trl3lg.data.entity.rest.request.GetFieldsForSignUpRequest;
 import com.zennex.trl3lg.data.entity.rest.request.SignUpRequest;
 import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.entity.rest.response.SignUpResponse;
-import com.zennex.trl3lg.data.repository.connection.signup.web.ISignUpWebRepository;
+import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
 
 import javax.inject.Inject;
 
@@ -17,7 +17,7 @@ import io.reactivex.Observable;
 public class SignUpRepository implements ISignUpRepository {
 
     @Inject
-    protected ISignUpWebRepository mSignUpWebRepository;
+    protected ISignUpDataSource signUpDataSource;
 
     @Inject
     public SignUpRepository() {
@@ -25,11 +25,11 @@ public class SignUpRepository implements ISignUpRepository {
 
     @Override
     public Observable<GetFieldsForSignUpResponse> getFieldsForSignUp(GetFieldsForSignUpRequest getFieldsForSignUpRequest) {
-        return mSignUpWebRepository.getFieldsForSignUp(getFieldsForSignUpRequest);
+        return signUpDataSource.getFieldsForSignUp(getFieldsForSignUpRequest);
     }
 
     @Override
     public Observable<SignUpResponse> signUp(SignUpRequest signUpRequest) {
-        return mSignUpWebRepository.signUp(signUpRequest);
+        return signUpDataSource.signUp(signUpRequest);
     }
 }

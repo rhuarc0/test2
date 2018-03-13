@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.rental.book.web.service;
+package com.zennex.trl3lg.data.rest;
 
 import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
 import com.zennex.trl3lg.data.entity.rest.request.FetchQueueRequest;
@@ -13,10 +13,6 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-
-/**
- * Created by zennex on 27.07.17.
- */
 
 public interface IRentalBookWebService {
 

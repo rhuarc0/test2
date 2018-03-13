@@ -18,7 +18,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.Review;
+import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.common.view.BaseListActivity;
 import com.zennex.trl3lg.presentation.module.app.App;

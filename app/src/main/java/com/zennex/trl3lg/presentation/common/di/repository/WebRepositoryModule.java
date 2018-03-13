@@ -2,19 +2,19 @@ package com.zennex.trl3lg.presentation.common.di.repository;
 
 import android.support.annotation.NonNull;
 
+import com.zennex.trl3lg.data.datasource.book.BookDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.book.RentalBookDataSourceRemote;
 import com.zennex.trl3lg.data.repository.connection.auth.web.AuthWebRepository;
 import com.zennex.trl3lg.data.repository.connection.auth.web.IAuthWebRepository;
 import com.zennex.trl3lg.data.repository.connection.auth.web.service.IAuthWebService;
-import com.zennex.trl3lg.data.repository.connection.rental.book.web.IRentalBookWebRepository;
-import com.zennex.trl3lg.data.repository.connection.rental.book.web.RentalBookWebRepository;
-import com.zennex.trl3lg.data.repository.connection.rental.book.web.service.IRentalBookWebService;
+import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
+import com.zennex.trl3lg.data.datasource.signup.SignUpDataSource;
+import com.zennex.trl3lg.data.rest.IRentalBookWebService;
 import com.zennex.trl3lg.data.repository.connection.review.web.IReviewWebRepository;
 import com.zennex.trl3lg.data.repository.connection.review.web.ReviewWebRepository;
 import com.zennex.trl3lg.data.repository.connection.review.web.service.IReviewWebService;
-import com.zennex.trl3lg.data.repository.connection.signup.web.ISignUpWebRepository;
-import com.zennex.trl3lg.data.repository.connection.signup.web.SignUpWebRepository;
-import com.zennex.trl3lg.data.repository.connection.signup.web.service.ISignUpWebService;
-import com.zennex.trl3lg.data.repository.connection.site.service.ISiteWebService;
+import com.zennex.trl3lg.data.rest.ISignUpWebService;
+import com.zennex.trl3lg.data.rest.ISiteWebService;
 import com.zennex.trl3lg.data.repository.connection.site.web.ISiteWebRepository;
 import com.zennex.trl3lg.data.repository.connection.site.web.SiteWebRepository;
 import com.zennex.trl3lg.presentation.common.di.network.NetworkModule;
@@ -75,11 +75,11 @@ public class WebRepositoryModule {
 
         @NonNull
         @Binds
-        protected abstract ISignUpWebRepository bindSignUpWebRepository(SignUpWebRepository signUpWebRepository);
+        protected abstract ISignUpDataSource bindSignUpWebRepository(SignUpDataSource signUpWebRepository);
 
         @NonNull
         @Binds
-        protected abstract IRentalBookWebRepository bindRentalBookWebRepository(RentalBookWebRepository rentalBookWebRepository);
+        protected abstract BookDataSourceRemote bindRentalBookWebRepository(RentalBookDataSourceRemote rentalBookWebRepository);
 
         @NonNull
         @Binds

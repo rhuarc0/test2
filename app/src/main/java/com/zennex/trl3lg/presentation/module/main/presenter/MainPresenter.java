@@ -3,7 +3,7 @@ package com.zennex.trl3lg.presentation.module.main.presenter;
 import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.main.MainScreenContract;

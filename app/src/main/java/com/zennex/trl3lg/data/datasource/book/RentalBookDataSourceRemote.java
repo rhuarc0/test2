@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.rental.book.web;
+package com.zennex.trl3lg.data.datasource.book;
 
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.domain.entities.AudioBook;
@@ -12,7 +12,7 @@ import com.zennex.trl3lg.data.entity.rest.response.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.exception.WebApiException;
 import com.zennex.trl3lg.data.mapper.AudioBookDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
-import com.zennex.trl3lg.data.repository.connection.rental.book.web.service.IRentalBookWebService;
+import com.zennex.trl3lg.data.rest.IRentalBookWebService;
 
 import java.util.List;
 
@@ -22,11 +22,7 @@ import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-/**
- * Created by zennex on 27.07.17.
- */
-
-public class RentalBookWebRepository implements IRentalBookWebRepository {
+public class RentalBookDataSourceRemote implements BookDataSourceRemote {
 
     private static String NO_ERROR_CODE = "0";
     private static String ERROR_TEXT_BOOKS_NOT_FOUND = "";
@@ -41,7 +37,7 @@ public class RentalBookWebRepository implements IRentalBookWebRepository {
     AudioBookDtoMapper mAudioBookDtoMapper;
 
     @Inject
-    public RentalBookWebRepository() {
+    public RentalBookDataSourceRemote() {
     }
 
     @Override

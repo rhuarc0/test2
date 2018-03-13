@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.zennex.trl3lg.data.entity.RentalGroup;
+import com.zennex.trl3lg.domain.entities.RentalGroup;
 import com.zennex.trl3lg.presentation.common.view.IOnClickItemListener;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.main.submodule.catalog.CatalogScreenContract;
