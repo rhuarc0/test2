@@ -12,7 +12,7 @@ import com.zennex.trl3lg.data.datasource.signup.SignUpDataSource;
 import com.zennex.trl3lg.data.rest.IRentalBookWebService;
 import com.zennex.trl3lg.data.repository.connection.review.web.IReviewWebRepository;
 import com.zennex.trl3lg.data.repository.connection.review.web.ReviewWebRepository;
-import com.zennex.trl3lg.data.repository.connection.review.web.service.IReviewWebService;
+import com.zennex.trl3lg.data.rest.IReviewWebService;
 import com.zennex.trl3lg.data.rest.ISignUpWebService;
 import com.zennex.trl3lg.data.rest.ISiteWebService;
 import com.zennex.trl3lg.data.repository.connection.site.web.ISiteWebRepository;

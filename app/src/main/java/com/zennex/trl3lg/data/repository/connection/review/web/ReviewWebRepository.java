@@ -8,7 +8,7 @@ import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchReviewsResponse;
 import com.zennex.trl3lg.data.mapper.dtomapper.ReviewDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
-import com.zennex.trl3lg.data.repository.connection.review.web.service.IReviewWebService;
+import com.zennex.trl3lg.data.rest.IReviewWebService;
 import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 
 import java.util.List;
