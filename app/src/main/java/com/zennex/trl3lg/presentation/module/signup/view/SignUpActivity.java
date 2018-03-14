@@ -8,6 +8,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -25,7 +26,6 @@ import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.common.di.activitybindings.HasActivitySubcomponentBuilders;
-import com.zennex.trl3lg.presentation.helper.StringUtils;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.signup.SignUpContract;
@@ -307,7 +307,7 @@ public class SignUpActivity extends SignUpContract.AbstractSignUpView
             ((TextView) entry.getValue()).setText(entry.getKey().getValue());
         } else if (entry.getKey().isTypeSpinner()) {
             String value = entry.getKey().getValue();
-            if (!StringUtils.isNullOrEmpty(value)) {
+            if (!TextUtils.isEmpty(value)) {
                 ((Spinner) entry.getValue()).setSelection(Integer.parseInt(value));
             }
         }

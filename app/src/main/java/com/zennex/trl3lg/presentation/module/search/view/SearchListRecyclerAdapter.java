@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -17,7 +18,6 @@ import com.zennex.trl3lg.BuildConfig;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
-import com.zennex.trl3lg.presentation.helper.StringUtils;
 import com.zennex.trl3lg.presentation.utils.GlideApp;
 import com.zennex.trl3lg.presentation.utils.view.BookListDiffCallback;
 
@@ -151,7 +151,7 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
 
             mTvTitle.setText(book.getTitle());
 
-            mTvAuthor.setText(StringUtils.isNullOrEmpty(book.getAuthor()) ?
+            mTvAuthor.setText(TextUtils.isEmpty(book.getAuthor()) ?
                     book.getAuthor2() :
                     book.getAuthor());
 

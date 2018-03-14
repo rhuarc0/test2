@@ -11,7 +11,7 @@ import io.reactivex.Observable;
 
 public interface IConnectionSettingsLocalRepository {
 
-    void setIpAdress(String ipAdress);
+    void setIpAddress(String ipAddress);
 
     String getIpAddress();
 

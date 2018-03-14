@@ -1,14 +1,10 @@
-package com.zennex.trl3lg.data.repository.connection.site.local;
+package com.zennex.trl3lg.data.datasource.site;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.data.store.LocalRepository;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -18,12 +14,12 @@ import io.reactivex.Observable;
  * Created by nikita on 12.06.17.
  */
 
-public class SiteLocalRepository extends LocalRepository implements ISiteLocalRepository {
+public class SiteLocalDataSource extends LocalRepository implements ISiteDataSourceLocal {
 
     private static final String SITE_ID_KEY = "site_id";
 
     @Inject
-    public SiteLocalRepository(@NonNull Context context,
+    public SiteLocalDataSource(@NonNull Context context,
                                @NonNull SharedPreferences sharedPreferences) {
         super(context, sharedPreferences);
     }

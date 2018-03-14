@@ -5,14 +5,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.repository.connection.auth.local.AuthLocalRepository;
-import com.zennex.trl3lg.data.repository.connection.auth.local.IAuthLocalRepository;
+import com.zennex.trl3lg.data.datasource.auth.AuthDataSourceLocal;
+import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceLocal;
 import com.zennex.trl3lg.data.repository.connection.local.ConnectionSettingsLocalRepository;
 import com.zennex.trl3lg.data.repository.connection.local.IConnectionSettingsLocalRepository;
 import com.zennex.trl3lg.data.datasource.book.BookDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.book.RentalBookDataSourceLocal;
-import com.zennex.trl3lg.data.repository.connection.site.local.ISiteLocalRepository;
-import com.zennex.trl3lg.data.repository.connection.site.local.SiteLocalRepository;
+import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;
+import com.zennex.trl3lg.data.datasource.site.SiteLocalDataSource;
 import com.zennex.trl3lg.presentation.common.di.objectbox.ObjectBoxModule;
 
 import dagger.Binds;
@@ -43,11 +43,11 @@ public class LocalRepositoryModule {
 
         @NonNull
         @Binds
-        public abstract IAuthLocalRepository bindAuthLocalRepository(AuthLocalRepository authLocalRepository);
+        public abstract IAuthDataSourceLocal bindAuthLocalRepository(AuthDataSourceLocal authLocalRepository);
 
         @NonNull
         @Binds
-        public abstract ISiteLocalRepository bindSiteLocalRepository(SiteLocalRepository siteLocalRepository);
+        public abstract ISiteDataSourceLocal bindSiteLocalRepository(SiteLocalDataSource siteLocalRepository);
 
         @NonNull
         @Binds

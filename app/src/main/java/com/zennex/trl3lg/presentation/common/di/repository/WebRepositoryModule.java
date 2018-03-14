@@ -4,19 +4,19 @@ import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.data.datasource.book.BookDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.book.RentalBookDataSourceRemote;
-import com.zennex.trl3lg.data.repository.connection.auth.web.AuthWebRepository;
-import com.zennex.trl3lg.data.repository.connection.auth.web.IAuthWebRepository;
-import com.zennex.trl3lg.data.repository.connection.auth.web.service.IAuthWebService;
+import com.zennex.trl3lg.data.datasource.auth.AuthDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.site.SiteDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.review.IReviewDataSource;
+import com.zennex.trl3lg.data.datasource.review.ReviewDataSource;
+import com.zennex.trl3lg.data.rest.IAuthWebService;
 import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
 import com.zennex.trl3lg.data.datasource.signup.SignUpDataSource;
 import com.zennex.trl3lg.data.rest.IRentalBookWebService;
-import com.zennex.trl3lg.data.repository.connection.review.web.IReviewWebRepository;
-import com.zennex.trl3lg.data.repository.connection.review.web.ReviewWebRepository;
-import com.zennex.trl3lg.data.repository.connection.review.web.service.IReviewWebService;
+import com.zennex.trl3lg.data.rest.IReviewWebService;
 import com.zennex.trl3lg.data.rest.ISignUpWebService;
 import com.zennex.trl3lg.data.rest.ISiteWebService;
-import com.zennex.trl3lg.data.repository.connection.site.web.ISiteWebRepository;
-import com.zennex.trl3lg.data.repository.connection.site.web.SiteWebRepository;
 import com.zennex.trl3lg.presentation.common.di.network.NetworkModule;
 
 import dagger.Binds;
@@ -67,11 +67,11 @@ public class WebRepositoryModule {
 
         @NonNull
         @Binds
-        protected abstract ISiteWebRepository bindSiteWebRepository(SiteWebRepository siteWebRepository);
+        protected abstract ISiteDataSourceRemote bindSiteWebRepository(SiteDataSourceRemote siteWebRepository);
 
         @NonNull
         @Binds
-        protected abstract IAuthWebRepository bindAuthWebRepository(AuthWebRepository authWebRepository);
+        protected abstract IAuthDataSourceRemote bindAuthWebRepository(AuthDataSourceRemote authWebRepository);
 
         @NonNull
         @Binds
@@ -83,7 +83,7 @@ public class WebRepositoryModule {
 
         @NonNull
         @Binds
-        protected abstract IReviewWebRepository bindReviewWebRepository(ReviewWebRepository reviewWebRepository);
+        protected abstract IReviewDataSource bindReviewWebRepository(ReviewDataSource reviewWebRepository);
 
     }
 

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.entity.AuthData;
+import com.zennex.trl3lg.domain.entities.AuthData;
 import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.domain.usecases.auth.FilterSitesFromLogin;
 import com.zennex.trl3lg.domain.usecases.auth.GetSiteAndModuleIdByPosition;

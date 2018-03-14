@@ -1,5 +1,7 @@
-package com.zennex.trl3lg.data.entity;
+package com.zennex.trl3lg.domain.entities;
 
+
+import com.zennex.trl3lg.data.entity.Member;
 
 import java.util.List;
 

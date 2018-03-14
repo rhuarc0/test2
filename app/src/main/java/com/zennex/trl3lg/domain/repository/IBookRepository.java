@@ -10,7 +10,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public interface BookRepository {
+public interface IBookRepository {
     Observable<List<RentalGroup>> getGroups();
     Observable<List<Book>> fetchBooks(@Nullable String keyword,
                                       @Nullable String type,

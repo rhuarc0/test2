@@ -2,7 +2,7 @@ package com.zennex.trl3lg.data.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.AuthData;
+import com.zennex.trl3lg.domain.entities.AuthData;
 import com.zennex.trl3lg.data.entity.rest.response.AuthDataResponse;
 
 import javax.inject.Inject;

@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.auth.web.service;
+package com.zennex.trl3lg.data.rest;
 
 import com.zennex.trl3lg.data.entity.rest.request.IsValidSessionTokenRequest;
 import com.zennex.trl3lg.data.entity.rest.request.LoginRequest;

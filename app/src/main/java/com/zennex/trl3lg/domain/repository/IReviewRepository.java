@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.review;
+package com.zennex.trl3lg.domain.repository;
 
 import com.zennex.trl3lg.domain.entities.Review;
 

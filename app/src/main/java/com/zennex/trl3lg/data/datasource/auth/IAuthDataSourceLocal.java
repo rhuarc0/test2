@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.auth.local;
+package com.zennex.trl3lg.data.datasource.auth;
 
 import java.util.Set;
 
@@ -8,17 +8,17 @@ import io.reactivex.Observable;
  * Created by nikita on 02.06.17.
  */
 
-public interface IAuthLocalRepository {
+public interface IAuthDataSourceLocal {
 
     Observable<Boolean> saveSessionToken(String sessionId);
 
     Observable<Boolean> saveModuleId(String moduleId);
 
+    Observable<Boolean> saveRentalModuleIds(Set<String> moduleIds);
+
     Observable<String> getSessionToken();
 
     Observable<String> getModuleId();
-
-    Observable<Boolean> saveRentalModuleIds(Set<String> moduleIds);
 
     Observable<Set<String>> getRentalModuleIds();
 }

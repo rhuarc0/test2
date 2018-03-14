@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.review.web;
+package com.zennex.trl3lg.data.datasource.review;
 
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.domain.entities.Review;
@@ -7,8 +7,8 @@ import com.zennex.trl3lg.data.entity.rest.request.FetchReviewsRequest;
 import com.zennex.trl3lg.data.entity.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.entity.rest.response.FetchReviewsResponse;
 import com.zennex.trl3lg.data.mapper.ReviewDtoMapper;
-import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
-import com.zennex.trl3lg.data.repository.connection.review.web.service.IReviewWebService;
+import com.zennex.trl3lg.domain.repository.IAuthRepository;
+import com.zennex.trl3lg.data.rest.IReviewWebService;
 import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 
 import java.util.List;
@@ -22,8 +22,7 @@ import io.reactivex.functions.Function;
  * Created by nikita on 20.10.17.
  */
 
-public class ReviewWebRepository implements IReviewWebRepository {
-
+public class ReviewDataSource implements IReviewDataSource {
 
     @Inject
     IReviewWebService mReviewWebService;
@@ -35,7 +34,7 @@ public class ReviewWebRepository implements IReviewWebRepository {
     ReviewDtoMapper mReviewDtoMapper;
 
     @Inject
-    public ReviewWebRepository() {
+    public ReviewDataSource() {
     }
 
     @Override
@@ -51,7 +50,7 @@ public class ReviewWebRepository implements IReviewWebRepository {
 
     private List<FetchReviewsRequest> createRequests(String bookId, int startPosition, int count) {
         return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
-                .map(renatalModuleid -> FetchReviewsRequest.newInstance(renatalModuleid,
+                .map(rentalModuleId -> FetchReviewsRequest.newInstance(rentalModuleId,
                         new FetchReviewsRequest.Data(mAuthRepository.getSessionToken().blockingSingle(),
                                 bookId,
                                 String.valueOf(startPosition),

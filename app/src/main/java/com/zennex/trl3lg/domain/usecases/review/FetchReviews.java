@@ -3,7 +3,7 @@ package com.zennex.trl3lg.domain.usecases.review;
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.domain.entities.Review;
-import com.zennex.trl3lg.data.repository.connection.review.IReviewRepository;
+import com.zennex.trl3lg.domain.repository.IReviewRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 

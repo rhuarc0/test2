@@ -26,7 +26,7 @@ public class ConnectionSettingsLocalRepository extends LocalRepository implement
     }
 
     @Override
-    public void setIpAdress(String ipAdress) {
+    public void setIpAddress(String ipAddress) {
 
     }
 

@@ -11,7 +11,7 @@ import com.zennex.trl3lg.data.entity.rest.response.FetchQueueBooksResponse;
 import com.zennex.trl3lg.data.entity.rest.response.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.exception.WebApiException;
 import com.zennex.trl3lg.data.mapper.AudioBookDtoMapper;
-import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
+import com.zennex.trl3lg.domain.repository.IAuthRepository;
 import com.zennex.trl3lg.data.rest.IRentalBookWebService;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
 
     private List<FetchQueueRequest> createRequestsForFetchMyAudioBooks() {
         return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
-                .map(renatalModuleid -> FetchQueueRequest.newInstance(renatalModuleid,
+                .map(rentalModuleId -> FetchQueueRequest.newInstance(rentalModuleId,
                         new FetchQueueRequest.Data(mAuthRepository.getSessionToken().blockingSingle())))
                 .toList();
     }

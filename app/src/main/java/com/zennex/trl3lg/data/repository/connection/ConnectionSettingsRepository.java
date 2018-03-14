@@ -26,7 +26,7 @@ public class ConnectionSettingsRepository implements IConnectionSettingsReposito
 
     @Override
     public void setIpAdress(String ipAdress) {
-        mConnectionSettingsLocalRepository.setIpAdress(ipAdress);
+        mConnectionSettingsLocalRepository.setIpAddress(ipAdress);
     }
 
     @Override

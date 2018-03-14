@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.zennex.trl3lg.domain.entities.Book;
-import com.zennex.trl3lg.domain.repository.BookRepository;
+import com.zennex.trl3lg.domain.repository.IBookRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 
@@ -19,7 +19,7 @@ import io.reactivex.Scheduler;
 public class FetchBooks extends UseCase<List<Book>, FetchBooks.Params> {
 
     @Inject
-    BookRepository bookRepository;
+    IBookRepository bookRepository;
 
     @Inject
     public FetchBooks(

@@ -2,7 +2,7 @@ package com.zennex.trl3lg.domain.usecases.site;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
+import com.zennex.trl3lg.domain.repository.ISiteRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 

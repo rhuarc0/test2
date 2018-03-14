@@ -10,11 +10,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class IsValidSessionTokenRequest extends BaseRequest<IsValidSessionTokenRequest.Data> {
 
-    public static IsValidSessionTokenRequest newInstance(@NonNull String moduelId, @NonNull String siteId, @NonNull String sessionId) {
+    private static final String IS_VALID_SESSION = "isValidSession";
+
+    public static IsValidSessionTokenRequest newInstance(@NonNull String moduleId, @NonNull String siteId, @NonNull String sessionId) {
         IsValidSessionTokenRequest request = new IsValidSessionTokenRequest();
         request.fillDefaultFields();
-        request.setModuleid(moduelId);
-        request.setType("isValidSession");
+        request.setModuleid(moduleId);
+        request.setType(IS_VALID_SESSION);
         request.setData(new Data(sessionId, siteId));
         return request;
     }
