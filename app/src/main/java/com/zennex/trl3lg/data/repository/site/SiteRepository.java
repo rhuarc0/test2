@@ -1,10 +1,9 @@
-package com.zennex.trl3lg.data.repository.connection.site;
+package com.zennex.trl3lg.data.repository.site;
 
-import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.data.entity.rest.response.GetSitesResponse;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceRemote;
-import com.zennex.trl3lg.data.mapper.FetchSitesResponseMapper;
+import com.zennex.trl3lg.data.mapper.dtomapper.SiteDtoMapper;
+import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.domain.repository.ISiteRepository;
 
@@ -16,7 +15,6 @@ import com.zennex.trl3lg.data.rest.response.auth.GetSitesResponse;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
@@ -32,7 +30,7 @@ public class SiteRepository implements ISiteRepository {
     protected ISiteDataSourceLocal siteDataSourceLocal;
 
     @Inject
-    protected FetchSitesResponseMapper mGetSitesResponseMapper;
+    protected SiteDtoMapper siteDtoMapper;
 
 
     @Inject
@@ -42,7 +40,7 @@ public class SiteRepository implements ISiteRepository {
     @Override
     public Observable<List<Site>> getSites() {
         return siteDataSourceRemote.getSites(createGetSitesRequest())
-                .doOnNext(checkResponse())
+                .doOnNext(WebRepositoryUtils::checkResponse)
                 .map(transform());
     }
 
@@ -64,20 +62,11 @@ public class SiteRepository implements ISiteRepository {
         return GetSitesRequest.newInstance(data);
     }
 
-    private Consumer<GetSitesResponse> checkResponse() {
-        return getSitesResponse -> {
-
-            if (Integer.parseInt(getSitesResponse.getErrorCode()) != 0) {
-                throw new RuntimeException(getSitesResponse.getErrorText());
-            }
-        };
-    }
-
     private Function<GetSitesResponse, List<Site>> transform() {
         return getSitesResponse -> {
             if (getSitesResponse.getData() == null)
                 return new ArrayList<>();
-            return mGetSitesResponseMapper.execute(getSitesResponse.getData().getSiteItemDtos());
+            return siteDtoMapper.execute(getSitesResponse.getData().getSiteDtos());
         };
     }
 

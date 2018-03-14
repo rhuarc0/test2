@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.book;
+package com.zennex.trl3lg.data.repository.book;
 
 import android.support.annotation.Nullable;
 

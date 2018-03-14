@@ -1,15 +1,15 @@
 package com.zennex.trl3lg.presentation.common.di.repository;
 
 
-import com.zennex.trl3lg.data.repository.connection.auth.AuthRepository;
+import com.zennex.trl3lg.data.repository.auth.AuthRepository;
 import com.zennex.trl3lg.domain.repository.IAuthRepository;
-import com.zennex.trl3lg.data.repository.connection.book.BookRepository;
+import com.zennex.trl3lg.data.repository.book.BookRepository;
 import com.zennex.trl3lg.domain.repository.IReviewRepository;
-import com.zennex.trl3lg.data.repository.connection.review.ReviewRepository;
-import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
-import com.zennex.trl3lg.data.repository.connection.signup.SignUpRepository;
+import com.zennex.trl3lg.data.repository.review.ReviewRepository;
+import com.zennex.trl3lg.data.repository.signup.ISignUpRepository;
+import com.zennex.trl3lg.data.repository.signup.SignUpRepository;
 import com.zennex.trl3lg.domain.repository.ISiteRepository;
-import com.zennex.trl3lg.data.repository.connection.site.SiteRepository;
+import com.zennex.trl3lg.data.repository.site.SiteRepository;
 import com.zennex.trl3lg.domain.repository.IBookRepository;
 
 import dagger.Binds;

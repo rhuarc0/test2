@@ -14,7 +14,7 @@ public class WebRepositoryUtils {
     private static String NO_ERROR_CODE = "0";
     private static String ERROR_TEXT_BOOKS_NOT_FOUND = "";
 
-    public  static  <T extends BaseResponse> void checkResponse(List<T> responses) {
+    public static <T extends BaseResponse> void checkResponse(List<T> responses) {
         WebApiException exception = null;
         for (BaseResponse response : responses) {
             if (!response.getErrorCode().equals(NO_ERROR_CODE)
@@ -23,6 +23,16 @@ public class WebRepositoryUtils {
             }
         }
         if (exception != null) throw exception;
+    }
+
+    public static <T extends BaseResponse> void checkResponse(T response) {
+        WebApiException exception = null;
+            if (!response.getErrorCode().equals(NO_ERROR_CODE)
+                    && !response.getErrorText().equals(ERROR_TEXT_BOOKS_NOT_FOUND)) {
+                exception = new WebApiException(response.getErrorText(), response.getErrorCode());
+            }
+        if (exception != null)
+            throw exception;
     }
 
 

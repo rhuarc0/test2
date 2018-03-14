@@ -6,7 +6,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
 import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
-import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
+import com.zennex.trl3lg.data.repository.signup.ISignUpRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.model.FieldModel;
@@ -42,7 +42,7 @@ public class SignUp extends UseCase<SignUpResponse, SignUp.Params> {
     private SignUpRequest createSignUpRequest(Params params) {
         Map<String, String> fields = Stream.of(params.getFieldModels())
                 .collect(Collectors.toMap(FieldModel::getAlias, FieldModel::getValue));
-        return SignUpRequest.newInstance(params.mModuleId, fields);
+        return SignUpRequest.newInstance(params.getModuleId(), fields);
     }
 
     public static class Params {

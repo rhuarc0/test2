@@ -1,8 +1,8 @@
-package com.zennex.trl3lg.data.repository.connection;
+package com.zennex.trl3lg.data.repository;
 
 
 import com.zennex.trl3lg.data.entity.ConnectionSettings;
-import com.zennex.trl3lg.data.repository.connection.local.IConnectionSettingsLocalRepository;
+import com.zennex.trl3lg.data.repository.local.IConnectionSettingsLocalRepository;
 
 import javax.inject.Inject;
 
