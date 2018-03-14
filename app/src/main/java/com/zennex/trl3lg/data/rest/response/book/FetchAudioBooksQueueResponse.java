@@ -10,7 +10,7 @@ import java.util.List;
  * Created by nikit on 27.08.2017.
  */
 
-public class FetchQueueBooksResponse extends BaseResponse<FetchQueueBooksResponse.Data> {
+public class FetchAudioBooksQueueResponse extends BaseResponse<FetchAudioBooksQueueResponse.Data> {
 
     public static class Data {
 

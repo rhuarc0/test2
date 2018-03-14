@@ -7,7 +7,7 @@ import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
 import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
-import com.zennex.trl3lg.data.rest.response.book.FetchQueueBooksResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.exception.WebApiException;
 import com.zennex.trl3lg.data.mapper.dtomapper.AudioBookDtoMapper;
@@ -42,7 +42,7 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
 
     @Override
     public Observable<List<FetchRentalGroupsResponse>> getGroups(List<FetchRentalGroupsRequest> request) {
-        return mRentalBookWebService.getGroups(request);
+        return mRentalBookWebService.fetchRentalGroups(request);
     }
 
     @Override
@@ -67,10 +67,10 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
                 .toList();
     }
 
-    private Consumer<List<FetchQueueBooksResponse>> checkResponse() throws WebApiException {
+    private Consumer<List<FetchAudioBooksQueueResponse>> checkResponse() throws WebApiException {
         return fetchQueueBooksResponses -> {
             WebApiException exception = null;
-            for (FetchQueueBooksResponse response : fetchQueueBooksResponses) {
+            for (FetchAudioBooksQueueResponse response : fetchQueueBooksResponses) {
                 if (!response.getErrorCode().equals(NO_ERROR_CODE)
                         && !response.getErrorText().equals(ERROR_TEXT_BOOKS_NOT_FOUND)) {
                     exception = new WebApiException(response.getErrorText(), response.getErrorCode());
@@ -80,7 +80,7 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
         };
     }
 
-    private Function<List<FetchQueueBooksResponse>, List<List<AudioBookDto>>> getDataAudioBooks() {
+    private Function<List<FetchAudioBooksQueueResponse>, List<List<AudioBookDto>>> getDataAudioBooks() {
         return responses -> Stream.of(responses)
                 .map(response -> response.getData().getAudioBookDtoList())
                 .toList();

@@ -1,11 +1,15 @@
 package com.zennex.trl3lg.data.rest;
 
+import com.zennex.trl3lg.data.rest.request.book.AddBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
+import com.zennex.trl3lg.data.rest.request.book.StorePositionRequest;
 import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
-import com.zennex.trl3lg.data.rest.response.book.FetchQueueBooksResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchCDBooksQueueResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
+import com.zennex.trl3lg.data.rest.response.book.StorePositionResponse;
 
 import java.util.List;
 
@@ -18,7 +22,7 @@ public interface IRentalBookWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchRentalGroupsResponse>> getGroups(@Body List<FetchRentalGroupsRequest> request);
+    Observable<List<FetchRentalGroupsResponse>> fetchRentalGroups(@Body List<FetchRentalGroupsRequest> request);
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
@@ -26,7 +30,19 @@ public interface IRentalBookWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchQueueBooksResponse>> fetchQueue(@Body List<FetchQueueRequest> requests);
+    Observable<List<FetchAudioBooksQueueResponse>> fetchQueue(@Body List<FetchQueueRequest> requests);
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<StorePositionResponse>> storeAudioPosition(@Body List<StorePositionRequest> requests);
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchAudioBooksQueueResponse>> addAudioBook(@Body List<AddBookRequest> requests);
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchCDBooksQueueResponse>> addCDBook(@Body List<AddBookRequest> requests);
 
 
 }

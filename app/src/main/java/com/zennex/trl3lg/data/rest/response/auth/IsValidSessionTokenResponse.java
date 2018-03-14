@@ -1,5 +1,7 @@
 package com.zennex.trl3lg.data.rest.response.auth;
 
+import com.zennex.trl3lg.data.rest.response.BaseResponse;
+
 /**
  * Created by nikita on 26.07.17.
  */

@@ -11,7 +11,7 @@ import com.ihsanbal.logging.Level;
 import com.ihsanbal.logging.LoggingInterceptor;
 import com.zennex.trl3lg.BuildConfig;
 import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
-import com.zennex.trl3lg.data.rest.response.book.FetchQueueBooksResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchReviewsResponse;
 import com.zennex.trl3lg.data.util.gson.deserialize.FetchBooksDeserializeAdapter;
@@ -93,7 +93,7 @@ public class NetworkModule {
                 }.getType(), new FetchRentalGroupsDeserializeAdapter())
                 .registerTypeAdapter(new TypeToken<List<FetchBookListResponse>>() {
                 }.getType(), new FetchBooksDeserializeAdapter())
-                .registerTypeAdapter(new TypeToken<List<FetchQueueBooksResponse>>() {
+                .registerTypeAdapter(new TypeToken<List<FetchAudioBooksQueueResponse>>() {
                 }.getType(), new FetchQueueDeserializeAdapter())
                 .registerTypeAdapter(new TypeToken<List<FetchReviewsResponse>>() {
                 }.getType(), new FetchReviewsDeserializeAdapter())
