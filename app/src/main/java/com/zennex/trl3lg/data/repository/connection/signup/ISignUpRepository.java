@@ -1,9 +1,9 @@
 package com.zennex.trl3lg.data.repository.connection.signup;
 
-import com.zennex.trl3lg.data.rest.request.GetFieldsForSignUpRequest;
-import com.zennex.trl3lg.data.rest.request.SignUpRequest;
-import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.data.rest.response.SignUpResponse;
+import com.zennex.trl3lg.data.rest.request.signup.GetFieldsForSignUpRequest;
+import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
+import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
 
 import io.reactivex.Observable;
 

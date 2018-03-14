@@ -1,6 +1,6 @@
-package com.zennex.trl3lg.data.rest.response;
+package com.zennex.trl3lg.data.rest.response.book;
 
-import com.google.gson.annotations.SerializedName;
+import com.zennex.trl3lg.data.rest.response.BaseResponse;
 
 /**
  * Created by nikita on 14.03.18.

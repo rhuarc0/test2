@@ -1,8 +1,9 @@
-package com.zennex.trl3lg.data.rest.request;
+package com.zennex.trl3lg.data.rest.request.book;
 
 import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
+import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 /**
  * Created by nikita on 26.07.17.

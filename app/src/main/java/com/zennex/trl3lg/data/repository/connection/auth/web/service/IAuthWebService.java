@@ -1,9 +1,9 @@
 package com.zennex.trl3lg.data.repository.connection.auth.web.service;
 
-import com.zennex.trl3lg.data.rest.request.IsValidSessionTokenRequest;
-import com.zennex.trl3lg.data.rest.request.LoginRequest;
-import com.zennex.trl3lg.data.rest.response.AuthResponse;
-import com.zennex.trl3lg.data.rest.response.IsValidSessionTokenResponse;
+import com.zennex.trl3lg.data.rest.request.auth.IsValidSessionTokenRequest;
+import com.zennex.trl3lg.data.rest.request.auth.LoginRequest;
+import com.zennex.trl3lg.data.rest.response.auth.AuthResponse;
+import com.zennex.trl3lg.data.rest.response.auth.IsValidSessionTokenResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;

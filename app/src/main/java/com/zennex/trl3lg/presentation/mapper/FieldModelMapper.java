@@ -2,7 +2,7 @@ package com.zennex.trl3lg.presentation.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.mapper.base.Mapper;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 

@@ -1,15 +1,12 @@
-package com.zennex.trl3lg.data.rest.response;
+package com.zennex.trl3lg.data.rest.response.auth;
 
 import com.google.gson.annotations.SerializedName;
-import com.zennex.trl3lg.data.entity.dto.SiteDto;
-
-import java.util.ArrayList;
 
 /**
- * Created by nikita on 03.06.17.
+ * Created by nikita on 02.06.17.
  */
 
-public class GetSitesResponse {
+public class AuthResponse {
 
     @SerializedName("ID")
     private String mId;
@@ -18,7 +15,10 @@ public class GetSitesResponse {
     @SerializedName("ErrorText")
     private String mErrorText;
     @SerializedName("Data")
-    private Sites mData;
+    private AuthDataResponse mMemberLoginResponse;
+
+    public AuthResponse() {
+    }
 
     public String getId() {
         return mId;
@@ -44,26 +44,11 @@ public class GetSitesResponse {
         mErrorText = errorText;
     }
 
-    public Sites getData() {
-        return mData;
+    public AuthDataResponse getMemberLoginResponse() {
+        return mMemberLoginResponse;
     }
 
-    public void setData(Sites data) {
-        mData = data;
+    public void setMemberLoginResponse(AuthDataResponse memberLoginResponse) {
+        mMemberLoginResponse = memberLoginResponse;
     }
-
-    public static class Sites {
-        @SerializedName("Sites")
-        private ArrayList<SiteDto> mSiteDtos;
-
-
-        public ArrayList<SiteDto> getSiteDtos() {
-            return mSiteDtos;
-        }
-
-        public void setSiteDtos(ArrayList<SiteDto> siteDtos) {
-            mSiteDtos = siteDtos;
-        }
-    }
-
 }

@@ -3,11 +3,11 @@ package com.zennex.trl3lg.data.datasource.signup;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.rest.request.GetFieldsForSignUpRequest;
-import com.zennex.trl3lg.data.rest.request.SignUpRequest;
+import com.zennex.trl3lg.data.rest.request.signup.GetFieldsForSignUpRequest;
+import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
-import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.data.rest.response.SignUpResponse;
+import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
 import com.zennex.trl3lg.data.rest.ISignUpWebService;
 
 import java.util.ArrayList;

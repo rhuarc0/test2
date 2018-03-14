@@ -1,6 +1,7 @@
-package com.zennex.trl3lg.data.rest.response;
+package com.zennex.trl3lg.data.rest.response.signup;
 
 import com.google.gson.annotations.SerializedName;
+import com.zennex.trl3lg.data.rest.response.BaseResponse;
 
 import java.util.List;
 

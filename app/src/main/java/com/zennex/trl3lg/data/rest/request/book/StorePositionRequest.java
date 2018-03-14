@@ -1,6 +1,7 @@
-package com.zennex.trl3lg.data.rest.request;
+package com.zennex.trl3lg.data.rest.request.book;
 
 import com.google.gson.annotations.SerializedName;
+import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 /**
  * Created by nikita on 14.03.18.

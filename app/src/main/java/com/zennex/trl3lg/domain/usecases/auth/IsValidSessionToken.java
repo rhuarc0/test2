@@ -2,8 +2,8 @@ package com.zennex.trl3lg.domain.usecases.auth;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.rest.request.IsValidSessionTokenRequest;
-import com.zennex.trl3lg.data.rest.response.IsValidSessionTokenResponse;
+import com.zennex.trl3lg.data.rest.request.auth.IsValidSessionTokenRequest;
+import com.zennex.trl3lg.data.rest.response.auth.IsValidSessionTokenResponse;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
 import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;

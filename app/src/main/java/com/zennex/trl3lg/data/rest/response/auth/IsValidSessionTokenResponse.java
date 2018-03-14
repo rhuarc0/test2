@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.rest.response;
+package com.zennex.trl3lg.data.rest.response.auth;
 
 /**
  * Created by nikita on 26.07.17.

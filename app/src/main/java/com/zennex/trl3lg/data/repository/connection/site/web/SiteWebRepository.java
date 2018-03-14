@@ -1,7 +1,7 @@
 package com.zennex.trl3lg.data.repository.connection.site.web;
 
-import com.zennex.trl3lg.data.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.data.rest.response.GetSitesResponse;
+import com.zennex.trl3lg.data.rest.request.auth.GetSitesRequest;
+import com.zennex.trl3lg.data.rest.response.auth.GetSitesResponse;
 import com.zennex.trl3lg.data.rest.ISiteWebService;
 
 import javax.inject.Inject;

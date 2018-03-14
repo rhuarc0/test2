@@ -1,10 +1,10 @@
 package com.zennex.trl3lg.data.datasource.book;
 
 import com.zennex.trl3lg.domain.entities.AudioBook;
-import com.zennex.trl3lg.data.rest.request.FetchBookListRequest;
-import com.zennex.trl3lg.data.rest.request.FetchRentalGroupsRequest;
-import com.zennex.trl3lg.data.rest.response.FetchBookListResponse;
-import com.zennex.trl3lg.data.rest.response.FetchRentalGroupsResponse;
+import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
+import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
+import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
 
 import java.util.List;
 

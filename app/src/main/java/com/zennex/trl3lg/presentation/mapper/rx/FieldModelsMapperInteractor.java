@@ -2,7 +2,7 @@ package com.zennex.trl3lg.presentation.mapper.rx;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 import com.zennex.trl3lg.presentation.mapper.FieldModelMapper;

@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.rest.response;
+package com.zennex.trl3lg.data.rest.response.auth;
 
 import com.google.gson.annotations.SerializedName;
 import com.zennex.trl3lg.data.entity.dto.MemberDto;

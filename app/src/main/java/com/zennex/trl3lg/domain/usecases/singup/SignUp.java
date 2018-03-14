@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.rest.request.SignUpRequest;
-import com.zennex.trl3lg.data.rest.response.SignUpResponse;
+import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
+import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
 import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;

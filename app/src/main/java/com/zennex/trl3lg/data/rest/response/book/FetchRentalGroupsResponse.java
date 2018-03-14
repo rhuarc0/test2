@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.rest.response;
+package com.zennex.trl3lg.data.rest.response.book;
 
 import com.zennex.trl3lg.data.entity.dto.RentalGroupDto;
 

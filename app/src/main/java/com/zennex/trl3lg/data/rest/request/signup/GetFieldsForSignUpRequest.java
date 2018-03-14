@@ -1,6 +1,8 @@
-package com.zennex.trl3lg.data.rest.request;
+package com.zennex.trl3lg.data.rest.request.signup;
 
 import android.support.annotation.NonNull;
+
+import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 /**
  * Created by nikita on 12.06.17.

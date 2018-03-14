@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.domain.entities.Site;
-import com.zennex.trl3lg.data.rest.request.GetSitesRequest;
+import com.zennex.trl3lg.data.rest.request.auth.GetSitesRequest;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
 

@@ -3,8 +3,8 @@ package com.zennex.trl3lg.domain.usecases.site;
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.domain.entities.Site;
-import com.zennex.trl3lg.data.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.data.rest.response.GetSitesResponse;
+import com.zennex.trl3lg.data.rest.request.auth.GetSitesRequest;
+import com.zennex.trl3lg.data.rest.response.auth.GetSitesResponse;
 import com.zennex.trl3lg.data.mapper.dtomapper.SiteDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
