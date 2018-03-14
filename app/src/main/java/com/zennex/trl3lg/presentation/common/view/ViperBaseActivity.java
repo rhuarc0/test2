@@ -46,6 +46,7 @@ public abstract class ViperBaseActivity<Presenter extends ViperBasePresenter, Ro
 
     protected abstract Router resolveRouter();
 
+/*
     protected void bindLayout() {
         Class cls = getClass();
         if (!cls.isAnnotationPresent(Layout.class)) return;
@@ -54,6 +55,7 @@ public abstract class ViperBaseActivity<Presenter extends ViperBasePresenter, Ro
         setContentView(layout.value());
         ButterKnife.bind(this);
     }
+*/
 
     //endregion Lifecycle
 
