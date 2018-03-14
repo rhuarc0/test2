@@ -2,15 +2,15 @@ package com.zennex.trl3lg.presentation.common.di.repository;
 
 
 import com.zennex.trl3lg.data.repository.connection.auth.AuthRepository;
-import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
-import com.zennex.trl3lg.data.repository.connection.book.BookRepositoryImpl;
-import com.zennex.trl3lg.data.repository.connection.review.IReviewRepository;
+import com.zennex.trl3lg.domain.repository.IAuthRepository;
+import com.zennex.trl3lg.data.repository.connection.book.BookRepository;
+import com.zennex.trl3lg.domain.repository.IReviewRepository;
 import com.zennex.trl3lg.data.repository.connection.review.ReviewRepository;
 import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
 import com.zennex.trl3lg.data.repository.connection.signup.SignUpRepository;
-import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
+import com.zennex.trl3lg.domain.repository.ISiteRepository;
 import com.zennex.trl3lg.data.repository.connection.site.SiteRepository;
-import com.zennex.trl3lg.domain.repository.BookRepository;
+import com.zennex.trl3lg.domain.repository.IBookRepository;
 
 import dagger.Binds;
 import dagger.Module;
@@ -33,7 +33,7 @@ public abstract class RepositoryModule {
     public abstract IReviewRepository bindReviewRepository(ReviewRepository reviewRepository);
 
     @Binds
-    public abstract BookRepository bindBookRepository(BookRepositoryImpl bookRepository);
+    public abstract IBookRepository bindBookRepository(BookRepository bookRepository);
 
 
 }

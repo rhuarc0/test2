@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.review.web;
+package com.zennex.trl3lg.data.datasource.review;
 
 import com.zennex.trl3lg.domain.entities.Review;
 
@@ -10,7 +10,7 @@ import io.reactivex.Observable;
  * Created by nikita on 20.10.17.
  */
 
-public interface IReviewWebRepository {
+public interface IReviewDataSource {
 
     Observable<List<Review>> fetchReviews(String bookId, int startPosition, int count);
 

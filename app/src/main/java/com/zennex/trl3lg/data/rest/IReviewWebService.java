@@ -1,11 +1,8 @@
 package com.zennex.trl3lg.data.rest;
 
-import com.zennex.trl3lg.data.rest.request.book.FetchReviewsRequest;
-import com.zennex.trl3lg.data.rest.request.book.SetReviewUsefulRequest;
-import com.zennex.trl3lg.data.rest.response.BaseResponse;
-import com.zennex.trl3lg.data.rest.response.book.FetchReviewsResponse;
+import com.zennex.trl3lg.data.entity.rest.request.FetchReviewsRequest;
+import com.zennex.trl3lg.data.entity.rest.response.FetchReviewsResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -22,8 +19,4 @@ public interface IReviewWebService {
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
     Observable<List<FetchReviewsResponse>> fetchItemReviews(@Body List<FetchReviewsRequest> requests);
-
-    @Headers("Content-Type: application/json")
-    @POST("core/webservice")
-    Observable<List<BaseResponse>> setReviewUseful(@Body List<SetReviewUsefulRequest> baseRequest);
 }

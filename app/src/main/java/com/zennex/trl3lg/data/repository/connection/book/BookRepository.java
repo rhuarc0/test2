@@ -6,6 +6,8 @@ import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.datasource.book.BookDataSourceRemote;
 import com.zennex.trl3lg.data.entity.dto.BookDto;
 import com.zennex.trl3lg.data.entity.dto.RentalGroupDto;
+import com.zennex.trl3lg.domain.repository.IAuthRepository;
+import com.zennex.trl3lg.data.util.StringUtils;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest.BookFilter;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
@@ -14,11 +16,10 @@ import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.mapper.dtomapper.BookDtoMapperWrapper;
 import com.zennex.trl3lg.data.mapper.dtomapper.RentalGroupDtoMapper;
-import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
 import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.domain.entities.RentalGroup;
-import com.zennex.trl3lg.domain.repository.BookRepository;
+import com.zennex.trl3lg.domain.repository.IBookRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ import io.reactivex.functions.Function;
 import static com.annimon.stream.Stream.of;
 
 
-public class BookRepositoryImpl implements BookRepository {
+public class BookRepository implements IBookRepository {
 
     private static final String ONLY_ACTIVE = "1";
     private static final String ALL_CATEGORIES_ID = "0";
@@ -56,7 +57,7 @@ public class BookRepositoryImpl implements BookRepository {
 
 
     @Inject
-    public BookRepositoryImpl() { }
+    public BookRepository() { }
 
     @Override
     public Observable<List<RentalGroup>> getGroups() {
@@ -167,7 +168,7 @@ public class BookRepositoryImpl implements BookRepository {
                             Stream.of("1").toList());
                     filters.add(filter);
 
-                    if (!isEmpty(rentalGroupId) && !rentalGroupId.equals("-1")) {
+                    if (!StringUtils.isEmpty(rentalGroupId) && !rentalGroupId.equals("-1")) {
                         filter = new BookFilter(BookFilter.FIELD_GROUP_ID,
                                 Stream.of(rentalGroupId).toList());
                         filters.add(filter);
@@ -191,10 +192,6 @@ public class BookRepositoryImpl implements BookRepository {
                     return FetchBookListRequest.newInstance(moduleId, data);
                 })
                 .toList();
-    }
-
-    public static boolean isEmpty(@Nullable CharSequence str) {
-        return str == null || str.length() == 0;
     }
 
     private Function<List<FetchBookListResponse>, List<List<BookDto>>> getBooksData() {

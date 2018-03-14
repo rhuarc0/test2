@@ -1,6 +1,7 @@
 package com.zennex.trl3lg.presentation.module.signup.presenter;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 import com.arellomobile.mvp.InjectViewState;
@@ -11,7 +12,6 @@ import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.singup.GetFieldsForSignUp;
 import com.zennex.trl3lg.domain.usecases.singup.SignUp;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
-import com.zennex.trl3lg.presentation.helper.StringUtils;
 import com.zennex.trl3lg.presentation.mapper.rx.FieldModelsMapperInteractor;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 import com.zennex.trl3lg.presentation.model.TitleModel;
@@ -139,7 +139,7 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
     }
 
     private boolean checkField(FieldModel field) {
-        return !field.isRequired() || !StringUtils.isNullOrEmpty(field.getValue());
+        return !field.isRequired() || !TextUtils.isEmpty(field.getValue());
     }
 
 

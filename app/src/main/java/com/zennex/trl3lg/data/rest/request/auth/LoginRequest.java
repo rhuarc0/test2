@@ -1,10 +1,10 @@
 package com.zennex.trl3lg.data.rest.request.auth;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.zennex.trl3lg.data.rest.request.BaseRequest;
-import com.zennex.trl3lg.presentation.helper.StringUtils;
 
 /**
  * Created by nikita on 05.06.17.
@@ -15,7 +15,7 @@ public class LoginRequest extends BaseRequest<LoginRequest.Data> {
     public static LoginRequest newInstance(LoginRequest.Data data, @Nullable String moduleId) {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.fillDefaultFields();
-        loginRequest.setType(!StringUtils.isNullOrEmpty(moduleId) ? "login" : "login2");
+        loginRequest.setType(!TextUtils.isEmpty(moduleId) ? "login" : "login2");
         loginRequest.setModuleid(moduleId);
         loginRequest.setData(data);
         return loginRequest;

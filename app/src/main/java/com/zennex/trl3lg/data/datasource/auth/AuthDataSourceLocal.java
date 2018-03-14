@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.auth.local;
+package com.zennex.trl3lg.data.datasource.auth;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
-public class AuthLocalRepository extends LocalRepository implements IAuthLocalRepository {
+public class AuthDataSourceLocal extends LocalRepository implements IAuthDataSourceLocal {
 
     private static final String SESSION_TOKEN_KEY = "session_token";
     private static final String MODULE_ID_KEY = "module_id_key";
@@ -21,7 +21,7 @@ public class AuthLocalRepository extends LocalRepository implements IAuthLocalRe
 
 
     @Inject
-    public AuthLocalRepository(@NonNull Context context,
+    public AuthDataSourceLocal(@NonNull Context context,
                                @NonNull SharedPreferences sharedPreferences) {
         super(context, sharedPreferences);
     }

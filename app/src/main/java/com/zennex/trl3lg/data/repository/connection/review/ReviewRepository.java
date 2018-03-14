@@ -1,7 +1,8 @@
 package com.zennex.trl3lg.data.repository.connection.review;
 
+import com.zennex.trl3lg.data.datasource.review.IReviewDataSource;
 import com.zennex.trl3lg.domain.entities.Review;
-import com.zennex.trl3lg.data.repository.connection.review.web.IReviewWebRepository;
+import com.zennex.trl3lg.domain.repository.IReviewRepository;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import io.reactivex.Observable;
 public class ReviewRepository implements IReviewRepository {
 
     @Inject
-    IReviewWebRepository mReviewWebRepository;
+    IReviewDataSource mReviewWebRepository;
 
     @Inject
     public ReviewRepository() {

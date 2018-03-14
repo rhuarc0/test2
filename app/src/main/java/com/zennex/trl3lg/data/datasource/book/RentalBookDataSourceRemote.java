@@ -1,17 +1,17 @@
 package com.zennex.trl3lg.data.datasource.book;
 
 import com.annimon.stream.Stream;
+import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
 import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.dto.AudioBookDto;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
 import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
-import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
 import com.zennex.trl3lg.data.exception.WebApiException;
 import com.zennex.trl3lg.data.mapper.dtomapper.AudioBookDtoMapper;
-import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
+import com.zennex.trl3lg.domain.repository.IAuthRepository;
 import com.zennex.trl3lg.data.rest.IRentalBookWebService;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
 
     private List<FetchQueueRequest> createRequestsForFetchMyAudioBooks() {
         return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
-                .map(renatalModuleid -> FetchQueueRequest.newInstance(renatalModuleid,
+                .map(rentalModuleId -> FetchQueueRequest.newInstance(rentalModuleId,
                         new FetchQueueRequest.Data(mAuthRepository.getSessionToken().blockingSingle())))
                 .toList();
     }
