@@ -1,7 +1,8 @@
 package com.zennex.trl3lg.data.rest;
 
-import com.zennex.trl3lg.data.entity.rest.request.FetchReviewsRequest;
-import com.zennex.trl3lg.data.entity.rest.response.FetchReviewsResponse;
+
+import com.zennex.trl3lg.data.rest.request.book.FetchReviewsRequest;
+import com.zennex.trl3lg.data.rest.response.book.FetchReviewsResponse;
 
 import java.util.List;
 

@@ -1,10 +1,8 @@
 package com.zennex.trl3lg.data.repository.connection.site;
 
-import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.data.entity.rest.response.GetSitesResponse;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceRemote;
-import com.zennex.trl3lg.data.mapper.FetchSitesResponseMapper;
+import com.zennex.trl3lg.data.mapper.dtomapper.SiteDtoMapper;
 import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.domain.repository.ISiteRepository;
 
@@ -32,7 +30,7 @@ public class SiteRepository implements ISiteRepository {
     protected ISiteDataSourceLocal siteDataSourceLocal;
 
     @Inject
-    protected FetchSitesResponseMapper mGetSitesResponseMapper;
+    protected SiteDtoMapper siteDtoMapper;
 
 
     @Inject
@@ -77,7 +75,7 @@ public class SiteRepository implements ISiteRepository {
         return getSitesResponse -> {
             if (getSitesResponse.getData() == null)
                 return new ArrayList<>();
-            return mGetSitesResponseMapper.execute(getSitesResponse.getData().getSiteItemDtos());
+            return siteDtoMapper.execute(getSitesResponse.getData().getSiteDtos());
         };
     }
 
