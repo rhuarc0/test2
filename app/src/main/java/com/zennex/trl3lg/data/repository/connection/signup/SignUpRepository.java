@@ -1,9 +1,9 @@
 package com.zennex.trl3lg.data.repository.connection.signup;
 
-import com.zennex.trl3lg.data.entity.rest.request.GetFieldsForSignUpRequest;
-import com.zennex.trl3lg.data.entity.rest.request.SignUpRequest;
-import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.data.entity.rest.response.SignUpResponse;
+import com.zennex.trl3lg.data.rest.request.GetFieldsForSignUpRequest;
+import com.zennex.trl3lg.data.rest.request.SignUpRequest;
+import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.rest.response.SignUpResponse;
 import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
 
 import javax.inject.Inject;

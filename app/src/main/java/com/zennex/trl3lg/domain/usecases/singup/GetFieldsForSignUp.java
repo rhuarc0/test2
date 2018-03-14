@@ -3,9 +3,9 @@ package com.zennex.trl3lg.domain.usecases.singup;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.entity.rest.request.GetFieldsForSignUpRequest;
-import com.zennex.trl3lg.data.entity.rest.response.BaseResponse;
-import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.rest.request.GetFieldsForSignUpRequest;
+import com.zennex.trl3lg.data.rest.response.BaseResponse;
+import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.repository.connection.signup.ISignUpRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;

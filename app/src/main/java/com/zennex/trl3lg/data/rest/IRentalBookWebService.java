@@ -1,11 +1,11 @@
 package com.zennex.trl3lg.data.rest;
 
-import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
-import com.zennex.trl3lg.data.entity.rest.request.FetchQueueRequest;
-import com.zennex.trl3lg.data.entity.rest.request.FetchRentalGroupsRequest;
-import com.zennex.trl3lg.data.entity.rest.response.FetchBookListResponse;
-import com.zennex.trl3lg.data.entity.rest.response.FetchQueueBooksResponse;
-import com.zennex.trl3lg.data.entity.rest.response.FetchRentalGroupsResponse;
+import com.zennex.trl3lg.data.rest.request.FetchBookListRequest;
+import com.zennex.trl3lg.data.rest.request.FetchQueueRequest;
+import com.zennex.trl3lg.data.rest.request.FetchRentalGroupsRequest;
+import com.zennex.trl3lg.data.rest.response.FetchBookListResponse;
+import com.zennex.trl3lg.data.rest.response.FetchQueueBooksResponse;
+import com.zennex.trl3lg.data.rest.response.FetchRentalGroupsResponse;
 
 import java.util.List;
 

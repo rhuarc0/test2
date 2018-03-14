@@ -2,8 +2,8 @@ package com.zennex.trl3lg.presentation.mapper;
 
 import android.support.annotation.NonNull;
 
-import com.zennex.trl3lg.data.entity.rest.response.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.data.mapper.Mapper;
+import com.zennex.trl3lg.data.rest.response.GetFieldsForSignUpResponse;
+import com.zennex.trl3lg.data.mapper.base.Mapper;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 
 import java.util.UUID;

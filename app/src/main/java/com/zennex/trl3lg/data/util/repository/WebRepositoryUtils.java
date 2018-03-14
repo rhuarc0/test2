@@ -1,6 +1,6 @@
 package com.zennex.trl3lg.data.util.repository;
 
-import com.zennex.trl3lg.data.entity.rest.response.BaseResponse;
+import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.exception.WebApiException;
 
 import java.util.List;

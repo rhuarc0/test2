@@ -3,9 +3,9 @@ package com.zennex.trl3lg.domain.usecases.site;
 import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.domain.entities.Site;
-import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.data.entity.rest.response.GetSitesResponse;
-import com.zennex.trl3lg.data.mapper.FetchSitesResponseMapper;
+import com.zennex.trl3lg.data.rest.request.GetSitesRequest;
+import com.zennex.trl3lg.data.rest.response.GetSitesResponse;
+import com.zennex.trl3lg.data.mapper.dtomapper.SiteDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.site.ISiteRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
@@ -27,7 +27,7 @@ public class GetSitesAndModules extends UseCase<List<Site>, Void> {
     protected ISiteRepository mSiteRepository;
 
     @Inject
-    protected FetchSitesResponseMapper mGetSitesResponseMapper;
+    protected SiteDtoMapper mGetSitesResponseMapper;
 
     @Inject
     public GetSitesAndModules(
@@ -62,7 +62,7 @@ public class GetSitesAndModules extends UseCase<List<Site>, Void> {
     private Function<GetSitesResponse, List<Site>> transform() {
         return getSitesResponse -> {
             if (getSitesResponse.getData() == null) return new ArrayList<>();
-            return mGetSitesResponseMapper.execute(getSitesResponse.getData().getSiteItemDtos());
+            return mGetSitesResponseMapper.execute(getSitesResponse.getData().getSiteDtos());
         };
     }
 

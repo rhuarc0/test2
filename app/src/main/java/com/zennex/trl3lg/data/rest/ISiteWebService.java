@@ -1,7 +1,7 @@
 package com.zennex.trl3lg.data.rest;
 
-import com.zennex.trl3lg.data.entity.rest.request.GetSitesRequest;
-import com.zennex.trl3lg.data.entity.rest.response.GetSitesResponse;
+import com.zennex.trl3lg.data.rest.request.GetSitesRequest;
+import com.zennex.trl3lg.data.rest.response.GetSitesResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;

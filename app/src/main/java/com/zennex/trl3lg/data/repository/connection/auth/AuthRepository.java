@@ -1,9 +1,9 @@
 package com.zennex.trl3lg.data.repository.connection.auth;
 
-import com.zennex.trl3lg.data.entity.rest.request.IsValidSessionTokenRequest;
-import com.zennex.trl3lg.data.entity.rest.request.LoginRequest;
-import com.zennex.trl3lg.data.entity.rest.response.AuthResponse;
-import com.zennex.trl3lg.data.entity.rest.response.IsValidSessionTokenResponse;
+import com.zennex.trl3lg.data.rest.request.IsValidSessionTokenRequest;
+import com.zennex.trl3lg.data.rest.request.LoginRequest;
+import com.zennex.trl3lg.data.rest.response.AuthResponse;
+import com.zennex.trl3lg.data.rest.response.IsValidSessionTokenResponse;
 import com.zennex.trl3lg.data.repository.connection.auth.local.IAuthLocalRepository;
 import com.zennex.trl3lg.data.repository.connection.auth.web.IAuthWebRepository;
 

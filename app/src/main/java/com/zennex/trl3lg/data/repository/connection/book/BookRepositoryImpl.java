@@ -6,14 +6,14 @@ import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.datasource.book.BookDataSourceRemote;
 import com.zennex.trl3lg.data.entity.dto.BookDto;
 import com.zennex.trl3lg.data.entity.dto.RentalGroupDto;
-import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest;
-import com.zennex.trl3lg.data.entity.rest.request.FetchBookListRequest.BookFilter;
-import com.zennex.trl3lg.data.entity.rest.request.FetchRentalGroupsRequest;
-import com.zennex.trl3lg.data.entity.rest.response.BaseResponse;
-import com.zennex.trl3lg.data.entity.rest.response.FetchBookListResponse;
-import com.zennex.trl3lg.data.entity.rest.response.FetchRentalGroupsResponse;
-import com.zennex.trl3lg.data.mapper.BookDtoMapperWrapper;
-import com.zennex.trl3lg.data.mapper.RentalBookGroupDtoMapper;
+import com.zennex.trl3lg.data.rest.request.FetchBookListRequest;
+import com.zennex.trl3lg.data.rest.request.FetchBookListRequest.BookFilter;
+import com.zennex.trl3lg.data.rest.request.FetchRentalGroupsRequest;
+import com.zennex.trl3lg.data.rest.response.BaseResponse;
+import com.zennex.trl3lg.data.rest.response.FetchBookListResponse;
+import com.zennex.trl3lg.data.rest.response.FetchRentalGroupsResponse;
+import com.zennex.trl3lg.data.mapper.dtomapper.BookDtoMapperWrapper;
+import com.zennex.trl3lg.data.mapper.dtomapper.RentalGroupDtoMapper;
 import com.zennex.trl3lg.data.repository.connection.auth.IAuthRepository;
 import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.domain.entities.Book;
@@ -49,7 +49,7 @@ public class BookRepositoryImpl implements BookRepository {
     // Mappers
 
     @Inject
-    RentalBookGroupDtoMapper rentalBookGroupDtoMapper;
+    RentalGroupDtoMapper mRentalGroupDtoMapper;
 
     @Inject
     BookDtoMapperWrapper bookDtoMapper;
@@ -126,7 +126,7 @@ public class BookRepositoryImpl implements BookRepository {
     private Function<List<List<RentalGroupDto>>, List<RentalGroup>> transformRentalGroups() {
         return lists -> {
             List<RentalGroup> intermediateList = of(lists)
-                    .map(rentalGroupDtos -> rentalBookGroupDtoMapper.execute(rentalGroupDtos))
+                    .map(rentalGroupDtos -> mRentalGroupDtoMapper.execute(rentalGroupDtos))
                     .flatMap(Stream::of)
                     .distinct()
                     .toList();
