@@ -8,6 +8,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
+import com.zennex.trl3lg.domain.entities.Field;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.singup.GetFieldsForSignUp;
 import com.zennex.trl3lg.domain.usecases.singup.SignUp;
@@ -164,11 +165,10 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
 
     //region FetchFieldsForSignUpObserver
 
-    private class FetchFieldsForSignUpObserver extends DefaultObserver<List<GetFieldsForSignUpResponse.DataMemberField>> {
-
+    private class FetchFieldsForSignUpObserver extends DefaultObserver<List<Field>> {
 
         @Override
-        public void onNext(List<GetFieldsForSignUpResponse.DataMemberField> dataMemberFields) {
+        public void onNext(List<Field> dataMemberFields) {
             getViewState().hidePendingForLoadFields();
             mFieldModelsMapperInteractor.execute(new FieldModelsMapperObserver(), dataMemberFields);
         }

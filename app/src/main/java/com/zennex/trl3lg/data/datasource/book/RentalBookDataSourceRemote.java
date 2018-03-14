@@ -2,6 +2,7 @@ package com.zennex.trl3lg.data.datasource.book;
 
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
+import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.data.entity.dto.AudioBookDto;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
@@ -24,8 +25,6 @@ import io.reactivex.functions.Function;
 
 public class RentalBookDataSourceRemote implements BookDataSourceRemote {
 
-    private static String NO_ERROR_CODE = "0";
-    private static String ERROR_TEXT_BOOKS_NOT_FOUND = "";
 
     @Inject
     IRentalBookWebService mRentalBookWebService;
@@ -54,7 +53,7 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
     public Observable<List<AudioBook>> fetchMyAudioBooks() {
         return Observable.fromCallable(this::createRequestsForFetchMyAudioBooks)
                 .flatMap(mRentalBookWebService::fetchQueue)
-                .doOnNext(checkResponse())
+                .doOnNext(WebRepositoryUtils::checkResponse)
                 .map(getDataAudioBooks())
                 .map(combineAudioBookDtos())
                 .map(transformAudioBookDtos());
@@ -65,19 +64,6 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
                 .map(rentalModuleId -> FetchQueueRequest.newInstance(rentalModuleId,
                         new FetchQueueRequest.Data(mAuthRepository.getSessionToken().blockingSingle())))
                 .toList();
-    }
-
-    private Consumer<List<FetchAudioBooksQueueResponse>> checkResponse() throws WebApiException {
-        return fetchQueueBooksResponses -> {
-            WebApiException exception = null;
-            for (FetchAudioBooksQueueResponse response : fetchQueueBooksResponses) {
-                if (!response.getErrorCode().equals(NO_ERROR_CODE)
-                        && !response.getErrorText().equals(ERROR_TEXT_BOOKS_NOT_FOUND)) {
-                    exception = new WebApiException(response.getErrorText(), response.getErrorCode());
-                }
-            }
-            if (exception != null) throw exception;
-        };
     }
 
     private Function<List<FetchAudioBooksQueueResponse>, List<List<AudioBookDto>>> getDataAudioBooks() {

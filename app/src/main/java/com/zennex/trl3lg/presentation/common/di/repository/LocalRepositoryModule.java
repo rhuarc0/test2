@@ -7,8 +7,8 @@ import android.support.annotation.NonNull;
 
 import com.zennex.trl3lg.data.datasource.auth.AuthDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceLocal;
-import com.zennex.trl3lg.data.repository.connection.local.ConnectionSettingsLocalRepository;
-import com.zennex.trl3lg.data.repository.connection.local.IConnectionSettingsLocalRepository;
+import com.zennex.trl3lg.data.repository.local.ConnectionSettingsLocalRepository;
+import com.zennex.trl3lg.data.repository.local.IConnectionSettingsLocalRepository;
 import com.zennex.trl3lg.data.datasource.book.BookDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.book.RentalBookDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;

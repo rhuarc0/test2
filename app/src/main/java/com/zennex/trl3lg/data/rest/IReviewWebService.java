@@ -1,6 +1,5 @@
 package com.zennex.trl3lg.data.rest;
 
-
 import com.zennex.trl3lg.data.rest.request.book.FetchReviewsRequest;
 import com.zennex.trl3lg.data.rest.response.book.FetchReviewsResponse;
 

@@ -1,15 +1,17 @@
-package com.zennex.trl3lg.data.datasource.signup;
+package com.zennex.trl3lg.data.repository.signup;
 
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
+import com.zennex.trl3lg.data.mapper.dtomapper.FieldDtoMapper;
 import com.zennex.trl3lg.data.rest.request.signup.GetFieldsForSignUpRequest;
 import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
 import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
-import com.zennex.trl3lg.data.rest.ISignUpWebService;
+import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
 import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
+import com.zennex.trl3lg.domain.entities.Field;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,33 +19,42 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
  * Created by nikita on 12.06.17.
  */
 
-public class SignUpDataSource implements ISignUpDataSource {
+public class SignUpRepository implements ISignUpRepository {
 
     @Inject
-    protected ISignUpWebService signUpWebService;
+    protected ISignUpDataSource signUpDataSource;
 
     @Inject
-    public SignUpDataSource() {
+    protected FieldDtoMapper fieldDtoMapper;
+
+    @Inject
+    public SignUpRepository() {
     }
 
-    protected Observable<List<GetFieldsForSignUpResponse.DataMemberField>> buildObservable(String moduleId) {
-        GetFieldsForSignUpRequest request = createGetFieldsForSignUpRequest(moduleId);
-
-        return signUpWebService.getFieldsForSignUp(request)
+    @Override
+    public Observable<List<Field>> getFieldsForSignUp(String moduleId) {
+        return signUpDataSource.getFieldsForSignUp(createRequest(moduleId))
                 .doOnNext(WebRepositoryUtils::checkResponse)
                 .map(BaseResponse::getData)
                 .map(filterFields())
-                .map(addConfirmPasswordField());
+                .map(addConfirmPasswordField())
+                .map(transform());
     }
 
-    private GetFieldsForSignUpRequest createGetFieldsForSignUpRequest(@NonNull String moduleId) {
+    @Override
+    public Observable<SignUpResponse> signUp(SignUpRequest signUpRequest) {
+        return signUpDataSource.signUp(signUpRequest);
+    }
+
+    // aux methods
+
+    private GetFieldsForSignUpRequest createRequest(@NonNull String moduleId) {
         return GetFieldsForSignUpRequest.newInstance(moduleId);
     }
 
@@ -65,15 +76,9 @@ public class SignUpDataSource implements ISignUpDataSource {
                 });
     }
 
-
-
-    @Override
-    public Observable<GetFieldsForSignUpResponse> getFieldsForSignUp(GetFieldsForSignUpRequest getFieldsForSignUpRequest) {
-        return signUpWebService.getFieldsForSignUp(getFieldsForSignUpRequest);
-    }
-
-    @Override
-    public Observable<SignUpResponse> signUp(SignUpRequest signUpRequest) {
-        return signUpWebService.signUp(signUpRequest);
+    private Function<List<GetFieldsForSignUpResponse.DataMemberField>, List<Field>> transform() {
+        return memberFields -> Stream.of(memberFields)
+                .map(bookDto -> fieldDtoMapper.execute(bookDto))
+                .toList();
     }
 }

@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.local;
+package com.zennex.trl3lg.data.repository.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;

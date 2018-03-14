@@ -1,8 +1,9 @@
-package com.zennex.trl3lg.data.repository.connection.site;
+package com.zennex.trl3lg.data.repository.site;
 
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceRemote;
 import com.zennex.trl3lg.data.mapper.dtomapper.SiteDtoMapper;
+import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.domain.repository.ISiteRepository;
 
@@ -14,7 +15,6 @@ import com.zennex.trl3lg.data.rest.response.auth.GetSitesResponse;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
@@ -40,7 +40,7 @@ public class SiteRepository implements ISiteRepository {
     @Override
     public Observable<List<Site>> getSites() {
         return siteDataSourceRemote.getSites(createGetSitesRequest())
-                .doOnNext(checkResponse())
+                .doOnNext(WebRepositoryUtils::checkResponse)
                 .map(transform());
     }
 
@@ -60,15 +60,6 @@ public class SiteRepository implements ISiteRepository {
         data.addType(GetSitesRequest.Data.TYPE_RENTAL);
         data.addType(GetSitesRequest.Data.TYPE_MEMBERSHIP);
         return GetSitesRequest.newInstance(data);
-    }
-
-    private Consumer<GetSitesResponse> checkResponse() {
-        return getSitesResponse -> {
-
-            if (Integer.parseInt(getSitesResponse.getErrorCode()) != 0) {
-                throw new RuntimeException(getSitesResponse.getErrorText());
-            }
-        };
     }
 
     private Function<GetSitesResponse, List<Site>> transform() {

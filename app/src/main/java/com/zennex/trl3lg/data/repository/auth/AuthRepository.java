@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection.auth;
+package com.zennex.trl3lg.data.repository.auth;
 
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -8,6 +8,7 @@ import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;
 import com.zennex.trl3lg.data.mapper.dtomapper.AuthDataDtoMapper;
 import com.zennex.trl3lg.data.rest.request.auth.GetSitesRequest;
+import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 import com.zennex.trl3lg.domain.entities.AuthData;
 import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceRemote;
@@ -25,7 +26,6 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
@@ -34,7 +34,6 @@ import io.reactivex.functions.Function;
 
 public class AuthRepository implements IAuthRepository {
 
-    private static final int NONE_ERROR = 0;
     @Inject
     protected IAuthDataSourceLocal authDataSourceLocal;
 
@@ -56,13 +55,13 @@ public class AuthRepository implements IAuthRepository {
     @Override
     public Observable<AuthData> auth(String email, String password, String moduleId, List<Site> sites) {
         return authDataSourceRemote.auth(createLoginRequest(email, password, moduleId))
-                .doOnNext(checkResponse())
+                .doOnNext(WebRepositoryUtils::checkResponse)
                 .doOnNext(authResponse -> {
                     String moduleIdUsed = TextUtils.isEmpty(moduleId) ?
-                            authResponse.getMemberLoginResponse().getModuleId() :
+                            authResponse.getData().getModuleId() :
                             moduleId;
                     cachedMembershipId(moduleIdUsed);
-                    cachedSessionToken(authResponse.getMemberLoginResponse().getSession());
+                    cachedSessionToken(authResponse.getData().getSession());
                     cacheSiteIdAndRentalModuleIds(moduleIdUsed, sites);
                 })
                 .map(transform());
@@ -125,17 +124,8 @@ public class AuthRepository implements IAuthRepository {
         return LoginRequest.newInstance(data, moduleId);
     }
 
-    private Consumer<AuthResponse> checkResponse() {
-        return getSitesResponse -> {
-
-            if (Integer.parseInt(getSitesResponse.getErrorCode()) != NONE_ERROR) {
-                throw new RuntimeException(getSitesResponse.getErrorText());
-            }
-        };
-    }
-
     private Function<AuthResponse, AuthData> transform() {
-        return authResponse -> authDataDtoMapper.execute(authResponse.getMemberLoginResponse());
+        return authResponse -> authDataDtoMapper.execute(authResponse.getData());
     }
 
     private void cachedSessionToken(@Nullable String sessionToken) {

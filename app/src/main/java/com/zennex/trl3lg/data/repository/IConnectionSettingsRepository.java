@@ -1,4 +1,4 @@
-package com.zennex.trl3lg.data.repository.connection;
+package com.zennex.trl3lg.data.repository;
 
 
 import com.zennex.trl3lg.data.entity.ConnectionSettings;
