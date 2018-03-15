@@ -5,6 +5,7 @@ import com.zennex.trl3lg.data.rest.request.book.AddBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
+import com.zennex.trl3lg.data.rest.request.book.RenewAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.StorePositionRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
@@ -63,9 +64,9 @@ public interface IRentalBookWebService {
     @POST("core/webservice")
     Observable<List<FetchAudioBooksQueueResponse>> activateAudioBook(@Body List<ActivateAudioBookRequest> request);
 
-//    @Headers("Contnet-Type: application/json")
-//    @POST("core/webservice")
-//    Observable<> renewLiveItem(@Body );
+    @Headers("Contnet-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchAudioBooksQueueResponse>> renewLiveItem(@Body List<RenewAudioBookRequest> request);
 
 //    @Headers("Contnet-Type: application/json")
 //    @POST("core/webservice")
