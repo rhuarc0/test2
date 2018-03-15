@@ -1,8 +1,10 @@
 package com.zennex.trl3lg.data.rest;
 
+import com.zennex.trl3lg.data.entity.dto.BookDto;
 import com.zennex.trl3lg.data.rest.request.book.ActivateAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.AddBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.ChangeAudioBookListOrderRequest;
+import com.zennex.trl3lg.data.rest.request.book.FetchBookByIdRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
@@ -37,6 +39,16 @@ public interface IRentalBookWebService {
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
     Observable<List<FetchAudioBooksQueueResponse>> fetchQueue(@Body List<FetchQueueRequest> requests);
+
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<BaseResponse<BookDto>>> fetchBookById(@Body List<FetchBookByIdRequest> request);
+
+//
+//    @Headers("Content-Type: application/json")
+//    @POST("core/webservice")
+//    Observable<List<FetchAudioBooksQueueResponse>> fetchHistory(@Body List<FetchHistoryRequest> request);
 
     //endregion
 
@@ -77,8 +89,6 @@ public interface IRentalBookWebService {
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
     Observable<List<FetchAudioBooksQueueResponse>> changeAudioBookListOrder(@Body List<ChangeAudioBookListOrderRequest> request);
-
-
 
     //endregion
 
