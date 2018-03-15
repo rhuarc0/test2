@@ -1,6 +1,7 @@
 package com.zennex.trl3lg.data.rest;
 
 import com.zennex.trl3lg.data.entity.dto.MemberDto;
+import com.zennex.trl3lg.data.rest.request.member.ChangeAvailMediaTypeRequest;
 import com.zennex.trl3lg.data.rest.request.member.FetchMemberRequest;
 import com.zennex.trl3lg.data.rest.request.member.SaveLogsRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
@@ -26,8 +27,8 @@ public interface IMemberWebService {
     @POST("core/webservice")
     Observable<List<BaseResponse<MemberDto>>> fetchMember(@Body List<FetchMemberRequest> requests);
 
-//    @Headers("Content-Type: application/json")
-//    @POST("core/webservice")
-//    Observable<List<BaseResponse>> changeAvailMediaType(@Body List<ChangeAvailMediaTypeRequest> requests);
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<BaseResponse>> changeAvailMediaType(@Body List<ChangeAvailMediaTypeRequest> requests);
 
 }
