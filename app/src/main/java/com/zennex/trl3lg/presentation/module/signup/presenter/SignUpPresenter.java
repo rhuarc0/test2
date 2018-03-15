@@ -6,13 +6,12 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
-import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
 import com.zennex.trl3lg.domain.entities.Field;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.singup.GetFieldsForSignUp;
 import com.zennex.trl3lg.domain.usecases.singup.SignUp;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
+import com.zennex.trl3lg.presentation.mapper.FieldModelToModelMapper;
 import com.zennex.trl3lg.presentation.mapper.rx.FieldModelsMapperInteractor;
 import com.zennex.trl3lg.presentation.model.FieldModel;
 import com.zennex.trl3lg.presentation.model.TitleModel;
@@ -33,6 +32,9 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
 
     @Inject
     protected FieldModelsMapperInteractor mFieldModelsMapperInteractor;
+
+    @Inject
+    protected FieldModelToModelMapper fieldModelToModelMapper;
 
     @Inject
     protected SignUp mSignUp;
@@ -120,7 +122,8 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
     public void onClickBtnSignUp(List<FieldModel> fields) {
         mFieldModels = fields;
         if (checkFields()) {
-            mSignUp.execute(new SignUpObserver(), new SignUp.Params(mModuleId, mFieldModels));
+            List<Field> mappedFields = fieldModelToModelMapper.execute(mFieldModels);
+            mSignUp.execute(new SignUpObserver(), new SignUp.Params(mModuleId, mappedFields));
         }
     }
 
@@ -223,7 +226,7 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
 
     //region SignUpObserver
 
-    private class SignUpObserver extends DefaultObserver<SignUpResponse> {
+    private class SignUpObserver extends DefaultObserver<String> {
 
         @Override
         protected void onStart() {
@@ -232,9 +235,10 @@ public class SignUpPresenter extends SignUpContract.AbstractSignUpPresenter {
         }
 
         @Override
-        public void onNext(SignUpResponse signUpResponse) {
+        public void onNext(String newMemberId) {
             getViewState().setEnableInputFields(true);
             getViewState().hidePending();
+            // todo Continue work
         }
 
         @Override

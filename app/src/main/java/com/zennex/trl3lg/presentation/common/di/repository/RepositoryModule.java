@@ -6,7 +6,7 @@ import com.zennex.trl3lg.domain.repository.IAuthRepository;
 import com.zennex.trl3lg.data.repository.book.BookRepository;
 import com.zennex.trl3lg.domain.repository.IReviewRepository;
 import com.zennex.trl3lg.data.repository.review.ReviewRepository;
-import com.zennex.trl3lg.data.repository.signup.ISignUpRepository;
+import com.zennex.trl3lg.domain.repository.ISignUpRepository;
 import com.zennex.trl3lg.data.repository.signup.SignUpRepository;
 import com.zennex.trl3lg.domain.repository.ISiteRepository;
 import com.zennex.trl3lg.data.repository.site.SiteRepository;

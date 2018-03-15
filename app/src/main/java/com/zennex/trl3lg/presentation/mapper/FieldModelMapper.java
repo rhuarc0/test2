@@ -12,10 +12,6 @@ import java.util.UUID;
 import javax.inject.Inject;
 
 
-/**
- * Created by nikita on 24.06.17.
- */
-
 public class FieldModelMapper extends Mapper<Field, FieldModel> {
 
     @Inject
@@ -38,25 +34,5 @@ public class FieldModelMapper extends Mapper<Field, FieldModel> {
         fieldModel.setUserAlias(field.getUserAlias());
         return fieldModel;
     }
-
-/*
-
-    @NonNull
-    @Override
-    protected FieldModel transform(@NonNull GetFieldsForSignUpResponse.DataMemberField dataMemberField, FieldModel fieldModel) {
-        fieldModel.setUuid(UUID.randomUUID().toString());
-        fieldModel.setTitle(dataMemberField.getTitle());
-        fieldModel.setType(dataMemberField.getType());
-        fieldModel.setActive(dataMemberField.getActive().equals("1"));
-        fieldModel.setAlias(dataMemberField.getAlias());
-        fieldModel.setDefaultValue(dataMemberField.getDefaultValue());
-        fieldModel.setEnumSet(dataMemberField.getEnumSet());
-        fieldModel.setListOrder(dataMemberField.getListOrder());
-        fieldModel.setRequired(dataMemberField.getRequired().equals("1"));
-        fieldModel.setUserAlias(dataMemberField.getUserAlias());
-        return fieldModel;
-    }
-
-*/
 
 }

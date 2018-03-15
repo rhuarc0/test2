@@ -1,7 +1,5 @@
-package com.zennex.trl3lg.data.repository.signup;
+package com.zennex.trl3lg.domain.repository;
 
-import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
-import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
 import com.zennex.trl3lg.domain.entities.Field;
 
 import java.util.List;
@@ -16,5 +14,5 @@ public interface ISignUpRepository {
 
     Observable<List<Field>> getFieldsForSignUp(String moduleId);
 
-    Observable<SignUpResponse> signUp(SignUpRequest signUpRequest);
+    Observable<String> signUp(String moduleId, List<Field> fields);
 }

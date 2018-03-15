@@ -73,7 +73,9 @@ public class SignUpDataSource implements ISignUpDataSource {
     }
 
     @Override
-    public Observable<SignUpResponse> signUp(SignUpRequest signUpRequest) {
-        return signUpWebService.signUp(signUpRequest);
+    public Observable<String> signUp(SignUpRequest signUpRequest) {
+        return signUpWebService.signUp(signUpRequest)
+                .doOnNext(WebRepositoryUtils::checkResponse)
+                .map(response -> response.getData().getId());
     }
 }

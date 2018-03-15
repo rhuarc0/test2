@@ -2,17 +2,12 @@ package com.zennex.trl3lg.domain.usecases.singup;
 
 import android.support.annotation.NonNull;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
-import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
-import com.zennex.trl3lg.data.repository.signup.ISignUpRepository;
+import com.zennex.trl3lg.domain.repository.ISignUpRepository;
+import com.zennex.trl3lg.domain.entities.Field;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
-import com.zennex.trl3lg.presentation.model.FieldModel;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -21,7 +16,7 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
-public class SignUp extends UseCase<SignUpResponse, SignUp.Params> {
+public class SignUp extends UseCase<String, SignUp.Params> {
 
     @Inject
     ISignUpRepository mSignUpRepository;
@@ -34,15 +29,9 @@ public class SignUp extends UseCase<SignUpResponse, SignUp.Params> {
     }
 
     @Override
-    protected Observable<SignUpResponse> buildObservable(Params params) {
-        return mSignUpRepository.signUp(createSignUpRequest(params))
+    protected Observable<String> buildObservable(Params params) {
+        return mSignUpRepository.signUp(params.getModuleId(), params.getFieldModels())
                 .delay(10, TimeUnit.SECONDS);
-    }
-
-    private SignUpRequest createSignUpRequest(Params params) {
-        Map<String, String> fields = Stream.of(params.getFieldModels())
-                .collect(Collectors.toMap(FieldModel::getAlias, FieldModel::getValue));
-        return SignUpRequest.newInstance(params.getModuleId(), fields);
     }
 
     public static class Params {
@@ -50,9 +39,9 @@ public class SignUp extends UseCase<SignUpResponse, SignUp.Params> {
         @NonNull
         private String mModuleId;
         @NonNull
-        private List<FieldModel> mFieldModels;
+        private List<Field> mFieldModels;
 
-        public Params(@NonNull String moduleId, @NonNull List<FieldModel> fieldModels) {
+        public Params(@NonNull String moduleId, @NonNull List<Field> fieldModels) {
             mModuleId = moduleId;
             mFieldModels = fieldModels;
         }
@@ -68,11 +57,11 @@ public class SignUp extends UseCase<SignUpResponse, SignUp.Params> {
         }
 
         @NonNull
-        public List<FieldModel> getFieldModels() {
+        public List<Field> getFieldModels() {
             return mFieldModels;
         }
 
-        public void setFieldModels(@NonNull List<FieldModel> fieldModels) {
+        public void setFieldModels(@NonNull List<Field> fieldModels) {
             mFieldModels = fieldModels;
         }
     }

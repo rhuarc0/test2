@@ -15,5 +15,5 @@ public interface ISignUpDataSource {
 
     Observable<GetFieldsForSignUpResponse> getFieldsForSignUp(GetFieldsForSignUpRequest getFieldsForSignUpRequest);
 
-    Observable<SignUpResponse> signUp(SignUpRequest signUpRequest);
+    Observable<String> signUp(SignUpRequest signUpRequest);
 }

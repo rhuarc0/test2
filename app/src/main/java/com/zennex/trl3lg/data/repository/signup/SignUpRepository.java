@@ -2,19 +2,21 @@ package com.zennex.trl3lg.data.repository.signup;
 
 import android.support.annotation.NonNull;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.mapper.dtomapper.FieldDtoMapper;
 import com.zennex.trl3lg.data.rest.request.signup.GetFieldsForSignUpRequest;
 import com.zennex.trl3lg.data.rest.request.signup.SignUpRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.rest.response.signup.GetFieldsForSignUpResponse;
-import com.zennex.trl3lg.data.rest.response.signup.SignUpResponse;
 import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
 import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 import com.zennex.trl3lg.domain.entities.Field;
+import com.zennex.trl3lg.domain.repository.ISignUpRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -48,11 +50,17 @@ public class SignUpRepository implements ISignUpRepository {
     }
 
     @Override
-    public Observable<SignUpResponse> signUp(SignUpRequest signUpRequest) {
-        return signUpDataSource.signUp(signUpRequest);
+    public Observable<String> signUp(String moduleId, List<Field> fields) {
+        return signUpDataSource.signUp(createSignUpRequest(moduleId, fields));
     }
 
     // aux methods
+
+    private SignUpRequest createSignUpRequest(String moduleId, List<Field> fields) {
+        Map<String, String> fieldsMap = Stream.of(fields)
+                .collect(Collectors.toMap(Field::getAlias, Field::getValue));
+        return SignUpRequest.newInstance(moduleId, fieldsMap);
+    }
 
     private GetFieldsForSignUpRequest createRequest(@NonNull String moduleId) {
         return GetFieldsForSignUpRequest.newInstance(moduleId);
