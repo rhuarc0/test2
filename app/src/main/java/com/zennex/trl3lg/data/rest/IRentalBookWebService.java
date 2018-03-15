@@ -2,9 +2,11 @@ package com.zennex.trl3lg.data.rest;
 
 import com.zennex.trl3lg.data.rest.request.book.ActivateAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.AddBookRequest;
+import com.zennex.trl3lg.data.rest.request.book.ChangeAudioBookListOrderRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
+import com.zennex.trl3lg.data.rest.request.book.RemoveAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.RenewAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.StorePositionRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
@@ -68,13 +70,13 @@ public interface IRentalBookWebService {
     @POST("core/webservice")
     Observable<List<FetchAudioBooksQueueResponse>> renewLiveItem(@Body List<RenewAudioBookRequest> request);
 
-//    @Headers("Contnet-Type: application/json")
-//    @POST("core/webservice")
-//    Observable<List<FetchAudioBooksQueueResponse>> removeAudioBook(@Body List<RemoveAudioBookRequest>);
+    @Headers("Contnet-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchAudioBooksQueueResponse>> removeAudioBook(@Body List<RemoveAudioBookRequest> request);
 
-//    @Headers("Content-Type: application/json")
-//    @POST("core/webservice")
-//    Observable<> changeLiveItemListOrder(@Body );
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchAudioBooksQueueResponse>> changeAudioBookListOrder(@Body List<ChangeAudioBookListOrderRequest> request);
 
 
 
