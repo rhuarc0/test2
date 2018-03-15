@@ -6,6 +6,7 @@ import com.zennex.trl3lg.data.rest.request.book.AddBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.ChangeAudioBookListOrderRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookByIdRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
+import com.zennex.trl3lg.data.rest.request.book.FetchHistoryRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchRentalGroupsRequest;
 import com.zennex.trl3lg.data.rest.request.book.RemoveAudioBookRequest;
@@ -45,10 +46,10 @@ public interface IRentalBookWebService {
     @POST("core/webservice")
     Observable<List<BaseResponse<BookDto>>> fetchBookById(@Body List<FetchBookByIdRequest> request);
 
-//
-//    @Headers("Content-Type: application/json")
-//    @POST("core/webservice")
-//    Observable<List<FetchAudioBooksQueueResponse>> fetchHistory(@Body List<FetchHistoryRequest> request);
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchAudioBooksQueueResponse>> fetchHistory(@Body List<FetchHistoryRequest> request);
 
     //endregion
 
