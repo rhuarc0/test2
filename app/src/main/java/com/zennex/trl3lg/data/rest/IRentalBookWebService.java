@@ -93,4 +93,15 @@ public interface IRentalBookWebService {
 
     //endregion
 
+
+
+
+    //region Common CD/Audio
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<BaseResponse>> rateBook(@Body List<ChangeAudioBookListOrderRequest> request);
+
+    //endregion
+
 }
