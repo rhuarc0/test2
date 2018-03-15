@@ -70,7 +70,7 @@ public interface IRentalBookWebService {
 
 //    @Headers("Contnet-Type: application/json")
 //    @POST("core/webservice")
-//    Observable<> renewLiveItem(@Body );
+//    Observable<List<FetchAudioBooksQueueResponse>> removeAudioBook(@Body List<RemoveAudioBookRequest>);
 
 //    @Headers("Content-Type: application/json")
 //    @POST("core/webservice")
