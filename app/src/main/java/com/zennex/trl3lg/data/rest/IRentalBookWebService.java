@@ -1,5 +1,6 @@
 package com.zennex.trl3lg.data.rest;
 
+import com.zennex.trl3lg.data.rest.request.book.ActivateAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.AddBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchBookListRequest;
 import com.zennex.trl3lg.data.rest.request.book.FetchQueueRequest;
@@ -20,6 +21,8 @@ import retrofit2.http.POST;
 
 public interface IRentalBookWebService {
 
+    //region Fetch Books
+
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
     Observable<List<FetchRentalGroupsResponse>> fetchRentalGroups(@Body List<FetchRentalGroupsRequest> request);
@@ -32,9 +35,11 @@ public interface IRentalBookWebService {
     @POST("core/webservice")
     Observable<List<FetchAudioBooksQueueResponse>> fetchQueue(@Body List<FetchQueueRequest> requests);
 
-    @Headers("Content-Type: application/json")
-    @POST("core/webservice")
-    Observable<List<BaseResponse>> storeAudioPosition(@Body List<StorePositionRequest> requests);
+    //endregion
+
+
+
+    //region Add book
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
@@ -44,5 +49,34 @@ public interface IRentalBookWebService {
     @POST("core/webservice")
     Observable<List<FetchCDBooksQueueResponse>> addCDBook(@Body List<AddBookRequest> requests);
 
+    //endregion
+
+
+
+    //region Work with audio books
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<BaseResponse>> storeAudioPosition(@Body List<StorePositionRequest> requests);
+
+    @Headers("Content-Type: application/json")
+    @POST("core/webservice")
+    Observable<List<FetchAudioBooksQueueResponse>> activateAudioBook(@Body List<ActivateAudioBookRequest> request);
+
+//    @Headers("Contnet-Type: application/json")
+//    @POST("core/webservice")
+//    Observable<> renewLiveItem(@Body );
+
+//    @Headers("Contnet-Type: application/json")
+//    @POST("core/webservice")
+//    Observable<> renewLiveItem(@Body );
+
+//    @Headers("Content-Type: application/json")
+//    @POST("core/webservice")
+//    Observable<> changeLiveItemListOrder(@Body );
+
+
+
+    //endregion
 
 }
