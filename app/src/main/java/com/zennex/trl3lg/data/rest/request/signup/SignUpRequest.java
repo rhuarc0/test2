@@ -12,10 +12,12 @@ import java.util.Map;
 
 public class SignUpRequest extends BaseRequest<Map<String, String>> {
 
+    private static final String API_METHOD = "addMethod";
+
     public static SignUpRequest newInstance(@NonNull String moduleId, @NonNull Map<String, String> fields) {
         SignUpRequest request = new SignUpRequest();
         request.fillDefaultFields();
-        request.setType("addMember");
+        request.setType(API_METHOD);
         request.setModuleid(moduleId);
         request.setData(fields);
         return request;

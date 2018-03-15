@@ -22,6 +22,8 @@ public class IsValidSessionTokenRequest extends BaseRequest<IsValidSessionTokenR
         return request;
     }
 
+    private IsValidSessionTokenRequest() {}
+
     public static class Data {
 
         @NonNull
@@ -35,17 +37,6 @@ public class IsValidSessionTokenRequest extends BaseRequest<IsValidSessionTokenR
         public Data(@NonNull String sessionId, @NonNull String siteId) {
             mSessionId = sessionId;
             mSiteId = siteId;
-        }
-
-
-        @NonNull
-        public String getSessionId() {
-            return mSessionId;
-        }
-
-        @NonNull
-        public String getSiteId() {
-            return mSiteId;
         }
 
     }

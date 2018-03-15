@@ -121,8 +121,8 @@ public class AuthRepository implements IAuthRepository {
     // aux methods
 
     private LoginRequest createLoginRequest(String email, String password, String moduleId) {
-        LoginRequest.Data data = new LoginRequest.Data(email, password);
-        return LoginRequest.newInstance(data, moduleId);
+//        LoginRequest.Data data = new LoginRequest.Data(email, password);
+        return LoginRequest.newInstance(email, password, moduleId);
     }
 
     private Consumer<AuthResponse> checkResponse() {

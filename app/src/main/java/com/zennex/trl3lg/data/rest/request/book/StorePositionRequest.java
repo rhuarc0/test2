@@ -9,14 +9,22 @@ import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 public class StorePositionRequest extends BaseRequest<StorePositionRequest.Data> {
 
-    public static StorePositionRequest newInstance(String moduleId, Data data) {
+    private static final String API_METHOD = "storeAudioPosition";
+
+    public static StorePositionRequest newInstance(String moduleId,
+                                                   String sessionId,
+                                                   String itemId,
+                                                   String trackId,
+                                                   String position) {
         StorePositionRequest request = new StorePositionRequest();
         request.fillDefaultFields();
-        request.setData(data);
         request.setModuleid(moduleId);
-        request.setType("storeAudioPosition");
+        request.setType(API_METHOD);
+        request.setData(new Data(sessionId, itemId, trackId, position));
         return request;
     }
+
+    private StorePositionRequest() {    }
 
     public static class Data {
 

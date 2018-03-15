@@ -9,14 +9,21 @@ import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 public class SetReviewUsefulRequest extends BaseRequest<SetReviewUsefulRequest.Data> {
 
-    public static SetReviewUsefulRequest newInstance(String moduleId, Data data) {
+    private static final String API_METHOD = "setReviewUseful";
+
+    public static SetReviewUsefulRequest newInstance(String moduleId,
+                                                     String sessionId,
+                                                     String reviewId,
+                                                     String useful) {
         SetReviewUsefulRequest request = new SetReviewUsefulRequest();
         request.fillDefaultFields();
-        request.setData(data);
         request.setModuleid(moduleId);
-        request.setType("setReviewUseful");
+        request.setType(API_METHOD);
+        request.setData(new Data(sessionId, reviewId, useful));
         return request;
     }
+
+    private SetReviewUsefulRequest() {  }
 
     public static class Data {
 

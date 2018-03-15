@@ -9,15 +9,16 @@ import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 public class FetchQueueRequest extends BaseRequest<FetchQueueRequest.Data> {
 
-    public static FetchQueueRequest newInstance(String rentalModuleId, Data data) {
+    private static final String API_METHOD = "getQueue";
+
+    public static FetchQueueRequest newInstance(String rentalModuleId, String sessionId) {
         FetchQueueRequest request = new FetchQueueRequest();
         request.fillDefaultFields();
         request.setModuleid(rentalModuleId);
-        request.setData(data);
-        request.setType("getQueue");
+        request.setType(API_METHOD);
+        request.setData(new Data(sessionId));
         return request;
     }
-
 
     private FetchQueueRequest() {
     }
@@ -27,32 +28,8 @@ public class FetchQueueRequest extends BaseRequest<FetchQueueRequest.Data> {
         @SerializedName("SessionId")
         private String mSessionId;
 
-        @SerializedName("audioapi")
-        private String mAudioApi;
-
         public Data(String sessionId) {
             mSessionId = sessionId;
-        }
-
-        public Data(String sessionId, String audioApi) {
-            mSessionId = sessionId;
-            mAudioApi = audioApi;
-        }
-
-        public String getSessionId() {
-            return mSessionId;
-        }
-
-        public void setSessionId(String sessionId) {
-            mSessionId = sessionId;
-        }
-
-        public String getAudioApi() {
-            return mAudioApi;
-        }
-
-        public void setAudioApi(String audioApi) {
-            mAudioApi = audioApi;
         }
 
     }

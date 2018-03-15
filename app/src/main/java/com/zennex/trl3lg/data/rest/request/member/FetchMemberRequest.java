@@ -11,14 +11,18 @@ import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 public class FetchMemberRequest extends BaseRequest<FetchMemberRequest.Data> {
 
+    private static final String API_METHOD = "getMember";
+
     public static FetchMemberRequest newInstance(@NonNull String moduleId, @NonNull String sessionId) {
         FetchMemberRequest request = new FetchMemberRequest();
         request.fillDefaultFields();
         request.setModuleid(moduleId);
-        request.setType("getMember");
+        request.setType(API_METHOD);
         request.setData(new Data(sessionId));
         return request;
     }
+
+    private FetchMemberRequest() {  }
 
     public static class Data {
 
@@ -28,12 +32,6 @@ public class FetchMemberRequest extends BaseRequest<FetchMemberRequest.Data> {
 
         public Data(@NonNull String sessionId) {
             mSessionId = sessionId;
-        }
-
-
-        @NonNull
-        public String getSessionId() {
-            return mSessionId;
         }
 
     }

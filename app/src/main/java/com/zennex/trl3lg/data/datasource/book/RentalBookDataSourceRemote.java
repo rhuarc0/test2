@@ -63,7 +63,7 @@ public class RentalBookDataSourceRemote implements BookDataSourceRemote {
     private List<FetchQueueRequest> createRequestsForFetchMyAudioBooks() {
         return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
                 .map(rentalModuleId -> FetchQueueRequest.newInstance(rentalModuleId,
-                        new FetchQueueRequest.Data(mAuthRepository.getSessionToken().blockingSingle())))
+                        mAuthRepository.getSessionToken().blockingSingle()))
                 .toList();
     }
 

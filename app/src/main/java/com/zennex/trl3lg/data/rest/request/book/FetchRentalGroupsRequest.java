@@ -11,15 +11,18 @@ import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 public class FetchRentalGroupsRequest extends BaseRequest<FetchRentalGroupsRequest.Data> {
 
-    public static FetchRentalGroupsRequest newInstance(@NonNull String moduleId, @NonNull Data data) {
+    private static final String API_METHOD = "getRentalGroups";
 
+    public static FetchRentalGroupsRequest newInstance(@NonNull String moduleId, String mode, String onlyActive) {
         FetchRentalGroupsRequest getRentalGroupsRequest = new FetchRentalGroupsRequest();
         getRentalGroupsRequest.fillDefaultFields();
         getRentalGroupsRequest.setModuleid(moduleId);
-        getRentalGroupsRequest.setType("getRentalGroups");
-        getRentalGroupsRequest.setData(data);
+        getRentalGroupsRequest.setType(API_METHOD);
+        getRentalGroupsRequest.setData(new Data(mode, onlyActive));
         return getRentalGroupsRequest;
     }
+
+    private FetchRentalGroupsRequest() {    }
 
     public static class Data {
         public static final String MODE_TREE = "tree";
@@ -33,28 +36,17 @@ public class FetchRentalGroupsRequest extends BaseRequest<FetchRentalGroupsReque
         @SerializedName("keyword")
         private String mKeyword;
 
-
-        public String getMode() {
-            return mMode;
-        }
-
-        public void setMode(String mode) {
+        public Data(String mode, String onlyActive) {
             mMode = mode;
-        }
-
-        public String getOnlyActive() {
-            return mOnlyActive;
-        }
-
-        public void setOnlyActive(String onlyActive) {
             mOnlyActive = onlyActive;
         }
 
-        public String getKeyword() {
-            return mKeyword;
-        }
-
-        public void setKeyword(String keyword) {
+        /**
+         * Only Search mode
+         */
+        public Data(String mode, String onlyActive, String keyword) {
+            mMode = mode;
+            mOnlyActive = onlyActive;
             mKeyword = keyword;
         }
     }

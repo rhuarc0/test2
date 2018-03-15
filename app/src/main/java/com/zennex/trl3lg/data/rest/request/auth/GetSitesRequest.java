@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nikita on 03.06.17.
@@ -13,13 +14,18 @@ import java.util.ArrayList;
 
 public class GetSitesRequest extends BaseRequest<GetSitesRequest.Data> {
 
+    private static final String API_METHOD = "getSitesAndModules";
 
-    public static GetSitesRequest newInstance(@NonNull GetSitesRequest.Data data) {
+    public static GetSitesRequest newInstance() {
         GetSitesRequest getSitesRequest = new GetSitesRequest();
         getSitesRequest.fillDefaultFields();
-        getSitesRequest.setType("getSitesAndModules");
-        getSitesRequest.setData(data);
+        getSitesRequest.setType(API_METHOD);
+        getSitesRequest.setData(new Data());
         return getSitesRequest;
+    }
+
+    private GetSitesRequest() {
+
     }
 
     public static class Data {
@@ -28,21 +34,13 @@ public class GetSitesRequest extends BaseRequest<GetSitesRequest.Data> {
         public static final String TYPE_MEMBERSHIP = "membership";
 
         @SerializedName("ModuleTypes")
-        private ArrayList<String> mItems;
+        private List<String> mItems;
 
-        public ArrayList<String> getItems() {
-            return mItems;
+        public Data() {
+            mItems = new ArrayList<>();
+            mItems.add(TYPE_RENTAL);
+            mItems.add(TYPE_MEMBERSHIP);
         }
-
-        public void setItems(ArrayList<String> items) {
-            mItems = items;
-        }
-
-        public boolean addType(String type) {
-            if (mItems == null) mItems = new ArrayList<>();
-            return mItems.add(type);
-        }
-
 
     }
 

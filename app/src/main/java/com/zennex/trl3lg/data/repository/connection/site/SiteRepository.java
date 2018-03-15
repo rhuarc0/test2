@@ -56,10 +56,7 @@ public class SiteRepository implements ISiteRepository {
 
 
     private GetSitesRequest createGetSitesRequest() {
-        GetSitesRequest.Data data = new GetSitesRequest.Data();
-        data.addType(GetSitesRequest.Data.TYPE_RENTAL);
-        data.addType(GetSitesRequest.Data.TYPE_MEMBERSHIP);
-        return GetSitesRequest.newInstance(data);
+        return GetSitesRequest.newInstance();
     }
 
     private Consumer<GetSitesResponse> checkResponse() {

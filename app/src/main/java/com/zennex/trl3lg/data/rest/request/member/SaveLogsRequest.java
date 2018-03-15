@@ -1,11 +1,7 @@
 package com.zennex.trl3lg.data.rest.request.member;
 
-import android.os.Bundle;
-
 import com.google.gson.annotations.SerializedName;
 import com.zennex.trl3lg.data.rest.request.BaseRequest;
-
-import io.reactivex.annotations.NonNull;
 
 /**
  * Created by nikita on 15.03.18.
@@ -13,23 +9,30 @@ import io.reactivex.annotations.NonNull;
 
 public class SaveLogsRequest  extends BaseRequest<SaveLogsRequest.Data> {
 
-    public static SaveLogsRequest newInstance(String moduleId, SaveLogsRequest.Data data) {
+    private static final String API_METHOD = "saveLogs";
+
+    public static SaveLogsRequest newInstance(String moduleId, String logs, String idMember) {
         SaveLogsRequest saveLogsRequest = new SaveLogsRequest();
         saveLogsRequest.fillDefaultFields();
         saveLogsRequest.setModuleid(moduleId);
-        saveLogsRequest.setType("saveLogs");
-        saveLogsRequest.setData(data);
+        saveLogsRequest.setType(API_METHOD);
+        saveLogsRequest.setData(new Data(logs, idMember));
         return saveLogsRequest;
     }
 
     public static class Data {
 
-        @SerializedName("saveLogs")
-        private String mContent;
+        @SerializedName("content")
+        private String mLogs;
 
-        public Data(String content) {
-            mContent = content;
+        @SerializedName("id")
+        private String mIdMember;
+
+        public Data(String logs, String idMember) {
+            mLogs = logs;
+            mIdMember = idMember;
         }
+
     }
 
 }
