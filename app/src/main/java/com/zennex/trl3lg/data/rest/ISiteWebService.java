@@ -19,5 +19,5 @@ public interface ISiteWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<GetSitesResponse>> getSites(@Body List<GetSitesRequest> getSitesRequest);
+    Observable<GetSitesResponse> getSites(@Body GetSitesRequest getSitesRequest);
 }
