@@ -63,10 +63,22 @@ public class MainActivity extends MainScreenContract.AbstractMainView
         setSupportActionBar(mToolbar);
         mBottomBar.setOnTabSelectListener(tabId -> {
             if (mBottomBar.getCurrentTabId() != tabId) {
-                if (tabId == R.id.tab_catalog) getPresenter().onCatalogTabSelected();
-                else if (tabId == R.id.tab_on_demand) getPresenter().onOnDemandTabSelected();
-                else if (tabId == R.id.tab_rental) getPresenter().onRentalTabSelected();
-                else if (tabId == R.id.tab_user) getPresenter().onUserTabSelected();
+                if (tabId == R.id.tab_catalog) {
+                    mToolbar.setTitle(R.string.catalog_title);
+                    getPresenter().onCatalogTabSelected();
+                }
+                else if (tabId == R.id.tab_on_demand) {
+                    mToolbar.setTitle(R.string.on_demand_title);
+                    getPresenter().onOnDemandTabSelected();
+                }
+                else if (tabId == R.id.tab_rental) {
+                    mToolbar.setTitle(R.string.cd_title);
+                    getPresenter().onRentalTabSelected();
+                }
+                else if (tabId == R.id.tab_user) {
+                    mToolbar.setTitle(R.string.user_title);
+                    getPresenter().onUserTabSelected();
+                }
             }
         });
 
