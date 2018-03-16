@@ -21,6 +21,7 @@
             android:id="@+id/frg_user_edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:imeOptions="actionNext"
             android:inputType="textPersonName"
             android:maxLines="1" />
@@ -42,6 +43,7 @@
             android:id="@+id/frg_user_edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:imeOptions="actionDone"
             android:inputType="textEmailAddress"
             android:maxLines="1" />
@@ -63,6 +65,7 @@
             android:id="@+id/frg_user_edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:imeOptions="actionNext"
             android:inputType="textPassword"
             android:maxLines="1" />

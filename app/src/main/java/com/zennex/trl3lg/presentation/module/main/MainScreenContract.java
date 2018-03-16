@@ -72,6 +72,8 @@ public abstract class MainScreenContract {
 
         public abstract void showSearchBooksScreen(String query);
 
+        public abstract void showLoginScreen();
+
         public abstract void showBookScreenWithAnim(AudioBook audioBook, PairArrayList<View, String> animaViews);
 
     }

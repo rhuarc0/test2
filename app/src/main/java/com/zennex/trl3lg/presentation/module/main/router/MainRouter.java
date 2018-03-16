@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.AudioBook;
+import com.zennex.trl3lg.presentation.module.auth.view.AuthScreenActivity;
 import com.zennex.trl3lg.presentation.module.book.view.BookViewActivity;
 import com.zennex.trl3lg.presentation.module.main.MainScreenContract;
 import com.zennex.trl3lg.presentation.module.main.submodule.catalog.view.CatalogFragmentView;
@@ -78,6 +79,12 @@ public class MainRouter extends MainScreenContract.AbstractMainRouter {
         }
     }
 
+    @Override
+    public void showLoginScreen() {
+        if (mAdapter != null) {
+            navigateToActivity(AuthScreenActivity.newIntent(mAdapter.getActivity()));
+        }
+    }
 
     @Override
     public void showBookScreenWithAnim(AudioBook audioBook, PairArrayList<View, String> animViews) {
