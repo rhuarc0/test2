@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TRL3LG</string>
-    <string name="act_auth_version">Version</string>
+    <string name="version">Version:</string>
 
     <!--titles-->
     <string name="sign_up_title">Sign Up</string>
@@ -34,6 +34,14 @@
     <string name="act_book_author" formatted="true">Author: %s</string>
     <string name="act_book_language" formatted="true">Language: %s</string>
     <string name="act_book_tv_rating">Rating:</string>
+
+    <!--UserScreen-->
+    <string name="frg_user_tv_name">Name</string>
+    <string name="frg_user_tv_email">Email</string>
+    <string name="frg_user_tv_pass">Password</string>
+    <string name="frg_user_btn_send_logs">Send Logs</string>
+    <string name="frg_user_btn_logout">Logout</string>
+
 
 
 </resources>
