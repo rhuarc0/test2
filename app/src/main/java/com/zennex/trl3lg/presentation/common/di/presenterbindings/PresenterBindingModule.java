@@ -9,8 +9,10 @@ import com.zennex.trl3lg.presentation.module.main.submodule.catalog.presenter.Ca
 import com.zennex.trl3lg.presentation.module.main.submodule.catalog.presenter.assembly.ICatalogPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.presenter.OnDemandPresenter;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.presenter.assembly.IOnDemandPresenterSubcomponent;
+import com.zennex.trl3lg.presentation.module.main.submodule.user.presenter.UserPresenter;
+import com.zennex.trl3lg.presentation.module.main.submodule.user.presenter.assembly.IUserPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.module.review.presenter.ReviewsPresenter;
-import com.zennex.trl3lg.presentation.module.review.presenter.assembly.IReviewsPresenterSubmodule;
+import com.zennex.trl3lg.presentation.module.review.presenter.assembly.IReviewsPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.module.search.presenter.SearchPresenter;
 import com.zennex.trl3lg.presentation.module.search.presenter.assembly.ISearchPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.module.signup.presenter.SignUpPresenter;
@@ -32,7 +34,8 @@ import dagger.multibindings.IntoMap;
         ISearchPresenterSubcomponent.class,
         IOnDemandPresenterSubcomponent.class,
         IBookPresenterSubcomponent.class,
-        IReviewsPresenterSubmodule.class})
+        IUserPresenterSubcomponent.class,
+        IReviewsPresenterSubcomponent.class})
 public abstract class PresenterBindingModule {
 
     @Binds
@@ -68,5 +71,10 @@ public abstract class PresenterBindingModule {
     @Binds
     @IntoMap
     @PresenterKey(ReviewsPresenter.class)
-    public abstract PresenterComponentBuilder bindReviewsPresenterComponent(IReviewsPresenterSubmodule.Builder impl);
+    public abstract PresenterComponentBuilder bindReviewsPresenterComponent(IReviewsPresenterSubcomponent.Builder impl);
+
+    @Binds
+    @IntoMap
+    @PresenterKey(UserPresenter.class)
+    public abstract PresenterComponentBuilder bindUserPresenterComponent(IUserPresenterSubcomponent.Builder impl);
 }

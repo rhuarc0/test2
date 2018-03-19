@@ -5,13 +5,18 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.zennex.trl3lg.data.datasource.member.IMemberDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceLocal;
 import com.zennex.trl3lg.data.mapper.dtomapper.AuthDataDtoMapper;
+import com.zennex.trl3lg.data.mapper.dtomapper.MemberDtoMapper;
 import com.zennex.trl3lg.data.rest.request.auth.GetSitesRequest;
+import com.zennex.trl3lg.data.rest.request.member.FetchMemberRequest;
+import com.zennex.trl3lg.data.rest.response.member.FetchMemberResponse;
 import com.zennex.trl3lg.data.util.repository.WebRepositoryUtils;
 import com.zennex.trl3lg.domain.entities.AuthData;
 import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceLocal;
 import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceRemote;
+import com.zennex.trl3lg.domain.entities.Member;
 import com.zennex.trl3lg.domain.entities.Module;
 import com.zennex.trl3lg.domain.entities.Site;
 import com.zennex.trl3lg.domain.repository.IAuthRepository;
@@ -41,10 +46,16 @@ public class AuthRepository implements IAuthRepository {
     protected IAuthDataSourceRemote authDataSourceRemote;
 
     @Inject
-    protected AuthDataDtoMapper authDataDtoMapper;
+    protected IMemberDataSourceRemote memberDataSourceRemote;
 
     @Inject
     protected ISiteDataSourceLocal siteDataSourceLocal;
+
+    @Inject
+    protected AuthDataDtoMapper authDataDtoMapper;
+
+    @Inject
+    protected MemberDtoMapper memberDtoMapper;
 
 
     @Inject
@@ -64,7 +75,13 @@ public class AuthRepository implements IAuthRepository {
                     cachedSessionToken(authResponse.getData().getSession());
                     cacheSiteIdAndRentalModuleIds(moduleIdUsed, sites);
                 })
-                .map(transform());
+                .map(transformAuth());
+    }
+
+    @Override
+    public Observable<Member> fetchMember() {
+        return memberDataSourceRemote.fetchMember(createFetchMemberRequest())
+                .map(transformMember());
     }
 
     @Override
@@ -119,12 +136,23 @@ public class AuthRepository implements IAuthRepository {
 
     // aux methods
 
+    private FetchMemberRequest createFetchMemberRequest() {
+        return FetchMemberRequest.newInstance(
+                getModuleId().blockingSingle(),
+                getSessionToken().blockingSingle());
+    }
+
+    private Function<FetchMemberResponse, Member> transformMember() {
+        return response -> memberDtoMapper.execute(response.getData());
+    }
+
+
     private LoginRequest createLoginRequest(String email, String password, String moduleId) {
 //        LoginRequest.Data data = new LoginRequest.Data(email, password);
         return LoginRequest.newInstance(email, password, moduleId);
     }
 
-    private Function<AuthResponse, AuthData> transform() {
+    private Function<AuthResponse, AuthData> transformAuth() {
         return authResponse -> authDataDtoMapper.execute(authResponse.getData());
     }
 

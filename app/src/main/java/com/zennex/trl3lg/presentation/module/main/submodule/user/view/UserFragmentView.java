@@ -1,8 +1,11 @@
 package com.zennex.trl3lg.presentation.module.main.submodule.user.view;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -34,14 +37,11 @@ public class UserFragmentView extends UserScreenContract.AbstractUserView {
     @BindView(R.id.frg_user_edt_password)
     EditText edtPassword;
 
+    @BindView(R.id.frg_user_tv_version)
+    TextView tvVersion;
+
     @InjectPresenter
     UserScreenContract.AbstractUserPresenter mPresenter;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getPresenter().fetchMemberInfo();
-    }
 
     public static UserFragmentView newInstance() {
         return new UserFragmentView();
@@ -54,7 +54,15 @@ public class UserFragmentView extends UserScreenContract.AbstractUserView {
 
     @Override
     public void prepareScreen() {
-
+        try {
+            Context context = getActivity();
+            if (context != null) {
+                String version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+                tvVersion.setText(context.getString(R.string.frg_user_tv_version, version));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            tvVersion.setText(getString(R.string.frg_user_app_version_unknown));
+        }
     }
 
     @NonNull

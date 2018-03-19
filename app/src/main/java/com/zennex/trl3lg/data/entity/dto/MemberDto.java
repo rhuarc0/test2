@@ -2,10 +2,6 @@ package com.zennex.trl3lg.data.entity.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by nikita on 10.06.17.
- */
-
 public class MemberDto {
 
     @SerializedName("id")

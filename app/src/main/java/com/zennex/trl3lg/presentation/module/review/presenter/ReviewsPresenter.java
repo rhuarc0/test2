@@ -9,7 +9,7 @@ import com.zennex.trl3lg.domain.usecases.review.FetchReviews;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.review.ReviewsModuleContract;
-import com.zennex.trl3lg.presentation.module.review.presenter.assembly.IReviewsPresenterSubmodule;
+import com.zennex.trl3lg.presentation.module.review.presenter.assembly.IReviewsPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.module.review.presenter.assembly.ReviewsPresenterModule;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
 
     @Override
     public void inject(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
-        ((IReviewsPresenterSubmodule.Builder) presenterSubcomponentBuilders.getPresenterComponentBuilder(ReviewsPresenter.class))
+        ((IReviewsPresenterSubcomponent.Builder) presenterSubcomponentBuilders.getPresenterComponentBuilder(ReviewsPresenter.class))
                 .presenterModule(new ReviewsPresenterModule(this))
                 .build()
                 .injectMembers(this);

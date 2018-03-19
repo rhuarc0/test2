@@ -6,6 +6,8 @@ import com.zennex.trl3lg.data.datasource.book.BookDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.book.RentalBookDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.auth.AuthDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.auth.IAuthDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.member.IMemberDataSourceRemote;
+import com.zennex.trl3lg.data.datasource.member.MemberDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.site.ISiteDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.site.SiteDataSourceRemote;
 import com.zennex.trl3lg.data.datasource.review.IReviewDataSource;
@@ -13,6 +15,7 @@ import com.zennex.trl3lg.data.datasource.review.ReviewDataSource;
 import com.zennex.trl3lg.data.rest.IAuthWebService;
 import com.zennex.trl3lg.data.datasource.signup.ISignUpDataSource;
 import com.zennex.trl3lg.data.datasource.signup.SignUpDataSource;
+import com.zennex.trl3lg.data.rest.IMemberWebService;
 import com.zennex.trl3lg.data.rest.IRentalBookWebService;
 import com.zennex.trl3lg.data.rest.IReviewWebService;
 import com.zennex.trl3lg.data.rest.ISignUpWebService;
@@ -46,6 +49,12 @@ public class WebRepositoryModule {
 
     @NonNull
     @Provides
+    protected IMemberWebService provideMemberService(Retrofit retrofit) {
+        return retrofit.create(IMemberWebService.class);
+    }
+
+    @NonNull
+    @Provides
     protected ISignUpWebService provideSignUpWebService(Retrofit retrofit) {
         return retrofit.create(ISignUpWebService.class);
     }
@@ -72,6 +81,10 @@ public class WebRepositoryModule {
         @NonNull
         @Binds
         protected abstract IAuthDataSourceRemote bindAuthWebRepository(AuthDataSourceRemote authWebRepository);
+
+        @NonNull
+        @Binds
+        protected abstract IMemberDataSourceRemote bindMemberWebRepository(MemberDataSourceRemote memberDataSourceRemote);
 
         @NonNull
         @Binds

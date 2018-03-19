@@ -1,6 +1,7 @@
 package com.zennex.trl3lg.domain.repository;
 
 import com.zennex.trl3lg.domain.entities.AuthData;
+import com.zennex.trl3lg.domain.entities.Member;
 import com.zennex.trl3lg.domain.entities.Site;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import io.reactivex.Observable;
 public interface IAuthRepository {
 
     Observable<AuthData> auth(String email, String password, String moduleId, List<Site> sites);
+
+    Observable<Member> fetchMember();
 
     Observable<Boolean> saveSessionToken(String sessionToken);
 
