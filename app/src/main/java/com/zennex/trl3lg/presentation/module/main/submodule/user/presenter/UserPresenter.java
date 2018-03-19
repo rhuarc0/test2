@@ -18,6 +18,21 @@ public class UserPresenter extends UserScreenContract.AbstractUserPresenter {
     }
 
     @Override
+    public void fetchMemberInfo() {
+
+    }
+
+    @Override
+    public void onSendLogs() {
+
+    }
+
+    @Override
+    public void onLogout() {
+        getRouter().showLoginScreen();
+    }
+
+    @Override
     protected TitleModel getTitle() {
         return null;
     }

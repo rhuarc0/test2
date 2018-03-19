@@ -12,12 +12,15 @@ import com.zennex.trl3lg.data.rest.request.BaseRequest;
 
 public class LoginRequest extends BaseRequest<LoginRequest.Data> {
 
-    public static LoginRequest newInstance(LoginRequest.Data data, @Nullable String moduleId) {
+    private static final String API_METHOD_LOGIN = "login";
+    private static final String API_METHOD_LOGIN2 = "login2";
+
+    public static LoginRequest newInstance(String email, String password, @Nullable String moduleId) {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.fillDefaultFields();
-        loginRequest.setType(!TextUtils.isEmpty(moduleId) ? "login" : "login2");
+        loginRequest.setType(!TextUtils.isEmpty(moduleId) ? API_METHOD_LOGIN : API_METHOD_LOGIN2);
         loginRequest.setModuleid(moduleId);
-        loginRequest.setData(data);
+        loginRequest.setData(new Data(email, password));
         return loginRequest;
     }
 
@@ -33,22 +36,6 @@ public class LoginRequest extends BaseRequest<LoginRequest.Data> {
 
         public Data(String email, String pass) {
             mEmail = email;
-            mPass = pass;
-        }
-
-        public String getEmail() {
-            return mEmail;
-        }
-
-        public void setEmail(String email) {
-            mEmail = email;
-        }
-
-        public String getPass() {
-            return mPass;
-        }
-
-        public void setPass(String pass) {
             mPass = pass;
         }
 

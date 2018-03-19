@@ -1,6 +1,8 @@
 package com.zennex.trl3lg.presentation.module.auth.view;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -63,6 +65,10 @@ public class AuthScreenActivity extends AuthScreenContract.AbstractAuthView impl
     @ProvidePresenter
     AuthScreenContract.AbstractAuthPresenter provideAuthPresenter() {
         return new AuthPresenter(App.getHasPresenterSubcomponentBuilders(this));
+    }
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, AuthScreenActivity.class);
     }
 
     @Override

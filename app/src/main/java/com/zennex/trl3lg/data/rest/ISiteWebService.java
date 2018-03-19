@@ -3,6 +3,8 @@ package com.zennex.trl3lg.data.rest;
 import com.zennex.trl3lg.data.rest.request.auth.GetSitesRequest;
 import com.zennex.trl3lg.data.rest.response.auth.GetSitesResponse;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;

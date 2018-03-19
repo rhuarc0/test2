@@ -14,7 +14,7 @@
         barColorWhenSelected="@color/colorPrimary"
         icon="@drawable/ic_disc_icon_w"
         id="@+id/tab_rental"
-        title="@string/rental_title"/>
+        title="@string/cd_title"/>
     <tab
         barColorWhenSelected="@color/colorPrimary"
         icon="@drawable/ic_user"

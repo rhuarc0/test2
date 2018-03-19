@@ -2,6 +2,7 @@ package com.zennex.trl3lg.presentation.module.main.submodule.user;
 
 import android.support.annotation.NonNull;
 
+import com.zennex.trl3lg.domain.entities.Member;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.common.presenter.ViperBasePresenter;
 import com.zennex.trl3lg.presentation.common.view.ViperBaseFragment;
@@ -20,8 +21,7 @@ public abstract class UserScreenContract {
 
 
     public interface IUserView extends IBaseView {
-
-
+        void showMemberInfo(Member member);
     }
 
     public static abstract class AbstractUserView extends ViperBaseFragment<AbstractUserPresenter, MainScreenContract.AbstractMainRouter>
@@ -34,6 +34,10 @@ public abstract class UserScreenContract {
         public AbstractUserPresenter(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
             super(presenterSubcomponentBuilders);
         }
+
+        public abstract void fetchMemberInfo();
+        public abstract void onSendLogs();
+        public abstract void onLogout();
 
     }
 

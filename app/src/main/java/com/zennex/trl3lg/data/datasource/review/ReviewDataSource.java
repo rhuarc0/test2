@@ -51,10 +51,10 @@ public class ReviewDataSource implements IReviewDataSource {
     private List<FetchReviewsRequest> createRequests(String bookId, int startPosition, int count) {
         return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
                 .map(rentalModuleId -> FetchReviewsRequest.newInstance(rentalModuleId,
-                        new FetchReviewsRequest.Data(mAuthRepository.getSessionToken().blockingSingle(),
-                                bookId,
-                                String.valueOf(startPosition),
-                                String.valueOf(count))))
+                        mAuthRepository.getSessionToken().blockingSingle(),
+                        bookId,
+                        String.valueOf(startPosition),
+                        String.valueOf(count)))
                 .toList();
     }
 

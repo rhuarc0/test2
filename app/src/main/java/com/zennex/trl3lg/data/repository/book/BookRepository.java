@@ -92,10 +92,8 @@ public class BookRepository implements IBookRepository {
     private List<FetchRentalGroupsRequest> createGetGroupsRequest() {
         return of(authRepository.getRentalModuleIds().blockingSingle())
                 .map(rentalId -> {
-                    FetchRentalGroupsRequest.Data data = new FetchRentalGroupsRequest.Data();
-                    data.setMode(FetchRentalGroupsRequest.Data.MODE_LIST);
-                    data.setOnlyActive(ONLY_ACTIVE);
-                    return FetchRentalGroupsRequest.newInstance(rentalId, data);
+                    String mode = FetchRentalGroupsRequest.Data.MODE_LIST;
+                    return FetchRentalGroupsRequest.newInstance(rentalId, mode ,ONLY_ACTIVE);
                 }).toList();
     }
 
