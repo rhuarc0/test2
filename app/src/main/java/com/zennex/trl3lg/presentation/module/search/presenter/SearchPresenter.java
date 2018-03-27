@@ -19,10 +19,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-/**
- * Created by nikit on 01.08.2017.
- */
-
 @InjectViewState
 public class SearchPresenter extends SearchScreenContract.AbstractSearchPresenter {
     private final short QUANTITY_BOOKS_REQUESTED = 20;
@@ -83,12 +79,13 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
         mAllUploaded = false;
         mFetchBooks.execute(new FetchBookListObserver(false, true),
                 new FetchBooks.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
-        if (mShownBooks != null) mShownBooks.clear();
+        if (mShownBooks != null)
+            mShownBooks.clear();
     }
 
     @Override
     public void onBooksScrolled(int lastVisibleBook) {
-        if (isCanLoadBooks(lastVisibleBook)) {
+        if (сanLoadBooks(lastVisibleBook)) {
             mFetchBooks.execute(new FetchBookListObserver(true, false),
                     new FetchBooks.Params(mKeywordSearch,
                             null,
@@ -97,7 +94,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
         }
     }
 
-    private boolean isCanLoadBooks(int lastVisibleBook) {
+    private boolean сanLoadBooks(int lastVisibleBook) {
         return !mFetchBooks.isRun() &&
                 ((mShownBooks.size() - lastVisibleBook) <= 5) &&
                 !isAllUploaded();
@@ -107,7 +104,8 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     public void onClickedBtnSearch(String keywordSearch) {
         mKeywordSearch = keywordSearch;
         getViewState().clearData();
-        if (mShownBooks != null) mShownBooks.clear();
+        if (mShownBooks != null)
+            mShownBooks.clear();
         mAllUploaded = false;
         mFetchBooks.execute(new FetchBookListObserver(false, false),
                 new FetchBooks.Params(keywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
@@ -134,9 +132,12 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
 
         @Override
         public void onNext(List<Book> books) {
-            if (books.size() < QUANTITY_BOOKS_REQUESTED) mAllUploaded = true;
-            if (mShownBooks != null) mShownBooks.addAll(books);
-            else mShownBooks = new ArrayList<>(books);
+            if (books.size() < QUANTITY_BOOKS_REQUESTED)
+                mAllUploaded = true;
+            if (mShownBooks != null)
+                mShownBooks.addAll(books);
+            else
+                mShownBooks = new ArrayList<>(books);
             getViewState().showBooks(new ArrayList<>(mShownBooks));
             hidePending();
         }
@@ -148,13 +149,17 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
 
         @Override
         protected void onStart() {
-            if (isLoadFromUserScrolled()) getViewState().showFooterPendingLoadBooks();
-            else getViewState().showPendingLoadBooks(isLoadFromRefreshing());
+            if (isLoadFromUserScrolled())
+                getViewState().showFooterPendingLoadBooks();
+            else
+                getViewState().showPendingLoadBooks(isLoadFromRefreshing());
         }
 
         private void hidePending() {
-            if (isLoadFromUserScrolled()) getViewState().hideFooterPendingLoadBooks();
-            else getViewState().hidePendingLoadBooks(isLoadFromRefreshing());
+            if (isLoadFromUserScrolled())
+                getViewState().hideFooterPendingLoadBooks();
+            else
+                getViewState().hidePendingLoadBooks(isLoadFromRefreshing());
         }
 
         @Override

@@ -38,10 +38,12 @@ public class FetchBooks extends UseCase<List<Book>, FetchBooks.Params> {
     }
 
     public static class Params {
-
+// на будущее
+/*
         public static final String TYPE_ALL = "11";
         public static final String TYPE_RENTAL = "11";
         public static final String TYPE_ON_DEMAND = "11";
+*/
 
         @Nullable
         private final String mKeyword;

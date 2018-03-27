@@ -10,10 +10,6 @@ import com.zennex.trl3lg.presentation.module.book.view.BookViewActivity;
 import com.zennex.trl3lg.presentation.module.search.SearchScreenContract;
 import com.zennex.trl3lg.presentation.utils.PairArrayList;
 
-/**
- * Created by nikit on 01.08.2017.
- */
-
 public class SearchScreenRouter extends SearchScreenContract.AbstractSearchScreenRouter {
 
 

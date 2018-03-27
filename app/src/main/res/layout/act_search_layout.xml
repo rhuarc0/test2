@@ -19,14 +19,15 @@
         tools:layout_editor_absoluteX="0dp">
 
 
-        <org.cryse.widget.persistentsearch.PersistentSearchView
+       <org.cryse.widget.persistentsearch.PersistentSearchView
             android:id="@+id/act_search_searchview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/colorPrimary"
             android:elevation="8dp"
             android:transitionName="search_view_transition"
             android:visibility="visible"
+
             app:persistentSV_customToolbarHeight="?attr/actionBarSize"
             app:persistentSV_displayMode="toolbar"
             app:persistentSV_editHintText="Search"
@@ -43,7 +44,7 @@
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@color/gray_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

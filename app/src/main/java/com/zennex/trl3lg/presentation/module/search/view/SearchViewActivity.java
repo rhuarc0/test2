@@ -28,9 +28,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Created by nikit on 01.08.2017.
- */
 @Layout(R.layout.act_search_layout)
 public class SearchViewActivity extends BaseListActivity<
         SearchScreenContract.AbstractSearchPresenter,
