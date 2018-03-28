@@ -146,7 +146,7 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
 
             GlideApp.with(itemView.getContext())
                     .load(book.getImage())
-                    .placeholder(R.drawable.image_paceholder)
+                    .placeholder(R.drawable.image_placeholder)
                     .into(mImageViewBook);
 
             mTvTitle.setText(book.getTitle());

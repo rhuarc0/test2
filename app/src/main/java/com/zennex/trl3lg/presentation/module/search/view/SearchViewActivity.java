@@ -185,15 +185,19 @@ public class SearchViewActivity extends BaseListActivity<
     public void onBookSelected(int position, List<Pair<View, String>> animateViews) {
 
         View statusBar = findViewById(android.R.id.statusBarBackground);
-        View navigationBar = findViewById(android.R.id.navigationBarBackground);
         if (statusBar != null) {
             animateViews.add(Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME));
         }
+
+        View navigationBar = findViewById(android.R.id.navigationBarBackground);
         if (navigationBar != null) {
             animateViews.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
         }
+
         View appBar = findViewById(R.id.app_bar_layout);
-        if (appBar != null) animateViews.add(Pair.create(appBar, appBar.getTransitionName()));
+        if (appBar != null) {
+            animateViews.add(Pair.create(appBar, appBar.getTransitionName()));
+        }
 
         mPresenter.onBookSelected(position, new PairArrayList<>(animateViews));
     }

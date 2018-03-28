@@ -38,7 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_large"
+            android:layout_margin="@dimen/spacing_normal"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -73,9 +73,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_small_x"
-                android:layout_marginStart="@dimen/margin_small_x"
-                android:layout_marginTop="@dimen/margin_small_x"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <Button
@@ -83,8 +83,8 @@
                     style="@style/AppButtonTheme.Login"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_small_x"
-                    android:layout_marginStart="@dimen/margin_small_x"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_marginStart="@dimen/spacing_normal"
                     android:layout_weight="1"
                     android:text="@string/act_auth_sign_up"/>
 
@@ -93,7 +93,7 @@
                     style="@style/AppButtonTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_small_x"
+                    android:layout_marginEnd="@dimen/spacing_normal"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:text="@string/act_auth_sign_in"/>

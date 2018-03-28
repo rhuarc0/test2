@@ -93,10 +93,7 @@
                             android:id="@+id/act_sign_up_btn_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_small_x"
-                            android:layout_marginEnd="@dimen/margin_small_x"
-                            android:layout_marginStart="@dimen/margin_small_x"
-                            android:layout_marginTop="@dimen/margin_small_x"
+                            android:layout_margin="@dimen/spacing_normal"
                             android:orientation="horizontal"
                             android:visibility="gone">
                             <Button
@@ -104,8 +101,8 @@
                                 style="@style/AppButtonTheme.Login"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/margin_small_x"
-                                android:layout_marginStart="@dimen/margin_small_x"
+                                android:layout_marginEnd="@dimen/spacing_normal"
+                                android:layout_marginStart="@dimen/spacing_normal"
                                 android:layout_weight="1"
                                 android:text="@string/act_auth_sign_up"/>
 
@@ -114,7 +111,7 @@
                                 style="@style/AppButtonTheme"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/margin_small_x"
+                                android:layout_marginEnd="@dimen/spacing_normal"
                                 android:layout_weight="1"
                                 android:clickable="true"
                                 android:text="@string/act_auth_sign_in"/>

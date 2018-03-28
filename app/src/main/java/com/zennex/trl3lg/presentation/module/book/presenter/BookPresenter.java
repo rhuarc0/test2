@@ -94,8 +94,10 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
         @Override
         public void onNext(List<Review> reviews) {
             getViewState().hidePendingLoadReviews();
-            if (reviews.isEmpty()) getViewState().showEmptyViewReviews();
-            else getViewState().showReviews(reviews);
+            if (reviews.isEmpty())
+                getViewState().showEmptyViewReviews();
+            else
+                getViewState().showReviews(reviews);
         }
 
         @Override

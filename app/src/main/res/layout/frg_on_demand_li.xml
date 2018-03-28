@@ -39,7 +39,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/image_paceholder"/>
+                tools:src="@drawable/image_placeholder"/>
 
             <TextView
                 android:id="@+id/frg_on_demand_li_tv_title"

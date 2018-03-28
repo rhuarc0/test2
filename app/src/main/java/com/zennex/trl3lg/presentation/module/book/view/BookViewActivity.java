@@ -43,6 +43,7 @@ import com.bumptech.glide.request.target.Target;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.domain.entities.Review;
+import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.book.BookModuleContract;
 import com.zennex.trl3lg.presentation.module.book.presenter.BookPresenter;
@@ -62,7 +63,9 @@ import butterknife.OnClick;
  * Created by nikit on 02.09.2017.
  */
 
-public class BookViewActivity extends BookModuleContract.AbstractBookView implements MyRatingModuleContract.IMyReviewRatingEventListener {
+public class BookViewActivity
+        extends BookModuleContract.AbstractBookView
+        implements MyRatingModuleContract.IMyReviewRatingEventListener {
 
     public static final String TAG = "BookViewActivity";
     public static final String EXTRA_BOOK_KEY = "book";
@@ -108,8 +111,10 @@ public class BookViewActivity extends BookModuleContract.AbstractBookView implem
     ConstraintLayout mBtnContainers;
     @BindView(R.id.act_book_recycler_view_reviews)
     RecyclerView mRecyclerViewReviews;
+
     @BindView(R.id.act_book_reviews_pb)
     ProgressBar mProgressBarLoadReviews;
+
     @BindView(R.id.act_book_reviews_empty_view)
     View mReviewsEmptyView;
 
@@ -135,7 +140,7 @@ public class BookViewActivity extends BookModuleContract.AbstractBookView implem
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS); // must be called before adding content
         setupWindowAnimations();
         setContentView(R.layout.act_book_layout);
         ButterKnife.bind(this);

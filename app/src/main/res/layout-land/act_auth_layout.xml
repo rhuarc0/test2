@@ -5,8 +5,9 @@
     android:id="@+id/act_auth_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/spacing_large"
-    android:paddingTop="@dimen/spacing_smaller_x">
+    android:paddingBottom="@dimen/spacing_normal"
+    android:paddingTop="@dimen/spacing_normal"
+    >
 
     <ImageView
         android:id="@+id/act_auth_image_view_logo"
@@ -63,7 +64,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_smaller_x"
+                android:layout_margin="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <Button
@@ -71,8 +72,8 @@
                     style="@style/AppButtonTheme.Login"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_smaller_x"
-                    android:layout_marginStart="@dimen/spacing_smaller_x"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_marginStart="@dimen/spacing_normal"
                     android:layout_weight="1"
                     android:text="@string/act_auth_sign_up" />
 
@@ -81,7 +82,7 @@
                     style="@style/AppButtonTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_smaller_x"
+                    android:layout_marginEnd="@dimen/spacing_normal"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:text="@string/act_auth_sign_in" />

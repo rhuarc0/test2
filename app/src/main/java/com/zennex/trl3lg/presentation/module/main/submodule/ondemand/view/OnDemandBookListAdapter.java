@@ -100,7 +100,7 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
 
             GlideApp.with(itemView.getContext())
                     .load(book.getImage())
-                    .placeholder(R.drawable.image_paceholder)
+                    .placeholder(R.drawable.image_placeholder)
                     .into(mIvBook);
 
             mTvTitle.setText(book.getTitle());

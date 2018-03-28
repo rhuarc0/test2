@@ -12,7 +12,7 @@
         android:id="@+id/act_book_image_zoom_iv_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/image_paceholder"
+        android:src="@drawable/image_placeholder"
         android:transitionName="book_image_transition"/>
 
 
