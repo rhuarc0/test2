@@ -28,6 +28,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     private boolean mAllUploaded = false;
     private List<Book> mShownBooks;
     private String mKeywordSearch;
+    private FetchBooks.TypeBooks typeBookFilter = FetchBooks.TypeBooks.All;
     private String mRentalGroupId;
 
     public SearchPresenter(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
@@ -37,6 +38,16 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     @Override
     public void setKeywordSearch(String keywordSearch) {
         mKeywordSearch = keywordSearch;
+    }
+
+    @Override
+    public FetchBooks.TypeBooks getCurrentTypeBookFilter() {
+        return typeBookFilter;
+    }
+
+    @Override
+    public void setTypeBookFilter(FetchBooks.TypeBooks typeBookFilter) {
+        this.typeBookFilter = typeBookFilter;
     }
 
     @Override
@@ -60,8 +71,13 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         mAllUploaded = false;
-        mFetchBooks.execute(new FetchBookListObserver(false, false),
-                new FetchBooks.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
+        mFetchBooks.execute(
+                new FetchBookListObserver(false, false),
+                new FetchBooks.Params(mKeywordSearch,
+                        typeBookFilter,
+                        QUANTITY_BOOKS_REQUESTED,
+                        0,
+                        mRentalGroupId));
     }
 
     @Override
@@ -77,8 +93,14 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     @Override
     public void onRefreshView() {
         mAllUploaded = false;
-        mFetchBooks.execute(new FetchBookListObserver(false, true),
-                new FetchBooks.Params(mKeywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
+        mFetchBooks.execute(
+                new FetchBookListObserver(false, true),
+                new FetchBooks.Params(mKeywordSearch,
+                        typeBookFilter,
+                        QUANTITY_BOOKS_REQUESTED,
+                        0,
+                        mRentalGroupId)
+        );
         if (mShownBooks != null)
             mShownBooks.clear();
     }
@@ -86,11 +108,13 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     @Override
     public void onBooksScrolled(int lastVisibleBook) {
         if (сanLoadBooks(lastVisibleBook)) {
-            mFetchBooks.execute(new FetchBookListObserver(true, false),
-                    new FetchBooks.Params(mKeywordSearch,
-                            null,
-                            QUANTITY_BOOKS_REQUESTED,
-                            mShownBooks == null ? 0 : mShownBooks.size(), mRentalGroupId));
+            mFetchBooks.execute(
+                new FetchBookListObserver(true, false),
+                new FetchBooks.Params(mKeywordSearch,
+                        typeBookFilter,
+                        QUANTITY_BOOKS_REQUESTED,
+                        mShownBooks == null ? 0 : mShownBooks.size(), mRentalGroupId)
+            );
         }
     }
 
@@ -107,8 +131,14 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
         if (mShownBooks != null)
             mShownBooks.clear();
         mAllUploaded = false;
-        mFetchBooks.execute(new FetchBookListObserver(false, false),
-                new FetchBooks.Params(keywordSearch, null, QUANTITY_BOOKS_REQUESTED, 0, mRentalGroupId));
+        mFetchBooks.execute(
+            new FetchBookListObserver(false, false),
+            new FetchBooks.Params(keywordSearch,
+                    typeBookFilter,
+                    QUANTITY_BOOKS_REQUESTED,
+                    0,
+                    mRentalGroupId)
+        );
 
     }
 

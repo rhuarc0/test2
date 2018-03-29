@@ -82,6 +82,12 @@ public class FetchBookListRequest extends BaseRequest<FetchBookListRequest.Data>
             mValue = value;
         }
 
+        public BookFilter(String field, String value) {
+            mField = field;
+            mValue = new ArrayList<>();
+            mValue.add(value);
+        }
+
         public String getField() {
             return mField;
         }

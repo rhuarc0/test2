@@ -37,24 +37,37 @@ public class FetchBooks extends UseCase<List<Book>, FetchBooks.Params> {
                 params.getRentalGroupId());
     }
 
+    public enum TypeBooks {
+        All(""),
+        Cd("4"),
+        AudioBook("11");
+
+        private String value;
+
+        TypeBooks(final String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+
     public static class Params {
-// на будущее
-/*
-        public static final String TYPE_ALL = "11";
-        public static final String TYPE_RENTAL = "11";
-        public static final String TYPE_ON_DEMAND = "11";
-*/
+        public static final String TYPE_ALL = "";
+        public static final String TYPE_CD = "4";
+        public static final String TYPE_AUDIO_BOOK = "11";
 
         @Nullable
         private final String mKeyword;
-        @Nullable
-        private final String mType;
+
+        private final TypeBooks mType;
         private final short mQuantityBooksRequested;
         private final int mStartingLoadPosition;
         private final String mRentalGroupId;
 
         public Params(@Nullable String keyword,
-                      @Nullable String type,
+                      TypeBooks type,
                       short quantityBooksRequested,
                       int startingLoadPosition,
                       String rentalGroupId) {
@@ -72,7 +85,7 @@ public class FetchBooks extends UseCase<List<Book>, FetchBooks.Params> {
 
         @Nullable
         public String getType() {
-            return mType;
+            return mType.getValue();
         }
 
         public short getQuantityBooksRequested() {

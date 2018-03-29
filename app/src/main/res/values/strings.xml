@@ -47,7 +47,9 @@
     <string name="status">Status</string>
     <string name="write_a_short_review">Write a short review</string>
     <string name="comment">Comment</string>
+    <string name="search">Search</string>
     <string name="send">Send</string>
+    <string name="filter">Filter</string>
 
     <!--UserScreen-->
     <string name="frg_user_tv_name">Name</string>
@@ -59,6 +61,7 @@
 
     <string name="frg_user_btn_send_logs">Send Logs</string>
     <string name="frg_user_btn_logout">Logout</string>
+    <string name="select_filter_dialog_title">Select a filter</string>
 
 
 </resources>

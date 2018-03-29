@@ -18,24 +18,35 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
-
-       <org.cryse.widget.persistentsearch.PersistentSearchView
-            android:id="@+id/act_search_searchview"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/act_search_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
             android:elevation="8dp"
-            android:transitionName="search_view_transition"
-            android:visibility="visible"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            >
 
-            app:persistentSV_customToolbarHeight="?attr/actionBarSize"
-            app:persistentSV_displayMode="toolbar"
-            app:persistentSV_editHintText="Search"
-            app:persistentSV_editHintTextColor="#61000000"
-            app:persistentSV_editTextColor="#DE000000"
-            app:persistentSV_logoString="Search all"
-            app:persistentSV_searchCardElevation="0dp"
-            app:persistentSV_searchTextColor="#DE000000"/>
+           <org.cryse.widget.persistentsearch.PersistentSearchView
+                android:id="@+id/act_search_searchview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:transitionName="search_view_transition"
+                android:visibility="visible"
+
+                app:persistentSV_customToolbarHeight="?attr/actionBarSize"
+                app:persistentSV_displayMode="toolbar"
+                app:persistentSV_editHintText="Search"
+                app:persistentSV_editHintTextColor="#61000000"
+                app:persistentSV_editTextColor="#DE000000"
+                app:persistentSV_logoString="Search all"
+                app:persistentSV_searchCardElevation="0dp"
+                app:persistentSV_searchTextColor="#DE000000"
+               />
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 

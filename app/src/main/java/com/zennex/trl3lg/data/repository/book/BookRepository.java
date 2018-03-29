@@ -1,6 +1,7 @@
 package com.zennex.trl3lg.data.repository.book;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 import com.zennex.trl3lg.data.datasource.book.BookDataSourceRemote;
@@ -75,7 +76,7 @@ public class BookRepository implements IBookRepository {
                                              int startingLoadPosition,
                                              String rentalGroupId) {
 
-        return Observable.fromCallable(() -> createGetBooksRequests(keyword, quantityBooksRequested, startingLoadPosition, rentalGroupId))
+        return Observable.fromCallable(() -> createGetBooksRequests(keyword, type, quantityBooksRequested, startingLoadPosition, rentalGroupId))
                 .flatMap(o -> bookRemoteDataSource.fetchBooks(o))
                 .map(getBooksData())
                 .map(transformBooks());
@@ -155,21 +156,26 @@ public class BookRepository implements IBookRepository {
 
 
     private List<FetchBookListRequest> createGetBooksRequests(@Nullable String keyword,
+                                                              String bookType,
                                                               short quantityBooksRequested,
                                                               int startingLoadPosition,
                                                               String rentalGroupId) {
         return Stream.of(authRepository.getRentalModuleIds().blockingSingle())
                 .map(moduleId -> {
-
                     List<BookFilter> filters = new ArrayList<>();
-                    BookFilter filter = new BookFilter(BookFilter.FIELD_ACTIVE,
-                            Stream.of("1").toList());
-                    filters.add(filter);
 
+                    // Active
+                    BookFilter filter = new BookFilter(BookFilter.FIELD_ACTIVE, "1");
+                    filters.add(filter);
+                    // Group Id
                     if (!StringUtils.isEmpty(rentalGroupId) && !rentalGroupId.equals("-1")) {
-                        filter = new BookFilter(BookFilter.FIELD_GROUP_ID,
-                                Stream.of(rentalGroupId).toList());
+                        filter = new BookFilter(BookFilter.FIELD_GROUP_ID, rentalGroupId);
                         filters.add(filter);
+                    }
+                    // Type
+                    if (!StringUtils.isEmpty(bookType)) {
+                        BookFilter filterSet = new BookFilter(BookFilter.FIELD_SET, bookType);
+                        filters.add(filterSet);
                     }
 
                     FetchBookListRequest.Data data = new FetchBookListRequest.Data();
@@ -177,16 +183,15 @@ public class BookRepository implements IBookRepository {
                     data.setCountBooks(Short.toString(quantityBooksRequested));
                     data.setStartPosition(Integer.toString(startingLoadPosition));
 
-                    if (mKeywordSearch == null) {
+
+                    if (!TextUtils.isEmpty(keyword)) {
                         mKeywordSearch = new FetchBookListRequest.KeywordSearch();
+                        mKeywordSearch.setKeyword(keyword);
                         mKeywordSearch.setType(FetchBookListRequest.KeywordSearch.TYPE_AND);
                         mKeywordSearch.setFields("code,string0,text4,text5");
+                        data.setKeywordSearch(mKeywordSearch);
                     }
 
-                    mKeywordSearch.setKeyword(keyword);
-
-
-                    data.setKeywordSearch(mKeywordSearch);
                     return FetchBookListRequest.newInstance(moduleId, data);
                 })
                 .toList();

@@ -4,16 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Pair;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.RadioButton;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.Book;
+import com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.common.view.BaseListActivity;
 import com.zennex.trl3lg.presentation.module.app.App;
@@ -28,15 +35,16 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks.Params.TYPE_CD;
+
 @Layout(R.layout.act_search_layout)
-public class SearchViewActivity extends BaseListActivity<
-        SearchScreenContract.AbstractSearchPresenter,
-        SearchScreenContract.AbstractSearchScreenRouter,
-        Book,
-        SearchListRecyclerAdapter,
-        StaggeredGridLayoutManager>
+public class SearchViewActivity extends BaseListActivity<SearchScreenContract.AbstractSearchPresenter,
+                                                         SearchScreenContract.AbstractSearchScreenRouter,
+                                                         Book,
+                                                         SearchListRecyclerAdapter,
+                                                         StaggeredGridLayoutManager>
         implements SearchScreenContract.ISearchView,
-        SearchListRecyclerAdapter.ISearchBookListAdapterListener {
+            SearchListRecyclerAdapter.ISearchBookListAdapterListener {
 
     public static final String TAG = "SearchViewActivity";
 
@@ -67,11 +75,68 @@ public class SearchViewActivity extends BaseListActivity<
     @BindView(R.id.act_search_searchview)
     PersistentSearchView mSearchView;
 
+    @BindView(R.id.act_search_toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setSupportActionBar(toolbar);
         parseExtraData();
+        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.All); // Todo maybe store in preferences
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_filter) {
+            selectFilter(getPresenter().getCurrentTypeBookFilter());
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void selectFilter(FetchBooks.TypeBooks currentType) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dlg_filters, null);
+        RadioButton radioButtonAll = view.findViewById(R.id.dlg_filters_rb_all);
+        RadioButton radioButtonCd = view.findViewById(R.id.dlg_filters_rb_cd);
+        RadioButton radioButtonAudioBooks = view.findViewById(R.id.dlg_filters_rb_books);
+
+        AlertDialog alertDialog = builder.setTitle(R.string.select_filter_dialog_title)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    if (radioButtonAll.isChecked())
+                        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.All);
+                    if (radioButtonCd.isChecked())
+                        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.Cd);
+                    if (radioButtonAudioBooks.isChecked())
+                        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.AudioBook);
+                    mPresenter.onRefreshView();
+                    dialog.dismiss();
+                })
+                .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+                .create();
+
+        switch (currentType) {
+            case Cd:
+                radioButtonCd.setChecked(true);
+                break;
+            case AudioBook:
+                radioButtonAudioBooks.setChecked(true);
+                break;
+            default:
+                radioButtonAll.setChecked(true);
+                break;
+        }
+        alertDialog.show();
     }
 
     @Override
@@ -88,7 +153,13 @@ public class SearchViewActivity extends BaseListActivity<
     }
 
     private void parseExtraData() {
-        mPresenter.setKeywordSearch(getIntent().getStringExtra(EXTRA_KEYWORD_KEY));
+        String keyword = getIntent().getStringExtra(EXTRA_KEYWORD_KEY);
+        mPresenter.setKeywordSearch(keyword);
+
+        if (!TextUtils.isEmpty(keyword)) {
+            mSearchView.setSearchString(keyword, true);
+            mSearchView.openSearch();
+        }
         mPresenter.setRentalGroupId(String.valueOf(getIntent().getLongExtra(EXTRA_RENTAL_GROUP_ID_KEY, -1)));
     }
 

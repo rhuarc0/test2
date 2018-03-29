@@ -44,7 +44,8 @@
         app:persistentSV_editHintTextColor="#61000000"
         app:persistentSV_editTextColor="#DE000000"
         app:persistentSV_searchCardElevation="4dp"
-        app:persistentSV_searchTextColor="#DE000000"/>
+        app:persistentSV_searchTextColor="#DE000000"
+        />
 
 
     <FrameLayout
