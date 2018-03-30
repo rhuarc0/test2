@@ -1,6 +1,10 @@
 package com.zennex.trl3lg.data.datasource.review;
 
+import android.util.Pair;
+
 import com.annimon.stream.Stream;
+import com.zennex.trl3lg.data.rest.request.book.SetReviewUsefulRequest;
+import com.zennex.trl3lg.data.rest.response.book.SetReviewUsefulResponse;
 import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.data.entity.dto.ReviewDto;
 import com.zennex.trl3lg.domain.repository.IAuthRepository;
@@ -39,7 +43,7 @@ public class ReviewDataSource implements IReviewDataSource {
 
     @Override
     public Observable<List<Review>> fetchReviews(String bookId, int startPosition, int count) {
-        return Observable.fromCallable(() -> this.createRequests(bookId, startPosition, count))
+        return Observable.fromCallable(() -> this.createFetchReviewRequests(bookId, startPosition, count))
                 .flatMap(mReviewWebService::fetchItemReviews)
                 .doOnNext(WebRepositoryUtils::checkResponse)
                 .map(getDataReviews())
@@ -47,8 +51,17 @@ public class ReviewDataSource implements IReviewDataSource {
                 .map(transformReviewDtos());
     }
 
+    @Override
+    public Observable<Pair<String, Boolean>> setReviewUseful(String reviewId, boolean useful) {
+        return Observable.fromCallable(() -> this.createSetReviewUsefulRequest(reviewId, useful))
+                .flatMap(mReviewWebService::setReviewUseful)
+                .doOnNext(WebRepositoryUtils::checkResponse)
+                .flatMap(transformSetViewUseful(reviewId, useful));
+    }
 
-    private List<FetchReviewsRequest> createRequests(String bookId, int startPosition, int count) {
+    //region FetchReviews
+
+    private List<FetchReviewsRequest> createFetchReviewRequests(String bookId, int startPosition, int count) {
         return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
                 .map(rentalModuleId -> FetchReviewsRequest.newInstance(rentalModuleId,
                         mAuthRepository.getSessionToken().blockingSingle(),
@@ -74,5 +87,31 @@ public class ReviewDataSource implements IReviewDataSource {
         return reviewDtos -> mReviewDtoMapper.execute(reviewDtos);
     }
 
+    //endregion
 
+    //region SetReviewUseful
+
+    private final static String IS_USEFUL = "1";
+    private final static String IS_NOT_USEFUL = "0";
+
+    private List<SetReviewUsefulRequest> createSetReviewUsefulRequest(String reviewId, boolean isUseful) {
+        return Stream.of(mAuthRepository.getRentalModuleIds().blockingSingle())
+                .map(rentalModuleId -> SetReviewUsefulRequest.newInstance(rentalModuleId,
+                        mAuthRepository.getSessionToken().blockingSingle(),
+                        reviewId,
+                        isUseful ? IS_USEFUL : IS_NOT_USEFUL))
+                .toList();
+    }
+
+    private Function<? super SetReviewUsefulResponse, ? extends Observable<Pair<String, Boolean>>> transformSetViewUseful(String reviewId, boolean useful) {
+        return setReviewUsefulResponse -> {
+            if (setReviewUsefulResponse == null)
+                return Observable.error(new Exception("Something went wrong")); // ToDo
+
+            return Observable.just(Pair.create(reviewId, useful));
+        };
+    }
+
+
+    //endregion
 }

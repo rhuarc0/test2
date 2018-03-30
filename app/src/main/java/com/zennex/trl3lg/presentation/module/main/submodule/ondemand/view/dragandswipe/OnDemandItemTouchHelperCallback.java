@@ -1,17 +1,9 @@
-package com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.drugandswipe;
+package com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
-import android.view.View;
-
-import com.zennex.trl3lg.R;
 
 /**
  * Created by nikit on 27.08.2017.
@@ -19,7 +11,7 @@ import com.zennex.trl3lg.R;
 
 public class OnDemandItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
-    public static final String TAG = "OnDemandItemTouchHelperCallback";
+    public static final String TAG = OnDemandItemTouchHelperCallback.class.getSimpleName();
 
     private final ItemTouchHelperListener mTouchHelperListener;
 
@@ -56,7 +48,8 @@ public class OnDemandItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        if (viewHolder.getItemViewType() != target.getItemViewType()) return false;
+        if (viewHolder.getItemViewType() != target.getItemViewType())
+            return false;
         return mTouchHelperListener.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
     }
 
@@ -72,13 +65,11 @@ public class OnDemandItemTouchHelperCallback extends ItemTouchHelper.Callback {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
-
-    /*    public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int fromPos, RecyclerView.ViewHolder target, int toPos, int x, int y) {
+    public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int fromPos, RecyclerView.ViewHolder target, int toPos, int x, int y) {
         super.onMoved(recyclerView, viewHolder, fromPos, target, toPos, x, y);
         if (mDragFrom == null) mDragFrom = fromPos;
         mDragTo = toPos;
-    }*/
-
+    }
 
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {

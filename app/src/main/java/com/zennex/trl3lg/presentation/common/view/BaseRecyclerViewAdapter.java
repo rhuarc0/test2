@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder, Entity>
         extends RecyclerView.Adapter<VH> {
 
-    private List<Entity> mItemList;
+    private List<Entity> mItemList = new ArrayList<>();
 
     public BaseRecyclerViewAdapter() {
         mItemList = new ArrayList<>();
@@ -27,8 +27,8 @@ public abstract class BaseRecyclerViewAdapter<VH extends RecyclerView.ViewHolder
     }
 
     public void setItemList(List<Entity> itemList) {
-        if (itemList == null) mItemList = new ArrayList<Entity>();
-        else mItemList = itemList;
+        mItemList.clear();
+        mItemList.addAll(itemList);
     }
 
     public void updateList(List<Entity> list) {

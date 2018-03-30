@@ -52,6 +52,7 @@ import com.zennex.trl3lg.presentation.module.book.submodule.myreview.rating.MyRa
 import com.zennex.trl3lg.presentation.utils.GlideApp;
 import com.zennex.trl3lg.presentation.utils.PairArrayList;
 import com.zennex.trl3lg.presentation.utils.view.WrapContentViewPager;
+import com.zennex.trl3lg.presentation.utils.view.list.viewholder.ReviewViewHolder;
 
 import java.util.List;
 
@@ -65,7 +66,7 @@ import butterknife.OnClick;
 
 public class BookViewActivity
         extends BookModuleContract.AbstractBookView
-        implements MyRatingModuleContract.IMyReviewRatingEventListener {
+        implements MyRatingModuleContract.IMyReviewRatingEventListener, ReviewViewHolder.ReviewUsefulnessListener {
 
     public static final String TAG = "BookViewActivity";
     public static final String EXTRA_BOOK_KEY = "book";
@@ -156,7 +157,7 @@ public class BookViewActivity
         mMyReviewViewPager.setAdapter(mMyReviewFragmentAdapter);
         mRecyclerViewReviews.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        mReviewsAdapter = new BookViewRecyclerViewReviewsAdapter();
+        mReviewsAdapter = new BookViewRecyclerViewReviewsAdapter(this);
         mRecyclerViewReviews.setAdapter(mReviewsAdapter);
         mRecyclerViewReviews.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRecyclerViewReviews.setHasFixedSize(true);
@@ -423,6 +424,11 @@ public class BookViewActivity
     @Override
     public void onClickNext(float valueRating) {
         mPresenter.onClickNextRateBook();
+    }
+
+    @Override
+    public void rateReview(String reviewId, boolean isUseful) {
+        getPresenter().onReviewRateButtonClicked(reviewId, isUseful);
     }
 
     //endregion IMyReviewRatingEventListener

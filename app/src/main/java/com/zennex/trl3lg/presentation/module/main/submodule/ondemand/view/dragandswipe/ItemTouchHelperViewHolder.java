@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.drugandswipe;
+package com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe;
 
 
 import android.graphics.Canvas;

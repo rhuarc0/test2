@@ -65,6 +65,8 @@ public abstract class ReviewsModuleContract {
 
         public abstract void onRefreshView();
 
+        public abstract void onReviewRateButtonClicked(String reviewId, boolean isUseful);
+
     }
 
 

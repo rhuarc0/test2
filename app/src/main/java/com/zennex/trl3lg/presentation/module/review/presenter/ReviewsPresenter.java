@@ -1,13 +1,17 @@
 package com.zennex.trl3lg.presentation.module.review.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Pair;
 
+import com.annimon.stream.Stream;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.review.FetchReviews;
+import com.zennex.trl3lg.domain.usecases.review.SetReviewUseful;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
+import com.zennex.trl3lg.presentation.module.book.presenter.BookPresenter;
 import com.zennex.trl3lg.presentation.module.review.ReviewsModuleContract;
 import com.zennex.trl3lg.presentation.module.review.presenter.assembly.IReviewsPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.module.review.presenter.assembly.ReviewsPresenterModule;
@@ -24,6 +28,11 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
 
     @Inject
     FetchReviews mFetchReviews;
+
+    @Inject
+    SetReviewUseful setReviewUseful;
+
+
     private List<Review> mReviews;
     private boolean mAllReviewsUploaded = false;
 
@@ -49,6 +58,11 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
                 new FetchReviews.Params(QUANTITY_REVIEWS_REQUESTED, 0, mBookId));
         mAllReviewsUploaded = false;
         if (mReviews != null) mReviews.clear();
+    }
+
+    @Override
+    public void onReviewRateButtonClicked(String reviewId, boolean isUseful) {
+        setReviewUseful.execute(new SetReviewUsefulObserver(), new SetReviewUseful.Params(reviewId, isUseful));
     }
 
     private boolean isCanLoadReviews(int lastVisibleReviewPosition) {
@@ -100,11 +114,18 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
         @Override
         public void onNext(List<Review> reviews) {
             super.onNext(reviews);
-            if (reviews.size() < QUANTITY_REVIEWS_REQUESTED) mAllReviewsUploaded = true;
-            if (mReviews == null) mReviews = new ArrayList<>(reviews);
-            else mReviews.addAll(reviews);
-            if (reviews.isEmpty()) getViewState().showEmptyViewReviews();
-            else getViewState().showReviews(new ArrayList<>(mReviews));
+            if (reviews.size() < QUANTITY_REVIEWS_REQUESTED)
+                mAllReviewsUploaded = true;
+
+            if (mReviews == null)
+                mReviews = new ArrayList<>(reviews);
+            else
+                mReviews.addAll(reviews);
+
+            if (mReviews.isEmpty())
+                getViewState().showEmptyViewReviews();
+            else
+                getViewState().showReviews(mReviews);
             hidePending();
         }
 
@@ -132,6 +153,32 @@ public class ReviewsPresenter extends ReviewsModuleContract.AbstractReviewsPrese
             return mLoadFromRefreshing;
         }
 
+    }
+
+    private class SetReviewUsefulObserver extends DefaultObserver<Pair<String, Boolean>> {
+
+        private SetReviewUsefulObserver() {
+        }
+
+        @Override
+        public void onNext(Pair<String, Boolean> idAndStatus) {
+            super.onNext(idAndStatus);
+
+            Stream.of(mReviews)
+                    .filter(review -> review.getId().equals(idAndStatus.first))
+                    .forEach(review -> review.setRated(idAndStatus.second));
+            getViewState().showReviews(mReviews);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            super.onError(e);
+        }
+
+        @Override
+        protected String getTag() {
+            return SetReviewUsefulObserver.class.getSimpleName();
+        }
     }
 
 }

@@ -31,7 +31,7 @@ public class ReviewDto {
     @SerializedName("text")
     private String mText;
     @SerializedName("rated")
-    private float mRated;
+    private String mRated;
 
 
     public String getId() {
@@ -122,11 +122,11 @@ public class ReviewDto {
         mText = text;
     }
 
-    public float getRated() {
+    public String getRated() {
         return mRated;
     }
 
-    public void setRated(float rated) {
+    public void setRated(String rated) {
         mRated = rated;
     }
 }

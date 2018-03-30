@@ -4,7 +4,7 @@
 
     <!--titles-->
     <string name="sign_up_title">Sign Up</string>
-    <string name="on_demand_title">OnDemand</string>
+    <string name="on_demand_title">Audio Books</string>
     <string name="cd_title">CD</string>
     <string name="catalog_title">Catalog</string>
     <string name="user_title">User</string>
@@ -50,6 +50,14 @@
     <string name="search">Search</string>
     <string name="send">Send</string>
     <string name="filter">Filter</string>
+    <string name="ask_rent_book" formatted="true">Are you sure you want to activate %s?</string>
+    <string name="review_date" formatted="true">Date: %s</string>
+
+
+    <string name="review_helpful">Was this review helpful?</string>
+    <string name="review_helpful_btn_positive">Yes</string>
+    <string name="review_helpful_btn_negative">No</string>
+
 
     <!--UserScreen-->
     <string name="frg_user_tv_name">Name</string>

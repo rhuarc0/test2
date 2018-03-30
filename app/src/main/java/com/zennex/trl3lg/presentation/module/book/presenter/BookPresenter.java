@@ -1,12 +1,15 @@
 package com.zennex.trl3lg.presentation.module.book.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Pair;
 import android.view.View;
 
+import com.annimon.stream.Stream;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.domain.entities.Review;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.review.FetchReviews;
+import com.zennex.trl3lg.domain.usecases.review.SetReviewUseful;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.book.BookModuleContract;
@@ -14,6 +17,7 @@ import com.zennex.trl3lg.presentation.module.book.presenter.assembly.BookPresent
 import com.zennex.trl3lg.presentation.module.book.presenter.assembly.IBookPresenterSubcomponent;
 import com.zennex.trl3lg.presentation.utils.PairArrayList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,8 +29,15 @@ import javax.inject.Inject;
 @InjectViewState
 public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
 
+    private final static int REVIEW_COUNT = 3;
+
     @Inject
     FetchReviews mFetchReviewsUseCase;
+
+    @Inject
+    SetReviewUseful setReviewUseful;
+
+    List<Review> reviews = new ArrayList<>();
 
     public BookPresenter(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
         super(presenterSubcomponentBuilders);
@@ -48,7 +59,8 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
     }
 
     private void fetchReviews() {
-        mFetchReviewsUseCase.execute(new FetchReviewsObserver(), new FetchReviews.Params(3, 0, mBook.getId()));
+        mFetchReviewsUseCase.execute(new FetchReviewsObserver(),
+                new FetchReviews.Params(REVIEW_COUNT, 0, mBook.getId()));
     }
 
     @Override
@@ -84,6 +96,11 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
 
     }
 
+    @Override
+    public void onReviewRateButtonClicked(String reviewId, boolean isUseful) {
+        setReviewUseful.execute(new SetReviewUsefulObserver(), new SetReviewUseful.Params(reviewId, isUseful));
+    }
+
     private class FetchReviewsObserver extends DefaultObserver<List<Review>> {
 
         @Override
@@ -94,6 +111,7 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
         @Override
         public void onNext(List<Review> reviews) {
             getViewState().hidePendingLoadReviews();
+            BookPresenter.this.reviews = reviews;
             if (reviews.isEmpty())
                 getViewState().showEmptyViewReviews();
             else
@@ -111,5 +129,30 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
         }
     }
 
+    private class SetReviewUsefulObserver extends DefaultObserver<Pair<String, Boolean>> {
+
+        private SetReviewUsefulObserver() {
+        }
+
+        @Override
+        public void onNext(Pair<String, Boolean> idAndStatus) {
+            super.onNext(idAndStatus);
+
+            Stream.of(reviews)
+                    .filter(review -> review.getId().equals(idAndStatus.first))
+                    .forEach(review -> review.setRated(idAndStatus.second));
+            getViewState().showReviews(reviews);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            super.onError(e);
+        }
+
+        @Override
+        protected String getTag() {
+            return SetReviewUsefulObserver.class.getSimpleName();
+        }
+    }
 
 }

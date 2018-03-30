@@ -1,6 +1,9 @@
 package com.zennex.trl3lg.presentation.module.book.view;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.zennex.trl3lg.R;
@@ -14,10 +17,17 @@ import com.zennex.trl3lg.presentation.utils.view.list.viewholder.ReviewViewHolde
 
 public class BookViewRecyclerViewReviewsAdapter extends BaseRecyclerViewAdapter<ReviewViewHolder, Review> {
 
+    private ReviewViewHolder.ReviewUsefulnessListener listener;
+
+    public BookViewRecyclerViewReviewsAdapter(ReviewViewHolder.ReviewUsefulnessListener listener) {
+        this.listener = listener;
+    }
+
     @Override
-    public ReviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ReviewViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_review_item, parent, false));
+    public ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_review_item, parent, false);
+        return new ReviewViewHolder(view, listener);
     }
 
     @Override

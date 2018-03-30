@@ -25,6 +25,7 @@ import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.review.ReviewsModuleContract;
 import com.zennex.trl3lg.presentation.module.review.presenter.ReviewsPresenter;
 import com.zennex.trl3lg.presentation.module.review.router.ReviewsRouter;
+import com.zennex.trl3lg.presentation.utils.view.list.viewholder.ReviewViewHolder;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ReviewsViewActivity extends BaseListActivity<ReviewsModuleContract.
         Review,
         ReviewsModuleRecyclerAdapter,
         LinearLayoutManager>
-        implements ReviewsModuleContract.IReviewsView {
+        implements ReviewsModuleContract.IReviewsView, ReviewViewHolder.ReviewUsefulnessListener {
 
     public static final String EXTRA_BOOK_TITLE = "book_title";
     public static final String EXTRA_BOOK_ID = "book_id";
@@ -111,7 +112,7 @@ public class ReviewsViewActivity extends BaseListActivity<ReviewsModuleContract.
     @NonNull
     @Override
     protected ReviewsModuleRecyclerAdapter createAdapter() {
-        return new ReviewsModuleRecyclerAdapter();
+        return new ReviewsModuleRecyclerAdapter(this);
     }
 
     @NonNull
@@ -190,5 +191,10 @@ public class ReviewsViewActivity extends BaseListActivity<ReviewsModuleContract.
             mProgressBar.setVisibility(View.VISIBLE);
             mSwipeRefreshLayout.setEnabled(false);
         }
+    }
+
+    @Override
+    public void rateReview(String reviewId, boolean isUseful) {
+        getPresenter().onReviewRateButtonClicked(reviewId, isUseful);
     }
 }

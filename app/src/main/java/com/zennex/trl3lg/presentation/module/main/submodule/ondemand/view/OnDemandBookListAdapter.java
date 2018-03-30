@@ -22,8 +22,8 @@ import com.annimon.stream.Stream;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.AudioBook;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
-import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.drugandswipe.ItemTouchHelperViewHolder;
-import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.drugandswipe.OnStartDrugListener;
+import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe.ItemTouchHelperViewHolder;
+import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe.OnStartDragListener;
 import com.zennex.trl3lg.presentation.utils.GlideApp;
 
 import java.util.List;
@@ -39,15 +39,16 @@ import butterknife.OnTouch;
 
 public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBookListAdapter.ViewHolderItem, AudioBook> {
 
-    private final OnStartDrugListener mDrugStartListener;
+    private final OnStartDragListener mDrugStartListener;
 
     private IOnDemandBookListener mOnDemandBookListener;
 
     public interface IOnDemandBookListener {
         void onBookSelected(int position, List<Pair<View, String>> animViews);
+        void onBookActivated(int position, String bookTitle);
     }
 
-    public OnDemandBookListAdapter(OnStartDrugListener dragStartListener) {
+    public OnDemandBookListAdapter(OnStartDragListener dragStartListener) {
         mDrugStartListener = dragStartListener;
     }
 
@@ -69,6 +70,8 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
     public void onBindViewHolder(ViewHolderItem holder, int position) {
         holder.bind(position);
     }
+
+
 
     class ViewHolderItem extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
@@ -110,9 +113,19 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
         @OnClick(R.id.frg_on_demand_li_root_layout)
         void onItemClick() {
             if (mOnDemandBookListener != null) {
-                mOnDemandBookListener.onBookSelected(getAdapterPosition(), Stream.of(mIvBook, mTvTitle).
-                        map(view -> Pair.create(view, view.getTransitionName()))
-                        .toList());
+                mOnDemandBookListener.onBookSelected(getAdapterPosition(),
+                                                     Stream.of(mIvBook, mTvTitle)
+                                                           .map(view -> Pair.create(view, view.getTransitionName()))
+                                                           .toList());
+            }
+        }
+
+        @OnClick(R.id.frg_on_demand_btn_activate)
+        void onActivateButtonClick() {
+            if (mOnDemandBookListener != null) {
+                int position = getAdapterPosition();
+                String title = getItemList().get(position).getTitle();
+                mOnDemandBookListener.onBookActivated(position, title);
             }
         }
 

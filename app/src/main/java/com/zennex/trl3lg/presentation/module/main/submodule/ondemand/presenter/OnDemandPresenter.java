@@ -65,6 +65,11 @@ public class OnDemandPresenter extends OnDemandScreenContract.AbstractOnDemandPr
         mRouter.showBookScreenWithAnim(mBookList.get(position), animaViews);
     }
 
+    @Override
+    public void onBookActivated(int position) {
+        /*rentAudioBook(audioBook.getQueueId())*/
+    }
+
     private class FetchMyAudioBooksObserver extends DefaultObserver<List<AudioBook>> {
 
         private final boolean isRefreshing;

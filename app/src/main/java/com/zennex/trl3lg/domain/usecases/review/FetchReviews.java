@@ -31,8 +31,7 @@ public class FetchReviews extends UseCase<List<Review>, FetchReviews.Params> {
     protected Observable<List<Review>> buildObservable(Params params) {
         return mReviewRepository.fetchReviews(params.bookId,
                 params.mStartingLoadPosition,
-                params.mReviewCount)
-                .delay(5, TimeUnit.SECONDS);
+                params.mReviewCount);
     }
 
     public static class Params {

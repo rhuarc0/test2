@@ -14,6 +14,8 @@ import javax.inject.Inject;
 
 public class ReviewDtoMapper extends Mapper<ReviewDto, Review> {
 
+    private final static String IS_RATED = "1";
+
     @Inject
     public ReviewDtoMapper() {
         super(Review::new);
@@ -32,7 +34,7 @@ public class ReviewDtoMapper extends Mapper<ReviewDto, Review> {
         review.setMemberId(reviewDto.getMemberId());
         review.setMemberExtra(reviewDto.getMemberExtra());
         review.setText(reviewDto.getText());
-        review.setRated(reviewDto.getRated());
+        review.setRated(reviewDto.getRated().equals(IS_RATED));
         return review;
     }
 }

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="wrap_content"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:padding="@dimen/spacing_normal"
     >
 
     <TextView
         android:id="@+id/act_book_review_item_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:textColor="@color/md_black_1000"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +23,7 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/spacing_smaller"
         android:numStars="5"
         app:layout_constraintLeft_toLeftOf="@+id/act_book_review_item_tv_name"
         app:layout_constraintTop_toBottomOf="@+id/act_book_review_item_tv_name"/>
@@ -31,7 +32,7 @@
         android:id="@+id/act_book_review_item_tv_created_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/spacing_smaller"
         app:layout_constraintLeft_toLeftOf="@+id/act_book_review_item_rating_bar"
         app:layout_constraintTop_toBottomOf="@+id/act_book_review_item_rating_bar"
         tools:text="Created date"/>
@@ -40,15 +41,62 @@
         android:id="@+id/act_book_review_item_tv_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:maxLines="4"
         android:minLines="1"
         android:textColor="@color/md_black_1000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/act_book_review_item_tv_created_date"
         tools:text="text"/>
+
+    <LinearLayout
+        android:id="@+id/review_item_layout_usefulness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/spacing_smaller"
+        app:layout_constraintTop_toBottomOf="@id/act_book_review_item_tv_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_smaller"
+            android:text="@string/review_helpful"
+            android:textColor="@color/md_black_1000_75"
+            android:textStyle="italic|bold"
+            />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/review_item_iv_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_smaller"
+            android:padding="@dimen/spacing_smaller"
+            android:src="@drawable/ic_thumb_up_black_24dp"
+            />
+
+        <ImageView
+            android:id="@+id/review_item_iv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_smaller"
+            android:src="@drawable/ic_thumb_down_black_24dp"
+            />
+
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

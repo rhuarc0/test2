@@ -1,8 +1,10 @@
 package com.zennex.trl3lg.presentation.module.review.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.zennex.trl3lg.R;
@@ -19,6 +21,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ReviewsModuleRecyclerAdapter extends BaseRecyclerViewAdapter<ReviewViewHolder, Review> {
 
+    private ReviewViewHolder.ReviewUsefulnessListener listener;
+
+    public ReviewsModuleRecyclerAdapter(ReviewViewHolder.ReviewUsefulnessListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void updateList(List<Review> list) {
         Observable.fromCallable(() -> DiffUtil.calculateDiff(new ReviewListDiffCallback(getItemList(), list), false))
@@ -32,8 +40,9 @@ public class ReviewsModuleRecyclerAdapter extends BaseRecyclerViewAdapter<Review
 
     @Override
     public ReviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ReviewViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_review_item, parent, false));
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_review_item, parent, false);
+        return new ReviewViewHolder(view, listener);
     }
 
     @SuppressLint("LongLogTag")

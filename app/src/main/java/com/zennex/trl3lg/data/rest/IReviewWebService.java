@@ -4,6 +4,7 @@ import com.zennex.trl3lg.data.rest.request.book.FetchReviewsRequest;
 import com.zennex.trl3lg.data.rest.request.book.SetReviewUsefulRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchReviewsResponse;
+import com.zennex.trl3lg.data.rest.response.book.SetReviewUsefulResponse;
 
 import java.util.List;
 
@@ -24,6 +25,6 @@ public interface IReviewWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<BaseResponse>> setReviewUseful(@Body List<SetReviewUsefulRequest> requests);
+    Observable<SetReviewUsefulResponse> setReviewUseful(@Body List<SetReviewUsefulRequest> requests);
 
 }

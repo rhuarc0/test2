@@ -1,115 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="wrap_content"
-                                             android:background="@android:color/transparent"
-                                             android:clickable="true"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/frg_on_demand_li_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/spacing_normal"
+    android:layout_marginEnd="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_smaller"
+    android:layout_marginBottom="@dimen/spacing_smaller"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+
+    app:cardElevation="2dp"
     >
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/frg_on_demand_li_root_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/white"
-        app:cardElevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/frg_on_demand_li_iv_book"
+            android:layout_width="90dp"
+            android:layout_height="120dp"
+            android:scaleType="fitCenter"
+            android:transitionName="book_image_transition"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_placeholder"/>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/frg_on_demand_li_tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_smaller"
+            android:ellipsize="end"
+            android:lines="3"
+            android:maxLines="3"
+            android:textColor="@android:color/black"
+            android:transitionName="book_title_transition"
+            app:layout_constraintLeft_toRightOf="@+id/frg_on_demand_li_iv_book"
+            app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_btn_activate"
+            app:layout_constraintTop_toTopOf="@+id/frg_on_demand_li_iv_book"
+            tools:text="title"
+            />
 
-            <ImageView
-                android:id="@+id/frg_on_demand_li_iv_book"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:scaleType="fitCenter"
-                android:transitionName="book_image_transition"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/image_placeholder"/>
+        <TextView
+            android:id="@+id/frg_on_demand_li_tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_smaller"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/frg_on_demand_li_tv_days_left"
+            app:layout_constraintLeft_toRightOf="@+id/frg_on_demand_li_iv_book"
+            app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_btn_activate"
+            tools:text="status"/>
 
-            <TextView
-                android:id="@+id/frg_on_demand_li_tv_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:lines="3"
-                android:maxLines="3"
-                android:textColor="@android:color/black"
-                android:transitionName="book_title_transition"
-                app:layout_constraintLeft_toRightOf="@+id/frg_on_demand_li_iv_book"
-                app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_btn_activate"
-                app:layout_constraintTop_toTopOf="@+id/frg_on_demand_li_iv_book"
-                tools:text="title"
-                />
+        <TextView
+            android:id="@+id/frg_on_demand_li_tv_days_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="@dimen/spacing_smaller"
 
-            <TextView
-                android:id="@+id/frg_on_demand_li_tv_status"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@android:color/black"
-                app:layout_constraintBottom_toTopOf="@+id/frg_on_demand_li_tv_days_left"
-                app:layout_constraintLeft_toRightOf="@+id/frg_on_demand_li_iv_book"
-                app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_btn_activate"
-                app:layout_constraintTop_toBottomOf="@+id/frg_on_demand_li_tv_title"
-                tools:text="status"/>
+            app:layout_constraintBottom_toBottomOf="@+id/frg_on_demand_li_iv_book"
+            app:layout_constraintLeft_toRightOf="@+id/frg_on_demand_li_iv_book"
+            app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_btn_activate"
+            tools:text="days left"
+            />
 
-            <ImageButton
-                android:id="@+id/frg_on_demand_handle_btn_drag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@null"
-                android:src="@drawable/ic_reorder_grey_500_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="8dp"/>
+        <ImageButton
+            android:id="@+id/frg_on_demand_handle_btn_drag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_smaller"
+            android:padding="@dimen/spacing_smaller"
+            android:background="@null"
+            android:src="@drawable/ic_reorder_grey_500_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-            <Button
-                android:id="@+id/frg_on_demand_btn_activate"
-                style="@style/AppButtonTheme"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:text="@string/act_on_demand_btn_activate"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_handle_btn_drag"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Activate"/>
+        <Button
+            android:id="@+id/frg_on_demand_btn_activate"
+            style="@style/AppButtonTheme"
+            android:layout_width="72dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="@dimen/spacing_smaller"
+            android:text="@string/act_on_demand_btn_activate"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_handle_btn_drag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Activate"/>
 
-            <TextView
-                android:id="@+id/frg_on_demand_li_tv_days_left"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/frg_on_demand_li_iv_book"
-                app:layout_constraintLeft_toRightOf="@+id/frg_on_demand_li_iv_book"
-                app:layout_constraintRight_toLeftOf="@+id/frg_on_demand_btn_activate"
-                tools:text="days left"/>
+    </android.support.constraint.ConstraintLayout>
 
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
-
-</android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

@@ -64,6 +64,8 @@ public abstract class BookModuleContract {
 
         public abstract void onClickSendReview();
 
+        public abstract void onReviewRateButtonClicked(String reviewId, boolean isUseful);
+
         public Book getBook() {
             return mBook;
         }

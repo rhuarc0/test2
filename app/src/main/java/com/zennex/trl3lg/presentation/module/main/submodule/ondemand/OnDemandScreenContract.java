@@ -52,6 +52,8 @@ public abstract class OnDemandScreenContract {
 
         public abstract void onBookSelected(int position, PairArrayList<View, String> animaViews);
 
+        public abstract void onBookActivated(int position);
+
         public abstract void onRefreshBooks();
 
     }
