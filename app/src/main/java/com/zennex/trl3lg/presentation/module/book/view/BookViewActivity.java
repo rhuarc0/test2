@@ -225,21 +225,21 @@ public class BookViewActivity
     public void onClickBtnReadMoreDesc() {
         PairArrayList<View, String> pairs = new PairArrayList<>();
         View statusBar = findViewById(android.R.id.statusBarBackground);
-        View navigationBar = findViewById(android.R.id.navigationBarBackground);
-        View appBar = findViewById(R.id.app_bar_layout);
         if (statusBar != null) {
             pairs.add(Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME));
         }
 
+        View navigationBar = findViewById(android.R.id.navigationBarBackground);
         if (navigationBar != null) {
             pairs.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
         }
 
+        View appBar = findViewById(R.id.app_bar_layout);
         pairs.addAll(Stream.of(findViewById(R.id.act_book_cv_desc),
-                appBar,
-                mTvDescription,
-                findViewById(R.id.act_book_tv_title_description),
-                findViewById(R.id.act_book_btn_read_more_desc))
+                    appBar,
+                    mTvDescription,
+                    findViewById(R.id.act_book_tv_title_description),
+                    findViewById(R.id.act_book_btn_read_more_desc))
                 .map(view -> Pair.create(view, view.getTransitionName()))
                 .toList());
         mPresenter.onClickBtnReadMoreDescription(pairs);
@@ -261,8 +261,8 @@ public class BookViewActivity
         }
 
         pairs.addAll(Stream.of(appBar,
-                findViewById(R.id.act_book_tv_title_description),
-                findViewById(R.id.act_book_btn_read_more_desc))
+                    findViewById(R.id.act_book_tv_title_description),
+                    findViewById(R.id.act_book_btn_read_more_desc))
                 .map(view -> Pair.create(view, view.getTransitionName()))
                 .toList());
 

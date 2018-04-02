@@ -28,12 +28,17 @@
 
     <string name="act_sign_up_submit">Submit</string>
     <string name="act_on_demand_btn_activate">Activate</string>
+    <string name="act_on_demand_btn_listen_now">Listen now</string>
     <string name="act_book_tv_release_date" formatted="true">Release Date: %s</string>
     <string name="act_book_available" formatted="true">Available: %s</string>
     <string name="act_book_approx_length" formatted="true">Appr. Length: %s</string>
     <string name="act_book_author" formatted="true">Author: %s</string>
     <string name="act_book_language" formatted="true">Language: %s</string>
     <string name="act_book_tv_rating">Rating:</string>
+
+    <string name="last_day">Last day</string>
+    <string name="days_left" formatted="true">Days left: %d</string>
+
 
     <string name="chapters">Chapters</string>
     <string name="renew">Renew</string>
@@ -71,5 +76,7 @@
     <string name="frg_user_btn_logout">Logout</string>
     <string name="select_filter_dialog_title">Select a filter</string>
 
+    <string name="act_download_status_pending">Pending</string>
+    <string name="act_download_status_active">Active</string>
 
 </resources>

@@ -54,6 +54,10 @@ public class BookDtoMapper<S1 extends BookDto, R1 extends Book> extends Mapper<S
         book.setSharpOfCDs(bookDto.getSharpOfCDs());
         book.setTrlLetterPair(bookDto.getTrlLetterPair());
         book.setWeight(bookDto.getWeight());
+        book.setBillDate(bookDto.getBillDate());
+        book.setRenew(bookDto.getRenew());
+        book.setAssociatedItem(bookDto.getAssociatedItem());
+        book.setListOrder(bookDto.getListOrder());
 
         if (bookDto.getImage() != null && !bookDto.getImage().isEmpty()) {
             book.setImage(bookDto.getImage().get(0));

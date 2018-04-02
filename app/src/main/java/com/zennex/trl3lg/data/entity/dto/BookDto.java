@@ -73,6 +73,17 @@ public class BookDto {
     @SerializedName("text21")
     private String mAbridgement;
 
+    @SerializedName("bill_date")
+    private String billDate;
+    @SerializedName("list_order")
+    private String listOrder;
+    @SerializedName("renew")
+    private int renew;
+    @SerializedName("associated_item")
+    private String associatedItem;
+
+
+
     public String getAbridgement() {
         return mAbridgement;
     }
@@ -321,4 +332,35 @@ public class BookDto {
         mBisac3 = bisac3;
     }
 
+    public String getBillDate() {
+        return billDate;
+    }
+
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
+    }
+
+    public String getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(String listOrder) {
+        this.listOrder = listOrder;
+    }
+
+    public int getRenew() {
+        return renew;
+    }
+
+    public void setRenew(int renew) {
+        this.renew = renew;
+    }
+
+    public String getAssociatedItem() {
+        return associatedItem;
+    }
+
+    public void setAssociatedItem(String associatedItem) {
+        this.associatedItem = associatedItem;
+    }
 }

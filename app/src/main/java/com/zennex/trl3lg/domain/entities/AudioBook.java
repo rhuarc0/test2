@@ -2,7 +2,12 @@ package com.zennex.trl3lg.domain.entities;
 
 import android.os.Parcel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by nikit on 27.08.2017.
@@ -38,6 +43,32 @@ public class AudioBook extends RentalBook {
 
     //endregion Parcelable
 
+    private static final String FORMAT_DATE = "yyyy-MM-dd HH:mm:s";
+    private static final String TIME_ZONE = "America/New_York"; // EDT - Серверное время
+    private static final String FINISH_RENT_BOOK_TIME = " 23:59:59"; // Конец дня, завершение аренды книги
+    private static final int MS_IN_DAY = 1000 * 60 * 60 * 24;
+
+    public int getDaysLeft() {
+        SimpleDateFormat format = new SimpleDateFormat(FORMAT_DATE, Locale.US);
+        TimeZone.setDefault(TimeZone.getTimeZone(TIME_ZONE));
+
+        if (getRentalEnd() != null) {
+
+            Date today = new Date();
+            int days = 0;
+            long difference;
+            try {
+                Date date = format.parse(getRentalEnd() + FINISH_RENT_BOOK_TIME);
+                difference = date.getTime() - today.getTime();
+                days = (int) (difference / MS_IN_DAY);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return days + 1;
+        }
+        return 0;
+    }
 
     public String getQueueId() {
         return mQueueId;

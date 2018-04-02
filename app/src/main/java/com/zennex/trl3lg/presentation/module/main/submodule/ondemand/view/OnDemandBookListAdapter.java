@@ -1,5 +1,6 @@
 package com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -8,6 +9,7 @@ import android.graphics.RectF;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -87,19 +89,25 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
         ImageButton mBtnDrag;
         @BindView(R.id.frg_on_demand_btn_activate)
         Button mBtnActivate;
+        @BindView(R.id.frg_on_demand_btn_listen_now)
+        Button mBtnListenNow;
         @BindView(R.id.frg_on_demand_li_tv_days_left)
         TextView mTvDaysLeft;
         Bitmap mBitmapIconRemove;
         RectF mRectFIconRemove;
+        View itemView;
 
         ViewHolderItem(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             ButterKnife.bind(this, itemView);
             mBitmapIconRemove = BitmapFactory.decodeResource(itemView.getContext().getResources(), R.drawable.ic_trash_red);
         }
 
         void bind(int position) {
             AudioBook book = getItemList().get(position);
+            Context context = itemView.getContext();
+
 
             GlideApp.with(itemView.getContext())
                     .load(book.getImage())
@@ -107,7 +115,26 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
                     .into(mIvBook);
 
             mTvTitle.setText(book.getTitle());
+            if (!TextUtils.isEmpty(book.getRentalEnd())) {
+                int daysLeft = book.getDaysLeft();
+                if (daysLeft == 1) {
+                    mTvDaysLeft.setText(context.getString(R.string.last_day));
+                } else {
+                    mTvDaysLeft.setText(context.getString(R.string.days_left, daysLeft));
+                }
+            } else {
+                mTvDaysLeft.setText("");
+            }
 
+            if (book.isActivated()) {
+                mBtnActivate.setVisibility(View.GONE);
+                mBtnListenNow.setVisibility(View.VISIBLE);
+                mTvStatus.setText(context.getString(R.string.act_download_status_active)); // TODO есть ещё Downloaded (смотреть старый код)
+            } else {
+                mBtnActivate.setVisibility(View.VISIBLE);
+                mBtnListenNow.setVisibility(View.GONE);
+                mTvStatus.setText(context.getString(R.string.act_download_status_pending));
+            }
         }
 
         @OnClick(R.id.frg_on_demand_li_root_layout)

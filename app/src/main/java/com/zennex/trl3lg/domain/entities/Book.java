@@ -3,7 +3,12 @@ package com.zennex.trl3lg.domain.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by nikit on 02.08.2017.
@@ -77,6 +82,11 @@ public class Book implements Parcelable {
     String mAbridgement;
     String mPrimaryGenre;
 
+    String billDate;
+    String listOrder;
+    int renew;
+    String associatedItem;
+
     public Book() {
     }
 
@@ -113,6 +123,10 @@ public class Book implements Parcelable {
         mISBN = in.readString();
         mAbridgement = in.readString();
         mPrimaryGenre = in.readString();
+        billDate = in.readString();
+        listOrder = in.readString();
+        renew = in.readInt();
+        associatedItem = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
@@ -397,6 +411,42 @@ public class Book implements Parcelable {
         mPrimaryGenre = primaryGenre;
     }
 
+    public boolean isActivated() {
+        return billDate != null;
+    }
+
+    public String getBillDate() {
+        return billDate;
+    }
+
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
+    }
+
+    public String getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(String listOrder) {
+        this.listOrder = listOrder;
+    }
+
+    public int getRenew() {
+        return renew;
+    }
+
+    public void setRenew(int renew) {
+        this.renew = renew;
+    }
+
+    public String getAssociatedItem() {
+        return associatedItem;
+    }
+
+    public void setAssociatedItem(String associatedItem) {
+        this.associatedItem = associatedItem;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -436,5 +486,9 @@ public class Book implements Parcelable {
         dest.writeString(mISBN);
         dest.writeString(mAbridgement);
         dest.writeString(mPrimaryGenre);
+        dest.writeString(billDate);
+        dest.writeString(listOrder);
+        dest.writeInt(renew);
+        dest.writeString(associatedItem);
     }
 }
