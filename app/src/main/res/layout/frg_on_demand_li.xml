@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@id/frg_on_demand_li_tv_days_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/frg_on_demand_li_iv_book"
-            app:layout_constraintEnd_toStartOf="@id/frg_on_demand_handle_btn_drag"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Activate"/>
 
         <Button
@@ -116,7 +116,7 @@
             app:layout_constraintTop_toBottomOf="@id/frg_on_demand_li_tv_days_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/frg_on_demand_li_iv_book"
-            app:layout_constraintEnd_toStartOf="@id/frg_on_demand_handle_btn_drag"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Listen now"/>
 
     </android.support.constraint.ConstraintLayout>

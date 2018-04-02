@@ -2,6 +2,7 @@ package com.zennex.trl3lg.data.rest.response.book;
 
 import com.google.gson.annotations.SerializedName;
 import com.zennex.trl3lg.data.entity.dto.AudioBookDto;
+import com.zennex.trl3lg.data.entity.dto.CDBookDto;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
 
 import java.util.List;
@@ -14,37 +15,48 @@ public class FetchAudioBooksQueueResponse extends BaseResponse<FetchAudioBooksQu
 
     public static class Data {
 
+        @SerializedName("Queue")
+        private List<CDBookDto> cdBookDtoList;
+
         @SerializedName("LiveQueue")
-        private List<AudioBookDto> mAudioBookDtoList;
+        private List<AudioBookDto> audioBookDtoList;
 
         @SerializedName("AudioApiSessionKey")
-        private String mAudioApiSessionKey;
+        private String audioApiSessionKey;
 
         @SerializedName("AudioApiAccountId")
-        private String mAudioApiAccountId;
+        private String audioApiAccountId;
+
+        public List<CDBookDto> getCdBookDtoList() {
+            return cdBookDtoList;
+        }
+
+        public void setCdBookDtoList(List<CDBookDto> mCdBookDtoList) {
+            this.cdBookDtoList = mCdBookDtoList;
+        }
 
         public List<AudioBookDto> getAudioBookDtoList() {
-            return mAudioBookDtoList;
+            return audioBookDtoList;
         }
 
         public void setAudioBookDtoList(List<AudioBookDto> audioBookDtoList) {
-            mAudioBookDtoList = audioBookDtoList;
+            this.audioBookDtoList = audioBookDtoList;
         }
 
         public String getAudioApiSessionKey() {
-            return mAudioApiSessionKey;
+            return audioApiSessionKey;
         }
 
         public void setAudioApiSessionKey(String audioApiSessionKey) {
-            mAudioApiSessionKey = audioApiSessionKey;
+            this.audioApiSessionKey = audioApiSessionKey;
         }
 
         public String getAudioApiAccountId() {
-            return mAudioApiAccountId;
+            return audioApiAccountId;
         }
 
         public void setAudioApiAccountId(String audioApiAccountId) {
-            mAudioApiAccountId = audioApiAccountId;
+            this.audioApiAccountId = audioApiAccountId;
         }
     }
 }

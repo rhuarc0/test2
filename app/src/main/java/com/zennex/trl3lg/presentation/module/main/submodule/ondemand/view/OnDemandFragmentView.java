@@ -18,7 +18,7 @@ import com.zennex.trl3lg.presentation.module.main.MainScreenContract;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.OnDemandScreenContract;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.presenter.OnDemandPresenter;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe.ItemTouchHelperListener;
-import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe.OnDemandItemTouchHelperCallback;
+import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe.AudioBookTouchHelperCallback;
 import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.dragandswipe.OnStartDragListener;
 import com.zennex.trl3lg.presentation.utils.PairArrayList;
 
@@ -59,7 +59,7 @@ public class OnDemandFragmentView extends OnDemandScreenContract.AbstractOnDeman
         super.initViews();
         mAdapter.setOnClickItemListener(this);
         listener = new ItemTouchHelperListenerImpl();
-        mListItemTouchCallback = new OnDemandItemTouchHelperCallback(listener);
+        mListItemTouchCallback = new AudioBookTouchHelperCallback(listener);
         mItemTouchHelper = new ItemTouchHelper(mListItemTouchCallback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }

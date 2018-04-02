@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +42,9 @@ import butterknife.OnTouch;
 
 public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBookListAdapter.ViewHolderItem, AudioBook> {
 
+    public static final int TYPE_DRAGGABLE = 1;
+    public static final int TYPE_UNDRAGGABLE = 2;
+
     private final OnStartDragListener mDrugStartListener;
 
     private IOnDemandBookListener mOnDemandBookListener;
@@ -63,17 +67,23 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
     }
 
     @Override
-    public ViewHolderItem onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolderItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolderItem(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.frg_on_demand_li, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderItem holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderItem holder, int position) {
         holder.bind(position);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (getItemList().get(position).isActivated())
+            return TYPE_UNDRAGGABLE;
 
+        return TYPE_DRAGGABLE;
+    }
 
     class ViewHolderItem extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
@@ -108,7 +118,6 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
             AudioBook book = getItemList().get(position);
             Context context = itemView.getContext();
 
-
             GlideApp.with(itemView.getContext())
                     .load(book.getImage())
                     .placeholder(R.drawable.image_placeholder)
@@ -127,10 +136,14 @@ public class OnDemandBookListAdapter extends BaseRecyclerViewAdapter<OnDemandBoo
             }
 
             if (book.isActivated()) {
+                mBtnDrag.setVisibility(View.GONE);
+
                 mBtnActivate.setVisibility(View.GONE);
                 mBtnListenNow.setVisibility(View.VISIBLE);
                 mTvStatus.setText(context.getString(R.string.act_download_status_active)); // TODO есть ещё Downloaded (смотреть старый код)
             } else {
+                mBtnDrag.setVisibility(View.VISIBLE);
+
                 mBtnActivate.setVisibility(View.VISIBLE);
                 mBtnListenNow.setVisibility(View.GONE);
                 mTvStatus.setText(context.getString(R.string.act_download_status_pending));

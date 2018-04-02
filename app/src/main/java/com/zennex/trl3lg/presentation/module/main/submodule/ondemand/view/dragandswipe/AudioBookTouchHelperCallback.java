@@ -5,13 +5,15 @@ import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import com.zennex.trl3lg.presentation.module.main.submodule.ondemand.view.OnDemandBookListAdapter;
+
 /**
  * Created by nikit on 27.08.2017.
  */
 
-public class OnDemandItemTouchHelperCallback extends ItemTouchHelper.Callback {
+public class AudioBookTouchHelperCallback extends ItemTouchHelper.Callback {
 
-    public static final String TAG = OnDemandItemTouchHelperCallback.class.getSimpleName();
+    public static final String TAG = AudioBookTouchHelperCallback.class.getSimpleName();
 
     private final ItemTouchHelperListener mTouchHelperListener;
 
@@ -20,7 +22,7 @@ public class OnDemandItemTouchHelperCallback extends ItemTouchHelper.Callback {
     private Integer mDragFrom = null;
     private Integer mDragTo = null;
 
-    public OnDemandItemTouchHelperCallback(ItemTouchHelperListener touchHelperListener) {
+    public AudioBookTouchHelperCallback(ItemTouchHelperListener touchHelperListener) {
         mTouchHelperListener = touchHelperListener;
     }
 
@@ -41,9 +43,12 @@ public class OnDemandItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        final int swipeFlags = ItemTouchHelper.START;
-        return makeMovementFlags(dragFlags, swipeFlags);
+        if (viewHolder.getItemViewType() == OnDemandBookListAdapter.TYPE_DRAGGABLE) {
+            final int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+            final int swipeFlags = ItemTouchHelper.START;
+            return makeMovementFlags(dragFlags, swipeFlags);
+        }
+        return 0;
     }
 
     @Override
