@@ -24,7 +24,7 @@ public class CatalogRecyclerViewAdapter extends BaseRecyclerViewAdapter<CatalogR
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.frg_catalog_li, parent, false));
+                .inflate(R.layout.li_catalog_item, parent, false));
     }
 
     @Override

@@ -1,12 +1,17 @@
 package com.zennex.trl3lg.presentation.module.search.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 
+import com.annimon.stream.Stream;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks;
+import com.zennex.trl3lg.domain.usecases.rentalbook.FetchHistory;
+import com.zennex.trl3lg.domain.usecases.rentalbook.FetchQueueIdsAndHistory;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.search.SearchScreenContract;
@@ -25,8 +30,17 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
 
     @Inject
     FetchBooks mFetchBooks;
+    @Inject
+    FetchQueueIdsAndHistory fetchQueueIdsAndHistory;
+    @Inject
+    FetchHistory fetchHistory;
+
     private boolean mAllUploaded = false;
-    private List<Book> mShownBooks;
+
+    private List<Book> mShownBooks = new ArrayList<>();
+    private List<String> queueIds = new ArrayList<>();
+    private List<String> history = new ArrayList<>();
+
     private String mKeywordSearch;
     private FetchBooks.TypeBooks typeBookFilter = FetchBooks.TypeBooks.All;
     private String mRentalGroupId;
@@ -71,6 +85,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         mAllUploaded = false;
+
         mFetchBooks.execute(
                 new FetchBookListObserver(false, false),
                 new FetchBooks.Params(mKeywordSearch,
@@ -78,6 +93,8 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
                         QUANTITY_BOOKS_REQUESTED,
                         0,
                         mRentalGroupId));
+
+        fetchQueueIdsAndHistory.execute(new FetchQueueAndHistoryObserver(), null);
     }
 
     @Override
@@ -92,6 +109,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
 
     @Override
     public void onRefreshView() {
+        mShownBooks.clear();
         mAllUploaded = false;
         mFetchBooks.execute(
                 new FetchBookListObserver(false, true),
@@ -101,8 +119,6 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
                         0,
                         mRentalGroupId)
         );
-        if (mShownBooks != null)
-            mShownBooks.clear();
     }
 
     @Override
@@ -113,7 +129,8 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
                 new FetchBooks.Params(mKeywordSearch,
                         typeBookFilter,
                         QUANTITY_BOOKS_REQUESTED,
-                        mShownBooks == null ? 0 : mShownBooks.size(), mRentalGroupId)
+                        mShownBooks.size(),
+                        mRentalGroupId)
             );
         }
     }
@@ -128,8 +145,8 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     public void onClickedBtnSearch(String keywordSearch) {
         mKeywordSearch = keywordSearch;
         getViewState().clearData();
-        if (mShownBooks != null)
-            mShownBooks.clear();
+
+        mShownBooks.clear();
         mAllUploaded = false;
         mFetchBooks.execute(
             new FetchBookListObserver(false, false),
@@ -142,9 +159,22 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
 
     }
 
+    private void refreshStatusFields() {
+        Stream.of(mShownBooks)
+                .filter(value -> queueIds.contains(value.getId()))
+                .forEach(book -> book.setAddedToQueue(true));
+
+        Stream.of(mShownBooks)
+                .filter(value -> history.contains(value.getId()))
+                .forEach(book -> book.setPreviouslyRented(true));
+
+        getViewState().refreshStatusFields();
+    }
+
     private class FetchBookListObserver extends DefaultObserver<List<Book>> {
 
         private final boolean mLoadFromUserScrolled;
+
         private final boolean mLoadFromRefreshing;
 
         private FetchBookListObserver(boolean loadFromUserScrolled, boolean loadFromRefreshing) {
@@ -164,11 +194,11 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
         public void onNext(List<Book> books) {
             if (books.size() < QUANTITY_BOOKS_REQUESTED)
                 mAllUploaded = true;
-            if (mShownBooks != null)
-                mShownBooks.addAll(books);
-            else
-                mShownBooks = new ArrayList<>(books);
+
+            mShownBooks.addAll(books);
             getViewState().showBooks(new ArrayList<>(mShownBooks));
+            if (!fetchQueueIdsAndHistory.isRun())
+                refreshStatusFields();
             hidePending();
         }
 
@@ -191,10 +221,30 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
             else
                 getViewState().hidePendingLoadBooks(isLoadFromRefreshing());
         }
-
         @Override
         protected String getTag() {
             return "FetchBookListObserver";
         }
+
+    }
+    private class FetchQueueAndHistoryObserver extends DefaultObserver<Pair<List<String>, List<String>>> {
+
+
+        @Override
+        public void onNext(Pair<List<String>, List<String>> queueAndHistoryPair) {
+            super.onNext(queueAndHistoryPair);
+            queueIds.clear();
+            queueIds.addAll(queueAndHistoryPair.first);
+            history.clear();
+            history.addAll(queueAndHistoryPair.second);
+
+            if (!mFetchBooks.isRun())
+                refreshStatusFields();
+        }
+        @Override
+        protected String getTag() {
+            return FetchQueueAndHistoryObserver.class.getSimpleName();
+        }
+
     }
 }

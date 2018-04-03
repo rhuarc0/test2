@@ -11,7 +11,7 @@ import java.util.List;
  * Created by nikit on 27.08.2017.
  */
 
-public class FetchAudioBooksQueueResponse extends BaseResponse<FetchAudioBooksQueueResponse.Data> {
+public class FetchBooksQueueResponse extends BaseResponse<FetchBooksQueueResponse.Data> {
 
     public static class Data {
 

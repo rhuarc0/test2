@@ -96,6 +96,7 @@
 
     <!-- Reviews -->
     <dimen name="review_card_height">160dp</dimen>
+    <dimen name="search_card_height">350dp</dimen>
 
 
 </resources>

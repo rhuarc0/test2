@@ -39,6 +39,8 @@
     <string name="last_day">Last day</string>
     <string name="days_left" formatted="true">Days left: %d</string>
 
+    <string name="book_added_to_queue">Currently in Queue</string>
+    <string name="book_previously_rented">Previously Rented</string>
 
     <string name="chapters">Chapters</string>
     <string name="renew">Renew</string>

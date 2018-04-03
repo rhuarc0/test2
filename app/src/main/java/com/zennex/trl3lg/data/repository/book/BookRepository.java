@@ -87,6 +87,16 @@ public class BookRepository implements IBookRepository {
         return bookRemoteDataSource.fetchMyAudioBooks();
     }
 
+    @Override
+    public Observable<List<String>> fetchQueueBookIds() {
+        return bookRemoteDataSource.fetchQueueIds();
+    }
+
+    @Override
+    public Observable<List<String>> fetchHistory() {
+        return bookRemoteDataSource.fetchHistory();
+    }
+
 
     // aux methods
 

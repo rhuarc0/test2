@@ -18,4 +18,6 @@ public interface IBookRepository {
                                       int startingLoadPosition,
                                       String rentalGroupId);
     Observable<List<AudioBook>> fetchMyAudioBooks();
+    Observable<List<String>> fetchQueueBookIds();
+    Observable<List<String>> fetchHistory();
 }

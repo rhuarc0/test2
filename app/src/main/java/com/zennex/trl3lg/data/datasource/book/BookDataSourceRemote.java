@@ -22,4 +22,7 @@ public interface BookDataSourceRemote {
 
     Observable<List<AudioBook>> fetchMyAudioBooks();
 
+    Observable<List<String>> fetchQueueIds();
+
+    Observable<List<String>> fetchHistory();
 }

@@ -74,7 +74,7 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
             return new SearchListRecyclerAdapter.ViewHolderItem(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.act_search_li, parent, false));
+                    .inflate(R.layout.li_search_card, parent, false));
         } else {
             return new ViewHolderPendingFooter(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.li_footer_layout, parent, false));
@@ -118,11 +118,14 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
         @BindView(R.id.act_search_li_book_iv)
         ImageView mImageViewBook;
 
-        @BindView(R.id.acr_search_tv_title)
+        @BindView(R.id.act_search_tv_title)
         TextView mTvTitle;
 
-        @BindView(R.id.acr_search_tv_author)
+        @BindView(R.id.act_search_tv_author)
         TextView mTvAuthor;
+
+        @BindView(R.id.act_search_tv_status)
+        TextView tvStatus;
 
 
         @BindView(R.id.act_search_li_iv_type_book)
@@ -158,6 +161,18 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
             mImageViewTypeBook.setImageResource(book.getFieldSet().equals("11") ?
                     R.drawable.ondemand_icon :
                     R.drawable.disc_icon);
+
+            if (book.isAddedToQueue()) {
+                tvStatus.setVisibility(View.VISIBLE);
+                tvStatus.setText(R.string.book_added_to_queue);
+            } else {
+                if (book.isPreviouslyRented()) {
+                    tvStatus.setVisibility(View.VISIBLE);
+                    tvStatus.setText(R.string.book_previously_rented);
+                } else {
+                    tvStatus.setVisibility(View.GONE);
+                }
+            }
         }
     }
 

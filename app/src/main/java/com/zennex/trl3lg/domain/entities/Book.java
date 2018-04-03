@@ -87,6 +87,9 @@ public class Book implements Parcelable {
     int renew;
     String associatedItem;
 
+    private boolean isAddedToQueue;
+    private boolean isPreviouslyRented;
+
     public Book() {
     }
 
@@ -445,6 +448,22 @@ public class Book implements Parcelable {
 
     public void setAssociatedItem(String associatedItem) {
         this.associatedItem = associatedItem;
+    }
+
+    public boolean isAddedToQueue() {
+        return isAddedToQueue;
+    }
+
+    public void setAddedToQueue(boolean addedToQueue) {
+        isAddedToQueue = addedToQueue;
+    }
+
+    public boolean isPreviouslyRented() {
+        return isPreviouslyRented;
+    }
+
+    public void setPreviouslyRented(boolean previouslyRented) {
+        isPreviouslyRented = previouslyRented;
     }
 
     @Override

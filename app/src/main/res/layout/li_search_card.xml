@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/act_search_li_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/search_card_height"
+    android:layout_margin="@dimen/spacing_smaller"
+    android:clickable="true"
+    android:focusable="true"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/act_search_li_book_iv"
+            android:layout_width="0dp"
+            android:layout_height="210dp"
+            android:scaleType="fitXY"
+            android:transitionName="book_image_transition"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/act_search_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_search_li_book_iv"
+
+            android:paddingTop="@dimen/spacing_smaller"
+            android:paddingStart="@dimen/spacing_smaller"
+            android:paddingEnd="@dimen/spacing_smaller"
+            android:paddingBottom="@dimen/spacing_smallest"
+
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="@dimen/font_large"
+            android:textColor="@color/md_black_1000"
+            android:transitionName="book_title_transition"
+            tools:text="title"
+            />
+
+        <TextView
+            android:id="@+id/act_search_tv_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_search_tv_title"
+
+            android:paddingStart="@dimen/spacing_smaller"
+            android:paddingEnd="@dimen/spacing_smaller"
+
+            android:ellipsize="end"
+            android:lines="1"
+            android:textSize="@dimen/font_normal"
+            tools:text="author"
+            />
+
+        <ImageView
+            android:id="@+id/act_search_li_iv_type_book"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/disc_icon"
+            android:layout_margin="@dimen/spacing_smaller"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/act_search_tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:lines="2"
+            android:maxLines="2"
+            android:textSize="@dimen/font_normal"
+            android:textColor="@color/colorPrimary"
+            android:gravity="end"
+
+            android:layout_marginTop="@dimen/spacing_smaller"
+            android:layout_marginBottom="@dimen/spacing_smaller"
+            android:layout_marginEnd="@dimen/spacing_smaller"
+            android:layout_marginStart="@dimen/spacing_normal"
+
+            app:layout_constraintTop_toBottomOf="@id/act_search_tv_author"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/act_search_li_iv_type_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="1"
+
+            tools:text="Currently in queue"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

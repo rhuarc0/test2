@@ -33,6 +33,8 @@ public abstract class SearchScreenContract {
         void hideFooterPendingLoadBooks();
 
         void clearData();
+
+        void refreshStatusFields();
     }
 
     public static abstract class AbstractSearchPresenter extends ViperBasePresenter<ISearchView, AbstractSearchScreenRouter> {

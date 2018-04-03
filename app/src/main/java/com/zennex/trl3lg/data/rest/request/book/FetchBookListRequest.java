@@ -12,12 +12,14 @@ import java.util.List;
 
 public class FetchBookListRequest extends BaseRequest<FetchBookListRequest.Data> {
 
+    private static final String API_METHOD = "findRentalItems";
+
     public static FetchBookListRequest newInstance(String moduleId, Data data) {
         FetchBookListRequest request = new FetchBookListRequest();
         request.fillDefaultFields();
         request.setData(data);
         request.setModuleid(moduleId);
-        request.setType("findRentalItems");
+        request.setType(API_METHOD);
         return request;
     }
 

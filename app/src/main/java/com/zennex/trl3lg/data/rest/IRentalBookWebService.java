@@ -14,8 +14,9 @@ import com.zennex.trl3lg.data.rest.request.book.RenewAudioBookRequest;
 import com.zennex.trl3lg.data.rest.request.book.StorePositionRequest;
 import com.zennex.trl3lg.data.rest.response.BaseResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchBookListResponse;
-import com.zennex.trl3lg.data.rest.response.book.FetchAudioBooksQueueResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchBooksQueueResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchCDBooksQueueResponse;
+import com.zennex.trl3lg.data.rest.response.book.FetchHistoryResponse;
 import com.zennex.trl3lg.data.rest.response.book.FetchRentalGroupsResponse;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface IRentalBookWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> fetchQueue(@Body List<FetchQueueRequest> requests);
+    Observable<List<FetchBooksQueueResponse>> fetchQueue(@Body List<FetchQueueRequest> requests);
 
 
     @Headers("Content-Type: application/json")
@@ -49,7 +50,7 @@ public interface IRentalBookWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> fetchHistory(@Body List<FetchHistoryRequest> request);
+    Observable<FetchHistoryResponse> fetchHistory(@Body List<FetchHistoryRequest> request);
 
     //endregion
 
@@ -59,7 +60,7 @@ public interface IRentalBookWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> addAudioBook(@Body List<AddBookRequest> requests);
+    Observable<List<FetchBooksQueueResponse>> addAudioBook(@Body List<AddBookRequest> requests);
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
@@ -77,19 +78,19 @@ public interface IRentalBookWebService {
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> activateAudioBook(@Body List<ActivateAudioBookRequest> request);
+    Observable<List<FetchBooksQueueResponse>> activateAudioBook(@Body List<ActivateAudioBookRequest> request);
 
     @Headers("Contnet-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> renewLiveItem(@Body List<RenewAudioBookRequest> request);
+    Observable<List<FetchBooksQueueResponse>> renewLiveItem(@Body List<RenewAudioBookRequest> request);
 
     @Headers("Contnet-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> removeAudioBook(@Body List<RemoveAudioBookRequest> request);
+    Observable<List<FetchBooksQueueResponse>> removeAudioBook(@Body List<RemoveAudioBookRequest> request);
 
     @Headers("Content-Type: application/json")
     @POST("core/webservice")
-    Observable<List<FetchAudioBooksQueueResponse>> changeAudioBookListOrder(@Body List<ChangeAudioBookListOrderRequest> request);
+    Observable<List<FetchBooksQueueResponse>> changeAudioBookListOrder(@Body List<ChangeAudioBookListOrderRequest> request);
 
     //endregion
 

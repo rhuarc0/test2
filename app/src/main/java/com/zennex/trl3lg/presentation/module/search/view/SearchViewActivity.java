@@ -204,6 +204,11 @@ public class SearchViewActivity extends BaseListActivity<SearchScreenContract.Ab
         mAdapter.clearList();
     }
 
+    @Override
+    public void refreshStatusFields() {
+        mAdapter.notifyDataSetChanged();
+    }
+
     //region  RecyclerView.OnScrollListener
 
     private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
