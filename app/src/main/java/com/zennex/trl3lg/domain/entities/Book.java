@@ -90,6 +90,9 @@ public class Book implements Parcelable {
     private boolean isAddedToQueue;
     private boolean isPreviouslyRented;
 
+    private final static int TRUE = 1;
+    private final static int FALSE = 0;
+
     public Book() {
     }
 
@@ -130,6 +133,8 @@ public class Book implements Parcelable {
         listOrder = in.readString();
         renew = in.readInt();
         associatedItem = in.readString();
+        int inQueue = in.readInt();
+        isAddedToQueue = inQueue == TRUE;
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
@@ -509,5 +514,6 @@ public class Book implements Parcelable {
         dest.writeString(listOrder);
         dest.writeInt(renew);
         dest.writeString(associatedItem);
+        dest.writeInt(isAddedToQueue ? TRUE : FALSE);
     }
 }

@@ -100,16 +100,21 @@ public class BookViewActivity
     Button mBtnReadMore;
     @BindView(R.id.act_book_rating_bar)
     RatingBar mRatingBar;
+
     @BindView(R.id.act_book_my_rating_view_pager)
     WrapContentViewPager mMyReviewViewPager;
-    @BindView(R.id.act_book_btn_chapters)
-    Button mBtnChapters;
-    @BindView(R.id.act_book_btn_renew)
-    Button mBtnRenew;
+
+    @BindView(R.id.act_book_btn_add_to_queue)
+    Button btnAddToQueue;
+    @BindView(R.id.act_book_btn_activate)
+    Button btnActivate;
     @BindView(R.id.act_book_btn_play)
-    FloatingActionButton mBtnPlay;
-    @BindView(R.id.act_book_container_buttons)
-    ConstraintLayout mBtnContainers;
+    Button btnPlay;
+    @BindView(R.id.act_book_btn_chapters)
+    Button btnChapters;
+    @BindView(R.id.act_book_btn_renew)
+    Button btnRenew;
+
     @BindView(R.id.act_book_recycler_view_reviews)
     RecyclerView mRecyclerViewReviews;
 
@@ -333,6 +338,36 @@ public class BookViewActivity
                     }
                 })
                 .into(mIvBook);
+
+        resolveButtons(book);
+    }
+
+    private void resolveButtons(Book book) {
+        if (!book.isAddedToQueue()) {
+            btnAddToQueue.setVisibility(View.VISIBLE);
+            btnActivate.setVisibility(View.GONE);
+            btnPlay.setVisibility(View.GONE);
+            btnChapters.setVisibility(View.GONE);
+            btnRenew.setVisibility(View.GONE);
+
+            return;
+        }
+
+        if (!book.isActivated()) {
+            btnAddToQueue.setVisibility(View.GONE);
+            btnActivate.setVisibility(View.VISIBLE);
+            btnPlay.setVisibility(View.GONE);
+            btnChapters.setVisibility(View.GONE);
+            btnRenew.setVisibility(View.GONE);
+
+            return;
+        }
+
+        btnAddToQueue.setVisibility(View.GONE);
+        btnActivate.setVisibility(View.GONE);
+        btnPlay.setVisibility(View.VISIBLE);
+        btnChapters.setVisibility(View.VISIBLE);
+        btnRenew.setVisibility(View.GONE);
     }
 
     private void scheduleStartPostponedTransition(final View sharedElement) {

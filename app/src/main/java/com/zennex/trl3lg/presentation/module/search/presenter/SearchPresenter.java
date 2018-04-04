@@ -221,6 +221,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
             else
                 getViewState().hidePendingLoadBooks(isLoadFromRefreshing());
         }
+
         @Override
         protected String getTag() {
             return "FetchBookListObserver";

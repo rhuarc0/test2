@@ -3,6 +3,7 @@ package com.zennex.trl3lg.presentation.module.main.submodule.ondemand.presenter;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import com.annimon.stream.Stream;
 import com.arellomobile.mvp.InjectViewState;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.AudioBook;
@@ -81,7 +82,9 @@ public class OnDemandPresenter extends OnDemandScreenContract.AbstractOnDemandPr
         @Override
         public void onNext(List<AudioBook> audioBooks) {
             mBookList = new ArrayList<>(audioBooks);
-            getViewState().showBooks(audioBooks);
+            Stream.of(mBookList).forEach(audioBook -> audioBook.setAddedToQueue(true));
+
+            getViewState().showBooks(mBookList);
             getViewState().hidePending();
         }
 

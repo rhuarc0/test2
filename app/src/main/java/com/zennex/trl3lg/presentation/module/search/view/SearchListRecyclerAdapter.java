@@ -148,7 +148,7 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
 
         @OnClick(R.id.act_search_li_root_layout)
         void onClickItem() {
-            if (mSearchBookListAdapterListener != null) {
+            if (mSearchBookListAdapterListener != null && isStatusLoaded) {
                 mSearchBookListAdapterListener.onBookSelected(getAdapterPosition(), Stream.of(mImageViewBook, mTvTitle)
                         .map(view -> Pair.create(view, view.getTransitionName())).toList());
             }

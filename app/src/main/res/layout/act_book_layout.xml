@@ -146,37 +146,71 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/act_book_container_buttons"
+            <Button
+                android:id="@+id/act_book_btn_add_to_queue"
+                style="@style/AppButtonTheme.NormalHeight"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_normal"
                 android:layout_marginStart="@dimen/spacing_normal"
-                >
+                android:layout_marginBottom="@dimen/spacing_smaller"
+
+
+                android:text="@string/add_to_queue"
+                android:visibility="visible"
+                />
+
+            <Button
+                android:id="@+id/act_book_btn_activate"
+                style="@style/AppButtonTheme.NormalHeight"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_smaller"
+
+                android:text="@string/activate"
+                android:visibility="visible"
+                />
+
+            <Button
+                android:id="@+id/act_book_btn_play"
+                style="@style/AppButtonTheme.NormalHeight"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_smaller"
+
+                android:text="@string/play"
+                android:visibility="visible"
+                />
 
                 <Button
                     android:id="@+id/act_book_btn_chapters"
                     style="@style/AppButtonTheme.NormalHeight"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="@dimen/spacing_smallest"
-                    android:layout_marginEnd="@dimen/spacing_smallest"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_marginBottom="@dimen/spacing_smaller"
+
                     android:text="@string/chapters"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toStartOf="@+id/act_book_btn_renew"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:visibility="visible"
+                    />
 
                 <Button
                     android:id="@+id/act_book_btn_renew"
                     style="@style/AppButtonTheme.NormalHeight"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="@dimen/spacing_smallest"
-                    android:layout_marginEnd="@dimen/spacing_smallest"
-                    android:text="@string/renew"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/act_book_btn_chapters"/>
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
 
-            </android.support.constraint.ConstraintLayout>
+                    android:text="@string/renew"
+                    android:visibility="visible"
+                    />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/act_book_cv_desc"
@@ -240,17 +274,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
                 />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
-                <android.support.v7.widget.CardView
+            <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elevation="10dp"
                     android:layout_marginBottom="@dimen/spacing_normal"
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:layout_marginStart="@dimen/spacing_normal"
@@ -311,21 +340,8 @@
 
                 </android.support.v7.widget.CardView>
 
-            </FrameLayout>
-
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/act_book_btn_play"
-        style="@style/AppFABTheme.Normal"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_play"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
 </android.support.constraint.ConstraintLayout>
