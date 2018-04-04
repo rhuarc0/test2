@@ -206,6 +206,7 @@ public class SearchViewActivity extends BaseListActivity<SearchScreenContract.Ab
 
     @Override
     public void refreshStatusFields() {
+        mAdapter.setStatusLoaded(true);
         mAdapter.notifyDataSetChanged();
     }
 

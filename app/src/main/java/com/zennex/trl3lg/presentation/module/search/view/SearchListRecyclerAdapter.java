@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
@@ -34,6 +35,8 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
 
     public static final String TAG = "SearchListRecyclerAdapter";
 
+    private boolean isStatusLoaded = false;
+
     private final int TYPE_ITEM = 0;
     private final int TYPE_FOOTER = 1;
     private final int mCountFooters = 1;
@@ -50,6 +53,10 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
 
     public void setSearchBookListAdapterListener(ISearchBookListAdapterListener searchBookListAdapterListener) {
         mSearchBookListAdapterListener = searchBookListAdapterListener;
+    }
+
+    public void setStatusLoaded(boolean isStatusLoaded) {
+        this.isStatusLoaded = isStatusLoaded;
     }
 
     @Override
@@ -115,6 +122,9 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
 
     class ViewHolderItem extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.act_search_pb)
+        ProgressBar progressBar;
+
         @BindView(R.id.act_search_li_book_iv)
         ImageView mImageViewBook;
 
@@ -173,6 +183,11 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
                     tvStatus.setVisibility(View.GONE);
                 }
             }
+
+            if (!isStatusLoaded)
+                progressBar.setVisibility(View.VISIBLE);
+            else
+                progressBar.setVisibility(View.GONE);
         }
     }
 

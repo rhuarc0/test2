@@ -6,7 +6,7 @@
 
     android:id="@+id/act_search_li_root_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/search_card_height"
+    android:layout_height="@dimen/li_search_card_height"
     android:layout_margin="@dimen/spacing_smaller"
     android:clickable="true"
     android:focusable="true"
@@ -104,6 +104,25 @@
 
             tools:text="Currently in queue"/>
 
+        <ProgressBar
+            android:id="@+id/act_search_pb"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="@dimen/spacing_largest"
+            android:layout_marginEnd="@dimen/spacing_smaller"
+            android:indeterminate="true"
+            android:progressTint="@color/colorPrimary"
+
+            app:layout_constraintTop_toTopOf="@id/act_search_tv_author"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/act_search_li_iv_type_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="0.75"
+
+            />
 
 
     </android.support.constraint.ConstraintLayout>

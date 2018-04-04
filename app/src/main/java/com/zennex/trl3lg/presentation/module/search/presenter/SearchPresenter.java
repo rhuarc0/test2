@@ -229,7 +229,6 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     }
     private class FetchQueueAndHistoryObserver extends DefaultObserver<Pair<List<String>, List<String>>> {
 
-
         @Override
         public void onNext(Pair<List<String>, List<String>> queueAndHistoryPair) {
             super.onNext(queueAndHistoryPair);
