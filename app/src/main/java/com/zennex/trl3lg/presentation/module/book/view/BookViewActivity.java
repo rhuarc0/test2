@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DividerItemDecoration;
@@ -43,7 +42,6 @@ import com.bumptech.glide.request.target.Target;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.Book;
 import com.zennex.trl3lg.domain.entities.Review;
-import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.module.app.App;
 import com.zennex.trl3lg.presentation.module.book.BookModuleContract;
 import com.zennex.trl3lg.presentation.module.book.presenter.BookPresenter;
@@ -271,7 +269,7 @@ public class BookViewActivity
                 .map(view -> Pair.create(view, view.getTransitionName()))
                 .toList());
 
-        mPresenter.onClickReadAllRevews(pairs);
+        mPresenter.onClickReadAllReviews(pairs);
     }
 
     private void setupWindowAnimations() {
@@ -301,6 +299,77 @@ public class BookViewActivity
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @NonNull
+    public BookModuleContract.AbstractBookPresenter getPresenter() {
+        return mPresenter;
+    }
+
+
+    @Override
+    public void setTitleText(String title) {
+        if (getSupportActionBar() != null) getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void setVisibilityBackButton(boolean value) {
+        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(value);
+    }
+
+    //region onClick Listeners
+
+    @OnClick(R.id.act_book_btn_add_to_queue)
+    public void onBtnAddToQueueClicked() {
+        getPresenter().onBtnAddToQueueClicked();
+    }
+
+    @OnClick(R.id.act_book_btn_activate)
+    public void onBtnActivateClicked() {
+        getPresenter().onBtnActivateClicked();
+    }
+
+    @OnClick(R.id.act_book_btn_play)
+    public void onBtnPlayClicked() {
+        getPresenter().onBtnPlayClicked();
+    }
+
+    @OnClick(R.id.act_book_btn_chapters)
+    public void onBtnChaptersClicked() {
+        getPresenter().onBtnChaptersClicked();
+    }
+
+    @OnClick(R.id.act_book_btn_renew)
+    public void onBtnRenewClicked() {
+        getPresenter().onBtnRenewClicked();
+    }
+
+    @OnClick(R.id.act_book_iv_book)
+    public void onClickImageViewBook() {
+        View rootView = mRootLayout.getRootView();
+        rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+
+        PairArrayList<View, String> animViews = new PairArrayList<>();
+        for (int i = 0; i < mToolbar.getChildCount(); i++) {
+            View viewToolbar = mToolbar.getChildAt(i);
+            if (viewToolbar instanceof TextView) {
+                viewToolbar.setTransitionName("title_transition");
+                animViews.add(Pair.create(viewToolbar, viewToolbar.getTransitionName()));
+                continue;
+            }
+
+            if (viewToolbar instanceof ImageButton) {
+                viewToolbar.setTransitionName("back_btn_transition");
+                animViews.add(Pair.create(viewToolbar, viewToolbar.getTransitionName()));
+            }
+        }
+
+        animViews.add(Pair.create(mIvBook, mIvBook.getTransitionName()));
+        mPresenter.onClickImageBook(animViews);
+    }
+
+    //endregion
+
+    //region IBookView
 
     @Override
     public void showBook(Book book) {
@@ -382,48 +451,8 @@ public class BookViewActivity
         });
     }
 
-    @OnClick(R.id.act_book_iv_book)
-    public void onClickImageViewBook() {
-        View rootView = mRootLayout.getRootView();
-        rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-
-        PairArrayList<View, String> animViews = new PairArrayList<>();
-        for (int i = 0; i < mToolbar.getChildCount(); i++) {
-            View viewToolbar = mToolbar.getChildAt(i);
-            if (viewToolbar instanceof TextView) {
-                viewToolbar.setTransitionName("title_transition");
-                animViews.add(Pair.create(viewToolbar, viewToolbar.getTransitionName()));
-                continue;
-            }
-
-            if (viewToolbar instanceof ImageButton) {
-                viewToolbar.setTransitionName("back_btn_transition");
-                animViews.add(Pair.create(viewToolbar, viewToolbar.getTransitionName()));
-            }
-        }
-
-        animViews.add(Pair.create(mIvBook, mIvBook.getTransitionName()));
-        mPresenter.onClickImageBook(animViews);
-    }
-
     private void parseExtraData() {
         mPresenter.setBook(getIntent().getParcelableExtra(EXTRA_BOOK_KEY));
-    }
-
-    @NonNull
-    public BookModuleContract.AbstractBookPresenter getPresenter() {
-        return mPresenter;
-    }
-
-
-    @Override
-    public void setTitleText(String title) {
-        if (getSupportActionBar() != null) getSupportActionBar().setTitle(title);
-    }
-
-    @Override
-    public void setVisibilityBackButton(boolean value) {
-        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(value);
     }
 
     @Override
@@ -453,6 +482,8 @@ public class BookViewActivity
     public void showMyReviewSendScreen() {
         mMyReviewViewPager.setCurrentItem(1, true);
     }
+
+    //endregion
 
     //region IMyReviewRatingEventListener
 

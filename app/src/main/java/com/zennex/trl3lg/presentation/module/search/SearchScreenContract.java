@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.zennex.trl3lg.domain.entities.Book;
-import com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks;
+import com.zennex.trl3lg.domain.entities.TypeBooks;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.common.presenter.ViperBasePresenter;
 
@@ -45,8 +45,8 @@ public abstract class SearchScreenContract {
 
         public abstract void setKeywordSearch(String keywordSearch);
 
-        public abstract FetchBooks.TypeBooks getCurrentTypeBookFilter();
-        public abstract void setTypeBookFilter(FetchBooks.TypeBooks typeBookFilter);
+        public abstract TypeBooks getCurrentTypeBookFilter();
+        public abstract void setTypeBookFilter(TypeBooks typeBookFilter);
 
         public abstract void setRentalGroupId(String rentalGroupId);
 

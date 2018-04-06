@@ -18,6 +18,7 @@ import com.annimon.stream.Stream;
 import com.zennex.trl3lg.BuildConfig;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.Book;
+import com.zennex.trl3lg.domain.entities.TypeBooks;
 import com.zennex.trl3lg.presentation.common.view.BaseRecyclerViewAdapter;
 import com.zennex.trl3lg.presentation.utils.GlideApp;
 import com.zennex.trl3lg.presentation.utils.view.BookListDiffCallback;
@@ -168,7 +169,7 @@ class SearchListRecyclerAdapter extends BaseRecyclerViewAdapter<RecyclerView.Vie
                     book.getAuthor2() :
                     book.getAuthor());
 
-            mImageViewTypeBook.setImageResource(book.getFieldSet().equals("11") ?
+            mImageViewTypeBook.setImageResource(book.getFieldSet().equals(TypeBooks.AudioBook.getValue()) ?
                     R.drawable.ondemand_icon :
                     R.drawable.disc_icon);
 

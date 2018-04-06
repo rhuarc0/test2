@@ -54,11 +54,17 @@ public abstract class BookModuleContract {
             super(presenterSubcomponentBuilders);
         }
 
+        public abstract void onBtnAddToQueueClicked();
+        public abstract void onBtnActivateClicked();
+        public abstract void onBtnPlayClicked();
+        public abstract void onBtnChaptersClicked();
+        public abstract void onBtnRenewClicked();
+
         public abstract void onClickBtnReadMoreDescription(PairArrayList<View, String> animViews);
 
         public abstract void onClickImageBook(PairArrayList<View, String> animViews);
 
-        public abstract void onClickReadAllRevews(PairArrayList<View, String> animViews);
+        public abstract void onClickReadAllReviews(PairArrayList<View, String> animViews);
 
         public abstract void onClickNextRateBook();
 

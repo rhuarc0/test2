@@ -1,7 +1,6 @@
 package com.zennex.trl3lg.presentation.module.search.presenter;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 
@@ -12,6 +11,7 @@ import com.zennex.trl3lg.domain.usecases.common.DefaultObserver;
 import com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks;
 import com.zennex.trl3lg.domain.usecases.rentalbook.FetchHistory;
 import com.zennex.trl3lg.domain.usecases.rentalbook.FetchQueueIdsAndHistory;
+import com.zennex.trl3lg.domain.entities.TypeBooks;
 import com.zennex.trl3lg.presentation.common.di.presenterbindings.HasPresenterSubcomponentBuilders;
 import com.zennex.trl3lg.presentation.model.TitleModel;
 import com.zennex.trl3lg.presentation.module.search.SearchScreenContract;
@@ -42,7 +42,7 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     private List<String> history = new ArrayList<>();
 
     private String mKeywordSearch;
-    private FetchBooks.TypeBooks typeBookFilter = FetchBooks.TypeBooks.All;
+    private TypeBooks typeBookFilter = TypeBooks.All;
     private String mRentalGroupId;
 
     public SearchPresenter(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
@@ -55,12 +55,12 @@ public class SearchPresenter extends SearchScreenContract.AbstractSearchPresente
     }
 
     @Override
-    public FetchBooks.TypeBooks getCurrentTypeBookFilter() {
+    public TypeBooks getCurrentTypeBookFilter() {
         return typeBookFilter;
     }
 
     @Override
-    public void setTypeBookFilter(FetchBooks.TypeBooks typeBookFilter) {
+    public void setTypeBookFilter(TypeBooks typeBookFilter) {
         this.typeBookFilter = typeBookFilter;
     }
 

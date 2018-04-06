@@ -44,6 +44,31 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
     }
 
     @Override
+    public void onBtnAddToQueueClicked() {
+
+    }
+
+    @Override
+    public void onBtnActivateClicked() {
+
+    }
+
+    @Override
+    public void onBtnPlayClicked() {
+
+    }
+
+    @Override
+    public void onBtnChaptersClicked() {
+
+    }
+
+    @Override
+    public void onBtnRenewClicked() {
+
+    }
+
+    @Override
     public void inject(@NonNull HasPresenterSubcomponentBuilders presenterSubcomponentBuilders) {
         ((IBookPresenterSubcomponent.Builder) presenterSubcomponentBuilders.getPresenterComponentBuilder(BookPresenter.class))
                 .presenterModule(new BookPresenterModule(this))
@@ -82,7 +107,7 @@ public class BookPresenter extends BookModuleContract.AbstractBookPresenter {
     }
 
     @Override
-    public void onClickReadAllRevews(PairArrayList<View, String> animViews) {
+    public void onClickReadAllReviews(PairArrayList<View, String> animViews) {
         mRouter.showAllReviewsScreen(mBook.getTitle(), mBook.getId(), animViews);
     }
 

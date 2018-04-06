@@ -20,7 +20,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.zennex.trl3lg.R;
 import com.zennex.trl3lg.domain.entities.Book;
-import com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks;
+import com.zennex.trl3lg.domain.entities.TypeBooks;
 import com.zennex.trl3lg.presentation.common.annotations.Layout;
 import com.zennex.trl3lg.presentation.common.view.BaseListActivity;
 import com.zennex.trl3lg.presentation.module.app.App;
@@ -34,8 +34,6 @@ import org.cryse.widget.persistentsearch.PersistentSearchView;
 import java.util.List;
 
 import butterknife.BindView;
-
-import static com.zennex.trl3lg.domain.usecases.rentalbook.FetchBooks.Params.TYPE_CD;
 
 @Layout(R.layout.act_search_layout)
 public class SearchViewActivity extends BaseListActivity<SearchScreenContract.AbstractSearchPresenter,
@@ -83,7 +81,7 @@ public class SearchViewActivity extends BaseListActivity<SearchScreenContract.Ab
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
         parseExtraData();
-        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.All); // Todo maybe store in preferences
+        mPresenter.setTypeBookFilter(TypeBooks.All); // Todo maybe store in preferences
     }
 
     @Override
@@ -103,7 +101,7 @@ public class SearchViewActivity extends BaseListActivity<SearchScreenContract.Ab
         return super.onOptionsItemSelected(item);
     }
 
-    private void selectFilter(FetchBooks.TypeBooks currentType) {
+    private void selectFilter(TypeBooks currentType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dlg_filters, null);
         RadioButton radioButtonAll = view.findViewById(R.id.dlg_filters_rb_all);
@@ -114,11 +112,11 @@ public class SearchViewActivity extends BaseListActivity<SearchScreenContract.Ab
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                     if (radioButtonAll.isChecked())
-                        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.All);
+                        mPresenter.setTypeBookFilter(TypeBooks.All);
                     if (radioButtonCd.isChecked())
-                        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.Cd);
+                        mPresenter.setTypeBookFilter(TypeBooks.Cd);
                     if (radioButtonAudioBooks.isChecked())
-                        mPresenter.setTypeBookFilter(FetchBooks.TypeBooks.AudioBook);
+                        mPresenter.setTypeBookFilter(TypeBooks.AudioBook);
                     mPresenter.onRefreshView();
                     dialog.dismiss();
                 })

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.zennex.trl3lg.domain.entities.Book;
+import com.zennex.trl3lg.domain.entities.TypeBooks;
 import com.zennex.trl3lg.domain.repository.IBookRepository;
 import com.zennex.trl3lg.domain.usecases.common.UseCase;
 import com.zennex.trl3lg.presentation.common.di.rxschedulers.RxSchedulerModule;
@@ -37,26 +38,7 @@ public class FetchBooks extends UseCase<List<Book>, FetchBooks.Params> {
                 params.getRentalGroupId());
     }
 
-    public enum TypeBooks {
-        All(""),
-        Cd("4"),
-        AudioBook("11");
-
-        private String value;
-
-        TypeBooks(final String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
-
     public static class Params {
-        public static final String TYPE_ALL = "";
-        public static final String TYPE_CD = "4";
-        public static final String TYPE_AUDIO_BOOK = "11";
 
         @Nullable
         private final String mKeyword;
